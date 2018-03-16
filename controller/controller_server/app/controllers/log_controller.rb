@@ -4,12 +4,13 @@ class LogController < ApplicationController
   def create
     json = JSON.parse request.body.read
 
-    # @student = Student.where(:uid => json["uid"]).first;
+    @student = Student.where(:guid => json["uid"]).first;
+    puts "ROOM IS: #{json["room"] + 42}"
     # @student = "blabla"
-
     if @student.nil?
       head 401
     else
+      @CurrentAttendance = CurrentAttendance.new
       head 200
     end
 
