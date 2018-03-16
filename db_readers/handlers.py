@@ -1,7 +1,18 @@
-from tornado.web import RequestHandler
+import os
+
+from tornado.web import RequestHandler, StaticFileHandler
 
 from make_db import Student, Teacher
 from serializers import StudentSchema, TeacherSchema
+
+
+class SingleStaticHandler(StaticFileHandler):
+    def initialize(self, path):
+        self.dirname, self.filename = os.path.split(path)
+        super().initialize(self.dirname)
+
+    def get(self, path=None, include_body=True):
+        super().get(self.filename, include_body)
 
 
 class DatabaseHandler(RequestHandler):

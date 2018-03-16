@@ -1,17 +1,19 @@
 import tornado.ioloop
-from tornado.web import Application
+from tornado.web import Application, StaticFileHandler
 
 from sqlalchemy.orm import sessionmaker
 
 from make_db import engine
-from settings import HOST, PORT
-from handlers import StudentHandler
+from settings import HOST, PORT, ROOT
+from handlers import StudentHandler, SingleStaticHandler
 
 
 Session = sessionmaker(bind=engine)
 handlers = [
     # (.*)
+    (r'/', SingleStaticHandler, {'path': ROOT + '/client/index.html'}),
     (r"/students/?", StudentHandler, {'session': Session}),
+    (r'/static/(.*)', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 
 if __name__ == "__main__":
