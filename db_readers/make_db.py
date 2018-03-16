@@ -17,7 +17,7 @@ schedule_mapping = Table(
 
 
 class StudentClass(Base):
-    __tablename__ = 'classes'
+    __tablename__ = 'student_classes'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -38,7 +38,7 @@ class Schedule(Base):
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
 
-    class_id = Column(Integer, ForeignKey('classes.id'))
+    class_id = Column(Integer, ForeignKey('student_classes.id'))
 
     # many to many
     teachers = relationship(
@@ -81,7 +81,7 @@ class Student(Base):
     name = Column(String, nullable=False)
     number_in_class = Column(Integer, nullable=False)
 
-    class_id = Column(Integer, ForeignKey('classes.id'))
+    class_id = Column(Integer, ForeignKey('student_classes.id'))
 
     # one to many
     assigned_class = relationship('StudentClass', back_populates='students')
