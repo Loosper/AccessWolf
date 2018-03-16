@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
-from settings import ROOT  # USER, PASSWORD
+from settings import DB_PATH, DB_TYPE
 
 Base = declarative_base()
 
@@ -60,7 +60,7 @@ class Teacher(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(Integer, nullable=False)
+    guid = Column(String, nullable=False)
     name = Column(String, nullable=False)
 
     # many to many
@@ -77,9 +77,8 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(Integer, nullable=False)
+    guid = Column(String, nullable=False)
     name = Column(String, nullable=False)
-    class_number = Column(Integer, nullable=False)
 
     class_id = Column(Integer, ForeignKey('classes.id'))
 
@@ -132,8 +131,9 @@ class CurrentAttendance(Base):
     checkout = Column(Time, nullable=True)
 
 
+print(f'{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    f'sqlite+pysqlite:///{ROOT}/database.db',
+    f'{DB_TYPE}://{DB_PATH}',
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
     echo=True
