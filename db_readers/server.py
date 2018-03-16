@@ -22,7 +22,7 @@ if __name__ == "__main__":
         debug=True
     )
 
-    print(f'Listening on port {PORT}.\nPress Ctrl^C to stop.')
+    print('Listening on port {PORT}.\nPress Ctrl^C to stop.')
 
     app.listen(PORT, HOST)
     loop = tornado.ioloop.IOLoop.instance()

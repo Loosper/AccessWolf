@@ -132,9 +132,9 @@ class CurrentAttendance(Base):
     checkout = Column(Time, nullable=True)
 
 
-print(f'{DB_TYPE}://{DB_PATH}')
+print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    f'{DB_TYPE}://{DB_PATH}',
+    '{}://{}'.format(DB_TYPE, DB_PATH),
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
     echo=True

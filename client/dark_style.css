@@ -20,7 +20,11 @@ ul h2{
 #logo{
 }
 
+#logo:hover{
+    color: red;
+}
 
 a{
+    color: inherit;
     text-decoration: none;
 }

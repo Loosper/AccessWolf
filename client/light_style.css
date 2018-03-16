@@ -1,3 +1,13 @@
+@font-face{
+    font-family: 'TitleFont';
+    src: url("assets/Adore64.ttf") format("truetype");
+}
+
+@font-face{
+    font-family: 'MenuFont';
+    src: url("assets/pixel.ttf") format("truetype");
+}
+
 body{
 	background-color: white;
 }
@@ -9,15 +19,20 @@ li{
 
 .nav-bar{
     display:fixed;
-	background-color:#e6f2ff;
+	background-color:#e4f0ff;
 	width:100%;
 }
 
 ul h2{
-	right:0;
+	font-family: "MenuFont";
+    font-size: 20pt;
+    padding: 0 10px;
 }
 
 #logo{
+    font-family: "TitleFont";
+    font-size: 25pt;
+    padding-right: 20px;
 }
 
 #logo:hover{
