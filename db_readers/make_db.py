@@ -62,7 +62,6 @@ class Teacher(Base):
 
     guid = Column(String, nullable=False)
     name = Column(String, nullable=False)
-    number_in_class = Column(Integer, nullable=False)
 
     # many to many
     schedules = relationship(
@@ -80,6 +79,7 @@ class Student(Base):
 
     guid = Column(String, nullable=False)
     name = Column(String, nullable=False)
+    number_in_class = Column(Integer, nullable=False)
 
     class_id = Column(Integer, ForeignKey('classes.id'))
 
