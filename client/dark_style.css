@@ -1,0 +1,26 @@
+body{
+	background-color: black;
+}
+
+li{
+	display:inline-block;
+	padding: 1%;
+}
+
+.nav-bar{
+    display:fixed;
+	background-color:yellow;
+	width:100%;
+}
+
+ul h2{
+	right:0;
+}
+
+#logo{
+}
+
+
+a{
+    text-decoration: none;
+}
