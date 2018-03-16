@@ -11,7 +11,7 @@ Base = declarative_base()
 
 schedule_mapping = Table(
     'schedule_map', Base.metadata,
-    Column('teacher_id', Integer, ForeignKey('teachers.guid')),
+    Column('teacher_id', Integer, ForeignKey('teachers.id')),
     Column('schedule_id', Integer, ForeignKey('schedules.id'))
 )
 
@@ -20,6 +20,7 @@ class StudentClass(Base):
     __tablename__ = 'classes'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+
     number = Column(Integer, nullable=False)
     name = Column(String, nullable=False)
 
@@ -40,7 +41,7 @@ class Schedule(Base):
     class_id = Column(Integer, ForeignKey('classes.id'))
 
     # many to many
-    teaches = relationship(
+    teachers = relationship(
         'Teacher', secondary=schedule_mapping, back_populates='schedules'
     )
     # one to many
@@ -57,7 +58,9 @@ class Schedule(Base):
 class Teacher(Base):
     __tablename__ = 'teachers'
 
-    guid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    guid = Column(Integer, nullable=False)
     name = Column(String, nullable=False)
 
     # many to many
@@ -72,7 +75,9 @@ class Teacher(Base):
 class Student(Base):
     __tablename__ = 'students'
 
-    guid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    guid = Column(Integer, nullable=False)
     name = Column(String, nullable=False)
     class_number = Column(Integer, nullable=False)
 
@@ -92,7 +97,7 @@ class Student(Base):
 
 
 class Attendance(Base):
-    __tablename__ = 'attendaces'
+    __tablename__ = 'attendances'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -100,7 +105,7 @@ class Attendance(Base):
     date = Column(Date, nullable=False)
 
     schedule_id = Column(Integer, ForeignKey('schedules.id'))
-    student_id = Column(Integer, ForeignKey('students.guid'))
+    student_id = Column(Integer, ForeignKey('students.id'))
 
     # one to one
     schedule = relationship('Schedule', back_populates='attended')
@@ -113,7 +118,7 @@ class CurrentAttendance(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    student_id = Column(Integer, ForeignKey('students.guid'))
+    student_id = Column(Integer, ForeignKey('students.id'))
     schedule_id = Column(Integer, ForeignKey('schedules.id'))
 
     # one to one
@@ -135,4 +140,5 @@ engine = create_engine(
 )
 
 if __name__ == '__main__':
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
