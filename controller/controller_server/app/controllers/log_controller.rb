@@ -5,7 +5,7 @@ class LogController < ApplicationController
     json = JSON.parse request.body.read
 
     @student = Student.where(:guid => json["uid"]).first;
-    puts "ROOM IS: #{json["room"] + 42}"
+    puts "ROOM IS: #{json["room"]}"
     # @student = "blabla"
     if @student.nil?
       head 401

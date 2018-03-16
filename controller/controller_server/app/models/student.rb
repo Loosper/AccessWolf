@@ -1,4 +1,4 @@
 class Student < ApplicationRecord
-  has_many :Attendaces
-  has_one :CurrentAttendance
+  has_many :attendances
+  has_one :current_attendance
 end

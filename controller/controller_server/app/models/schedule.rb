@@ -1,6 +1,6 @@
 class Schedule < ApplicationRecord
-  has_many :Teachers
-  has_many :CurrentAttendance
-  has_many :Attendaces
-  has_one :StudentClass
+  has_many :teachers
+  has_many :current_attendances
+  has_many :attendances
+  has_one :student_class
 end

@@ -1,4 +1,4 @@
 class CurrentAttendance < ApplicationRecord
-  belongs_to :Student
-  has_one :Schedule
+  belongs_to :student
+  has_one :schedule
 end
