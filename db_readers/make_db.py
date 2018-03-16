@@ -96,7 +96,7 @@ class Student(Base):
 
 
 class Attendance(Base):
-    __tablename__ = 'attendaces'
+    __tablename__ = 'attendances'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
