@@ -20,6 +20,7 @@ class StudentClass(Base):
     __tablename__ = 'classes'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+
     number = Column(Integer, nullable=False)
     name = Column(String, nullable=False)
 
@@ -139,4 +140,5 @@ engine = create_engine(
 )
 
 if __name__ == '__main__':
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
