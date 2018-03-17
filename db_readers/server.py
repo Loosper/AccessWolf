@@ -20,6 +20,7 @@ handlers = [
     (r'/schedules/class(?:/?|/([0-9]+))/?', ScheduleHandler),
     (r'/classes(?:/?|/([0-9]+))/?', StudentClassHandler),
     (
+        # BUG: /attendaces/student/1/ return total
         r'/attendances/(student|schedule|class)(?:/?$|/([0-9]+))(/?|/total)/?',
         AttendanceHanlder,
     ),

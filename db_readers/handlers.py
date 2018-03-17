@@ -98,7 +98,7 @@ class AttendanceHanlder(DatabaseHandler):
                 query = query.filter(
                     # REVIEW: this sometimes returns bogus people
                     Attendance.student_id == int(id),
-                    Attendance.attended == 'abscent'
+                    Attendance.attended.in_(['false', 'late'])
                 )
             if total:
                 self.write(str(query.count()))
