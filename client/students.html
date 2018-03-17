@@ -4,8 +4,21 @@
 	<link rel="stylesheet" type="text/css" href="/static/stylesheet.css" title="light">
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<script type="text/javascript" src="/static/functionality.js"></script>
+
 </head>
 <body onload="updateStudentsPresence(1, 'a')" style="background-color:#ff7b0f">
+
+    <div id="pop" class="background" onclick="document.getElementById('pop').style.display='none'">
+    <div class="content">
+      <header class="colored">
+        <h2 id="pop-name">NAME</h2>
+      </header>
+      <div>
+        <p id="att">ATT</p>
+      </div>
+    </div>
+  </div>
+
 	<table class="nav-bar">
 	<tr>
 		<td><a href="/"><h2 class="navbar-text">Home</h2></a></td>
@@ -16,7 +29,7 @@
 	</tr>
 	</table>
 
-    <table class="class-menu" width="30%" border="1">
+    <table class="class-menu" width="30%">
         <tr>
             <td>
                 <h2 onclick="changeClassNum('1')" id="1" class="classItemNum selected"> 1</h2>
@@ -72,8 +85,13 @@
     </table>
 
 	<div class="border" style="">
-		<table id="studentsTable" border="1">
-            
+        <div class="topleft box"></div>
+        <div class="topcenter box"></div>
+        <div class="topright box"></div>
+        <div class="bottomleft box"></div>
+        <div class="bottomcenter box"></div>
+        <div class="bottomright box"></div>
+		<table id="studentsTable" width="700">
 		</table>
 	</div>
 </body>

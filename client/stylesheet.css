@@ -8,11 +8,18 @@
     src: url("assets/pixel.ttf") format("truetype");
 }
 
+html{
+    height: 100%;
+    margin: 0;
+}
+
 body{
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
 	user-select: none; /* Standard */
+    height: 100%;
+    margin: 0;
 }
 
 .center{
@@ -145,7 +152,9 @@ a{
 
 .class-menu{
     position: absolute;
-    top: 20%;
+    table-layout: fixed;
+    width: 750px;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -154,6 +163,7 @@ a{
     border-color: white;
     border-style: solid;
     border-width: 1px;
+    width: 750px;
     top: 40%;
     position: absolute;
     padding: 20px;
@@ -162,12 +172,137 @@ a{
 }
 
 .class-menu h2{
+    padding-top: 10px;
 	font-family: MenuFont;
-    color: white;
+    color: #ff7b0f;
     text-align: center;
+    background-color: white;
+    margin: 5%;
+    height: 40px;
+    font-size:20pt;
+	border-radius: 15%;
 }
 
 .selected{
-    color: black !important;
+    color: #ff7b0f !important;
+
+    background-color: black !important;
 }
 
+.topleft{
+    top: -5px;
+    bottom: 0;
+    left: -5px;
+    right: 0;
+}
+
+.topcenter{
+    top: -5px;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+}
+
+.topright{
+    top: -5px;
+    bottom: 0;
+    left: 785px;
+    right: 0;
+}
+
+.bottomleft{
+    top: -moz-calc(100% - 5px); /* Firefox */
+    top: -webkit-calc(100% - 5px); /* WebKit */
+    top: -o-calc(100% - 5px); /* Opera */
+    top: calc(100% - 5px); /* Standard */
+    bottom: 0;;
+    left: -5px;
+    right: 0;
+}
+
+.bottomcenter{
+    top: -moz-calc(100% - 5px); /* Firefox */
+    top: -webkit-calc(100% - 5px); /* WebKit */
+    top: -o-calc(100% - 5px); /* Opera */
+    top: calc(100% - 5px); /* Standard */
+    bottom: 0;;
+    left: 50%;
+    right: 0;
+}
+
+.bottomright{
+    top: -moz-calc(100% - 5px); /* Firefox */
+    top: -webkit-calc(100% - 5px); /* WebKit */
+    top: -o-calc(100% - 5px); /* Opera */
+    top: calc(100% - 5px); /* Standard */
+    bottom: 0;
+    left: 785px;
+    right: 0;
+}
+
+.box{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    border-color: white;
+    background-color: white;
+}
+
+#studentsTable hr{
+    width: 100%;
+}
+
+#studentsTable tr{
+    color: white;
+    font-family: MenuFont;
+}
+
+.title td{
+    color: black;
+}
+
+.student-row:hover > td{
+    color: gray;
+    cursor: pointer;
+}
+
+.background{
+    z-index:50;
+    display:none;
+    padding-top:100px;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0,0,0);
+    background-color:rgba(0,0,0,0.4);
+}
+
+.content{
+    margin:auto;
+    background-color:#fff;
+    position:relative;
+    padding:0;
+    width:600px;
+    position:relative;
+    border-radius: 15px 15px 0 0;
+    animation:animatetop 0.4s;
+}
+
+@keyframes animatetop{
+    from{top:-300px;opacity:0}
+    to{top:0;opacity:1}
+}
+
+.colored{
+    color: black !important;
+    background-color: #ff7b0f !important;
+    border-radius: 15px 15px 0 0;
+}
+
+#pop-name{
+    padding: 10px;
+    font-family: MenuFont;
+    font-size: 17pt;
+}

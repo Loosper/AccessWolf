@@ -2,39 +2,53 @@
 
 function updateStudentsPresence(classNum, classLetter){
 	var table = document.getElementById('studentsTable');
-    //alert(classNum + classLetter);
+    table.innerHTML = "<tr class='title'><td width='30%'>Name</td><td>Number</td><td>Entered</td><td>Last location</td></tr>";
     var res = httpGet("/students?assigned_class="+classNum+"+"+classLetter);
-    alert(res);
+    //name assigned_class guid id number_in_class
+    var students = JSON.parse(res);
+    var i;
+    for(i=0; i<students.length; i++){
+	    if(students[i].assigned_class == classNum+classLetter){
+            addStudentRow(table, students[i].name, students[i].number_in_class, "ENT", "LAST", students[i].id);
+            var row = table.insertRow(-1);
+            var cell = row.insertCell(-1);
+            cell.colSpan = 4;
+            cell.appendChild(document.createElement("HR"));
+        }
+    }
 	//ime klas nomer vlqzul posl
-	addStudentRow(table, "Ime", "Klas", "Num", "isEnt", "last")
 }
 
-function addStudentRow(table, name, clas, num, isEnt, lLoc){
+function addStudentRow(table, name, num, isEnt, lLoc, id){
+    //alert(id);
 	var row = table.insertRow(-1);
 	var ab = [2,4];
-	row.onclick = function(){ popUp(name, name, name, ab); };
+	row.onclick = function(){ popUp(id, name); };
+    row.classList.add('student-row');
 
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
 	var cell3 = row.insertCell(2);
 	var cell4 = row.insertCell(3);
-	var cell5 = row.insertCell(4);
 
 	cell1.innerHTML = name;
-	cell2.innerHTML = clas;
-	cell3.innerHTML = num;
-	cell4.innerHTML = isEnt;
-	cell5.innerHTML = lLoc;
+	cell2.innerHTML = num;
+	cell3.innerHTML = isEnt;
+	cell4.innerHTML = lLoc;
 }
 
-function popUp(name, clas, number, abscences){
-	alert(name + " " + clas + " " + number + " " + abscences);
+function popUp(uid, name){
+    var absc = httpGet("/attendances/student/"+uid);
+    document.getElementById("pop-name").innerHTML = name;
+    document.getElementById("att").innerHTML = absc;
+	document.getElementById('pop').style.display='block';
 }
+
+// /tendences/student/
 
 function updateTeachersPresence(){
 	var table = document.getElementById('teachersTable');
 
-	//ime, predmet, isIn, lLoc /students?assigned_class=(1..12)+(a..g)
 	addTeacherRow(table, "TNAME", "SUBJECT", "isIn", "loc");
 }
 
