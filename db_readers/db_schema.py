@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, Date, Time, Boolean,\
+from sqlalchemy import Column as NullColumn
+
+from sqlalchemy import Integer, String, DateTime, Date, Time,\
     ForeignKey, Table, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -7,6 +9,10 @@ from sqlalchemy import create_engine
 from settings import DB_PATH, DB_TYPE
 
 Base = declarative_base()
+
+
+def Column(*args, nullable=False, **kwargs):
+    return NullColumn(*args, nullable=nullable, **kwargs)
 
 
 schedule_mapping = Table(
@@ -24,8 +30,8 @@ class StudentClass(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    number = Column(Integer, nullable=False)
-    name = Column(String(1), nullable=False)
+    number = Column(Integer)
+    name = Column(String(1))
 
     # one to many
     students = relationship('Student', back_populates='assigned_class')
@@ -44,8 +50,9 @@ class Schedule(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    start_time = Column(Time, nullable=False)
-    end_time = Column(Time, nullable=False)
+    room = Column(Integer)
+    start_time = Column(Time)
+    end_time = Column(Time)
 
     class_id = Column(Integer, ForeignKey('student_classes.id'))
 
@@ -54,10 +61,10 @@ class Schedule(Base):
         'Teacher', secondary=schedule_mapping, back_populates='schedules'
     )
     # one to many
-    currently_attending = relationship(
-        'CurrentAttendance',
-        back_populates='current_schedule'
-    )
+    # currently_attending = relationship(
+    #     'CurrentAttendance',
+    #     back_populates='current_schedule'
+    # )
     # one to one
     assigned_class = relationship('StudentClass', back_populates='schedules')
     # one to many
@@ -69,16 +76,16 @@ class Teacher(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String(12), nullable=False, unique=True)
-    name = Column(String(128), nullable=False, unique=True)
+    guid = Column(String(12), unique=True)
+    name = Column(String(128), unique=True)
 
     # many to many
     schedules = relationship(
         'Schedule', secondary=schedule_mapping, back_populates='teachers'
     )
 
-    def __repr__(self):
-        return 'Teacher {}, id: {}'.format(self.name, self.guid)
+    # def __repr__(self):
+    #     return 'Teacher {}, id: {}'.format(self.name, self.guid)
 
 
 class Student(Base):
@@ -86,11 +93,14 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String(12), nullable=False, unique=True)
-    name = Column(String(128), nullable=False, unique=True)
-    number_in_class = Column(Integer, nullable=False, unique=True)
+    guid = Column(String(12), unique=True)
+    name = Column(String(128), unique=True)
+    number_in_class = Column(Integer, unique=True)
 
-    class_id = Column(Integer, ForeignKey('student_classes.id'))
+    class_id = Column(
+        Integer, ForeignKey('student_classes.id'),
+        nullable=False
+    )
 
     # one to many
     assigned_class = relationship('StudentClass', back_populates='students')
@@ -101,10 +111,10 @@ class Student(Base):
     # one to many
     attended_schedules = relationship('Attendance', back_populates='student')
 
-    def __repr__(self):
-        return 'Student {}, id: {}'.format(
-            self.name, self.guid
-        )
+    # def __repr__(self):
+    #     return 'Student {}, id: {}'.format(
+    #         self.name, self.guid
+    #     )
 
 
 class Attendance(Base):
@@ -118,9 +128,9 @@ class Attendance(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    attended = Column(Boolean, nullable=False)
-    late = Column(Boolean, nullable=True)
-    date = Column(Date, nullable=False)
+    attended = Column(String(5))
+    # late = Column(Boolean, nullable=True)
+    date = Column(Date)
 
     schedule_id = Column(Integer, ForeignKey('schedules.id'))
     student_id = Column(Integer, ForeignKey('students.id'))
@@ -142,26 +152,27 @@ class CurrentAttendance(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
+    room = Column(Integer)
     student_id = Column(Integer, ForeignKey('students.id'))
     schedule_id = Column(Integer, ForeignKey('schedules.id'))
 
     # one to one
     student = relationship('Student', back_populates='current_class')
     # one to one
-    current_schedule = relationship(
-        'Schedule',
-        back_populates='currently_attending'
-    )
-    checkin = Column(DateTime, nullable=False)
+    # current_schedule = relationship(
+    #     'Schedule',
+    # #     back_populates='currently_attending'
+    # # )
+    checkin = Column(DateTime)
     checkout = Column(DateTime, nullable=True)
 
 
 # print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    '{}://{}'.format(DB_TYPE, DB_PATH),
+    '{}://{}'.format(DB_TYPE, DB_PATH)
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
-    echo=True
+    # echo=True
 )
 
 if __name__ == '__main__':
