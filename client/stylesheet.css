@@ -1,0 +1,155 @@
+@font-face{
+    font-family: TitleFont;
+    src: url("assets/Adore64.ttf") format("truetype");
+}
+
+@font-face{
+    font-family: MenuFont;
+    src: url("assets/pixel.ttf") format("truetype");
+}
+
+body{
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.center{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.cell{
+	width:33.33333333%;
+    height:100%;
+}
+
+.fade{
+	transition: background-color 200ms ease-in-out;
+}
+
+.one{
+	background-color:#ffc41a;
+}
+
+.two{
+	background-color:#ff7b0f; left:33.33333333%;
+}
+
+.three{
+	background-color:#ea4335; left:66.66666666%;
+}
+
+.four{
+	background-color:#7d4297;
+}
+
+.five{
+	background-color:#0092ff; left:33.33333333%;
+}
+
+.six{
+	background-color:#75bd3f; left:66.66666666%;
+}
+
+.fade:hover{
+	background-color: #333;
+}
+
+.logo{
+	font-family: TitleFont;
+	color: white;
+	font-size: 35pt;
+    padding: 0;
+    margin-top: 0;
+    top:10%;
+	text-align: center;
+}
+
+.menuText{
+	font-family: MenuFont;
+	color: white;
+	font-size: 20pt;
+	margin-top: 20%;
+	text-align: center;
+}
+
+.active{
+	color: black !important;
+	background-color: white;
+	border-radius: 15%;
+}
+
+.nav-bar{
+	position: absolute;
+	top: 10%;
+	right: 0;
+}
+
+.navbar-text{
+	font-family: MenuFont;
+	color: white;
+	font-size: 15pt;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.navbar-text:hover{
+	color: black !important;
+	background-color: white;
+	border-radius: 15%;
+}
+
+.icon{
+	display: block;
+    padding-top:15%;
+	margin: 0 auto;
+    -webkit-animation: flyinleftanim 1s ease;
+}
+
+@-webkit-keyframes flyinleftanim
+{
+	0%{
+		-webkit-transform: translateY(-100px);
+		opacity: 0;
+	}       
+  100%{
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	} 
+}
+
+hr{
+	border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	width: 90%;
+}
+
+.secondary-text{
+	font-family: "Serif";
+	color: white;
+	font-size: 10pt;
+	text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.border{
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    top: 30%;
+    position: absolute;
+    padding: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

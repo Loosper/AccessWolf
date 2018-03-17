@@ -1,33 +1,4 @@
 //grozen kod
-function setCookie(value){
-	var d = new Date();
-	d.setTime(d.getTime() + 30*24*60*60*1000);
-	var expires = "expires="+d.toUTCString();
-	document.cookie = "style="+value+";"+expires+";path=/";
-}
-
-function getCookie(){
-	var cookieArray = document.cookie.split(';').toString();
-	return cookieArray.substring(6);
-}
-
-function switchStyle(style){
-    if(getCookie() == "light")style="dark"
-    else style="light"
-
-	setCookie(style);
-	setStyleInCookie();
-}
-
-function setStyleInCookie(){
-	var ss = document.getElementsByTagName('link');
-	var i;
-	for(i=0; i<ss.length; i++){
-		if(getCookie() == ss[i].title)ss[i].disabled = false;
-		else ss[i].disabled = true;
-	}
-}
-
 function updateStudentsPresence(){
 	var table = document.getElementById('studentsTable');
 
