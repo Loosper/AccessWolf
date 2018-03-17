@@ -2,9 +2,11 @@ import os
 
 from tornado.web import RequestHandler, StaticFileHandler
 
-from db_schema import Student, Teacher, Schedule, StudentClass, Attendance
+from db_schema import Student, Teacher, Schedule, StudentClass, Attendance,\
+    CurrentAttendance, PastSchedule
 from serializers import StudentSchema, TeacherSchema, ScheduleSchema,\
-    StudentClassSchema, AttendanceSchema, CurrentAttendanceSchema
+    StudentClassSchema, AttendanceSchema, CurrentAttendanceSchema,\
+    PastScheduleSchema
 
 
 class SingleStaticHandler(StaticFileHandler):
@@ -49,7 +51,9 @@ class StudentHandler(DatabaseHandler):
 
 class TeacherHandler(DatabaseHandler):
     async def get(self):
-        self.write(self.serializer(self.session.query(Teacher).all()).data)
+        query = self.session.query(Teacher)
+
+        self.write(self.serializer(query.all()).data)
 
     def get_schema(self):
         return TeacherSchema(many=True)
@@ -94,7 +98,7 @@ class AttendanceHanlder(DatabaseHandler):
                 query = query.filter(
                     # REVIEW: this sometimes returns bogus people
                     Attendance.student_id == int(id),
-                    Attendance.attended.is_(True)
+                    Attendance.attended == 'abscent'
                 )
             if total:
                 self.write(str(query.count()))
@@ -105,15 +109,33 @@ class AttendanceHanlder(DatabaseHandler):
         elif name == 'class':
             raise NotImplemented
 
-        self.write(
-            self.serializer(query.all()).data
-        )
+        self.write(self.serializer(query.all()).data)
 
     def get_schema(self):
         return AttendanceSchema(many=True)
 
 
-class CurrentAttendanceHandler(DatabaseHandler):
+class StudentAttendanceHandler(DatabaseHandler):
+    def get(self, id):
+        query = self.session.query
+        id = int(id)
+        query = query(CurrentAttendance).\
+            filter(CurrentAttendance.student_id == id)
+
+        self.write(self.serializer(query.all()).data)
 
     def get_schema(self):
-        return CurrentAttendanceSchema
+        return CurrentAttendanceSchema(many=True)
+
+
+class TeacherAttendanceHandler(DatabaseHandler):
+    def get(self, id):
+        query = self.session.query
+        id = int(id)
+        query = query(PastSchedule).\
+            filter(PastSchedule.teachers.any(id=id))
+
+        self.write(self.serializer(query.all()).data)
+
+    def get_schema(self):
+        return PastScheduleSchema(many=True)

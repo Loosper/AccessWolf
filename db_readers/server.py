@@ -6,12 +6,14 @@ from sqlalchemy.orm import sessionmaker
 from db_schema import engine
 from settings import HOST, PORT, ROOT
 from handlers import StudentHandler, SingleStaticHandler, TeacherHandler,\
-    ScheduleHandler, StudentClassHandler, AttendanceHanlder
+    ScheduleHandler, StudentClassHandler, AttendanceHanlder,\
+    TeacherAttendanceHandler, StudentAttendanceHandler
 
 
 Session = sessionmaker(bind=engine)
 handlers = [
-    # (.*)
+    # REVIEW: there is un inconsitency with the argument pathing
+    # TODO: unify them
     (r'/', SingleStaticHandler, {'path': ROOT + '/client/index.html'}),
     (r'/students/?', StudentHandler),
     (r'/teachers/?', TeacherHandler),
@@ -21,6 +23,8 @@ handlers = [
         r'/attendances/(student|schedule|class)(?:/?$|/([0-9]+))(/?|/total)/?',
         AttendanceHanlder,
     ),
+    (r'/current_attendaces/student/([0-9]+)/?', StudentAttendanceHandler),
+    (r'/current_attendaces/teacher/([0-9]+)/?', TeacherAttendanceHandler),
     (r'/static/(.*)/?', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 

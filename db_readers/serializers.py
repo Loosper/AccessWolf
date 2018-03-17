@@ -45,4 +45,16 @@ class AttendanceSchema(Schema):
 
 
 class CurrentAttendanceSchema(Schema):
-    pass
+    id = fields.Integer()
+    studentd_id = fields.Integer()
+    room = fields.Integer()
+    checkin = fields.DateTime()
+    checkout = fields.DateTime(allow_none=True)
+
+
+class PastScheduleSchema(Schema):
+    id = fields.Integer()
+    occurance_date = fields.Date()
+    over = fields.Boolean()
+    schedule_id = fields.Integer()
+    teachers = fields.Function(lambda obj: list([t.id for t in obj.teachers]))
