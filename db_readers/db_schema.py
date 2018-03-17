@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Date, Time, Boolean,\
-    ForeignKey, Table
+from sqlalchemy import Column, Integer, String, DateTime, Date, Time, Boolean,\
+    ForeignKey, Table, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -18,6 +18,9 @@ schedule_mapping = Table(
 
 class StudentClass(Base):
     __tablename__ = 'student_classes'
+    __table_args__ = (
+        UniqueConstraint('number', 'name', name='unique_class'),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -32,6 +35,12 @@ class StudentClass(Base):
 
 class Schedule(Base):
     __tablename__ = 'schedules'
+    __table_args__ = (
+        UniqueConstraint(
+            'start_time', 'end_time', 'class_id',
+            name='unique_schedule'
+        ),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -60,8 +69,8 @@ class Teacher(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String(12), nullable=False)
-    name = Column(String(128), nullable=False)
+    guid = Column(String(12), nullable=False, unique=True)
+    name = Column(String(128), nullable=False, unique=True)
 
     # many to many
     schedules = relationship(
@@ -77,9 +86,9 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String(12), nullable=False)
-    name = Column(String(128), nullable=False)
-    number_in_class = Column(Integer, nullable=False)
+    guid = Column(String(12), nullable=False, unique=True)
+    name = Column(String(128), nullable=False, unique=True)
+    number_in_class = Column(Integer, nullable=False, unique=True)
 
     class_id = Column(Integer, ForeignKey('student_classes.id'))
 
@@ -100,6 +109,12 @@ class Student(Base):
 
 class Attendance(Base):
     __tablename__ = 'attendances'
+    __table_args__ = (
+        UniqueConstraint(
+            'student_id', 'schedule_id', 'date',
+            name='unique_attendance'
+        ),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -118,6 +133,12 @@ class Attendance(Base):
 
 class CurrentAttendance(Base):
     __tablename__ = 'current_attendances'
+    __table_args__ = (
+        UniqueConstraint(
+            'student_id', 'schedule_id', 'checkin',
+            name='unique_attendance'
+        ),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -131,16 +152,16 @@ class CurrentAttendance(Base):
         'Schedule',
         back_populates='currently_attending'
     )
-    checkin = Column(Time, nullable=False)
-    checkout = Column(Time, nullable=True)
+    checkin = Column(DateTime, nullable=False)
+    checkout = Column(DateTime, nullable=True)
 
 
 # print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    '{}://{}'.format(DB_TYPE, DB_PATH)
+    '{}://{}'.format(DB_TYPE, DB_PATH),
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
-    # echo=True
+    echo=True
 )
 
 if __name__ == '__main__':
