@@ -36,7 +36,7 @@ class StudentHandler(DatabaseHandler):
 
         if class_id:
             class_id = class_id.strip().split()
-            query.filter(
+            query = query.filter(
                 Student.assigned_class.has(number=int(class_id[0])),
                 Student.assigned_class.has(name=class_id[1].upper())
             )
@@ -56,18 +56,28 @@ class TeacherHandler(DatabaseHandler):
 
 
 class ScheduleHandler(DatabaseHandler):
-    async def get(self):
-        self.write(self.serializer(self.session.query(Schedule).all()).data)
+    async def get(self, class_id=None):
+        query = self.session.query(Schedule)
+
+        if class_id:
+            query = query.filter(
+                Schedule.class_id == int(class_id)
+            )
+
+        self.write(self.serializer(query.all()).data)
 
     def get_schema(self):
         return ScheduleSchema(many=True)
 
 
 class StudentClassHandler(DatabaseHandler):
-    async def get(self):
-        self.write(
-            self.serializer(self.session.query(StudentClass).all()).data
-        )
+    async def get(self, class_id=None):
+        query = self.session.query(StudentClass)
+
+        if class_id:
+            query = query.filter(StudentClass.id == int(class_id))
+
+        self.write(self.serializer(query.all()).data)
 
     def get_schema(self):
         return StudentClassSchema(many=True)
@@ -81,7 +91,7 @@ class AttendanceHanlder(DatabaseHandler):
 
         if name == 'student':
             if id:
-                query.filter(
+                query = query.filter(
                     # REVIEW: this sometimes returns bogus people
                     Attendance.student_id == int(id),
                     Attendance.attended.is_(True)
@@ -91,7 +101,7 @@ class AttendanceHanlder(DatabaseHandler):
                 return
         elif name == 'schedule':
             if id:
-                query.filter(Attendance.schedule_id == int(id))
+                query = query.filter(Attendance.schedule_id == int(id))
         elif name == 'class':
             raise NotImplemented
 

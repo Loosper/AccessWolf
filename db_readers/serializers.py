@@ -5,9 +5,8 @@ class ScheduleSchema(Schema):
     id = fields.Integer()
     start_time = fields.Time()
     end_time = fields.Time()
-    assigned_class = fields.Function(lambda obj: obj.id)
-    # NOTE: this should break on mutliple teachers
-    teachers = fields.List(fields.Function(lambda obj: obj.id))
+    assigned_class = fields.Integer(attribute='class_id')
+    teachers = fields.Function(lambda obj: list([t.id for t in obj.teachers]))
 
 
 class StudentSchema(Schema):
