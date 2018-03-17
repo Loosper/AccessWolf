@@ -15,7 +15,11 @@ class StudentSchema(Schema):
     name = fields.String()
     number_in_class = fields.Integer()
 
-    assigned_class = fields.Function(lambda obj: obj.id)
+    assigned_class = fields.Function(
+        # TODO: make it a '{name} {number}'
+        lambda obj: obj.name
+    )
+    assigned_class_id = fields.Integer(attrubute='class_id')
 
 
 class TeacherSchema(Schema):
@@ -23,3 +27,17 @@ class TeacherSchema(Schema):
     name = fields.String()
 
     schedules = fields.Nested(ScheduleSchema, many=True)
+
+
+class StudentClassSchema(Schema):
+    id = fields.Integer()
+    number = fields.Integer()
+    name = fields.String()
+
+
+class AttendanceSchema(Schema):
+    id = fields.Integer()
+    attended = fields.String()
+    date = fields.Date()
+    schedule_id = fields.Integer()
+    student_id = fields.Integer()

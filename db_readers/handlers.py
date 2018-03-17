@@ -2,8 +2,9 @@ import os
 
 from tornado.web import RequestHandler, StaticFileHandler
 
-from db_schema import Student, Teacher, Schedule
-from serializers import StudentSchema, TeacherSchema, ScheduleSchema
+from db_schema import Student, Teacher, Schedule, StudentClass
+from serializers import StudentSchema, TeacherSchema, ScheduleSchema,\
+    StudentClassSchema, AttendanceSchema
 
 
 class SingleStaticHandler(StaticFileHandler):
@@ -30,7 +31,17 @@ class DatabaseHandler(RequestHandler):
 
 class StudentHandler(DatabaseHandler):
     async def get(self):
-        self.write(self.serializer(self.session.query(Student).all()).data)
+        class_id = self.get_query_argument('assigned_class', default=None)
+        students = self.session.query(Student)
+
+        if class_id:
+            class_id = class_id.strip().split()
+            students.filter(
+                Student.assigned_class.number == int(class_id[0]),
+                Student.assigned_class.name == class_id[1].upper()
+            )
+
+        self.write(self.serializer(students.all()).data)
 
     def get_schema(self):
         return StudentSchema(many=True)
@@ -46,8 +57,28 @@ class TeacherHandler(DatabaseHandler):
 
 class ScheduleHandler(DatabaseHandler):
     async def get(self):
-        print(self.session.query(Schedule).first().teachers)
+        # self.get_arguments()
         self.write(self.serializer(self.session.query(Schedule).all()).data)
 
     def get_schema(self):
         return ScheduleSchema(many=True)
+
+
+class StudentClassHandler(DatabaseHandler):
+    async def get(self):
+        self.write(
+            self.serializer(self.session.query(StudentClass).all()).data
+        )
+
+    def get_schema(self):
+        return StudentClassSchema(many=True)
+
+
+class AttendanceHanlder(DatabaseHandler):
+    async def get(self):
+        self.write(
+            self.serializer(self.session.query(StudentClass).all()).data
+        )
+
+    def get_schema(self):
+        return AttendanceSchema(many=True)

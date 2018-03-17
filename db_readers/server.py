@@ -6,16 +6,18 @@ from sqlalchemy.orm import sessionmaker
 from db_schema import engine
 from settings import HOST, PORT, ROOT
 from handlers import StudentHandler, SingleStaticHandler, TeacherHandler,\
-    ScheduleHandler
+    ScheduleHandler, StudentClassHandler, AttendanceHanlder
 
 
 Session = sessionmaker(bind=engine)
 handlers = [
     # (.*)
     (r'/', SingleStaticHandler, {'path': ROOT + '/client/index.html'}),
-    (r"/students/?", StudentHandler, {'session': Session}),
-    (r"/teachers/?", TeacherHandler, {'session': Session}),
-    (r"/schedules/?", ScheduleHandler, {'session': Session}),
+    (r'/students/?', StudentHandler, {'session': Session}),
+    (r'/teachers/?', TeacherHandler, {'session': Session}),
+    (r'/schedules/?', ScheduleHandler, {'session': Session}),
+    (r'/classes/?', StudentClassHandler, {'session': Session}),
+    (r'/attendances/?', AttendanceHanlder, {'session': Session}),
     (r'/static/(.*)', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 
@@ -25,7 +27,7 @@ if __name__ == "__main__":
         debug=True
     )
 
-    print('Listening on port {PORT}.\nPress Ctrl^C to stop.')
+    print('Listening on port {}.\nPress Ctrl^C to stop.'.format(PORT))
 
     app.listen(PORT, HOST)
     loop = tornado.ioloop.IOLoop.instance()
