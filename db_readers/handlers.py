@@ -17,8 +17,8 @@ class SingleStaticHandler(StaticFileHandler):
 
 
 class DatabaseHandler(RequestHandler):
-    def initialize(self, session):
-        self.session = session()
+    def initialize(self):
+        self.session = self.application.settings['session']()
         self.serializer = self.get_schema().dumps
 
     def on_finish(self):

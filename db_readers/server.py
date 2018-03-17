@@ -13,14 +13,13 @@ Session = sessionmaker(bind=engine)
 handlers = [
     # (.*)
     (r'/', SingleStaticHandler, {'path': ROOT + '/client/index.html'}),
-    (r'/students/?', StudentHandler, {'session': Session}),
-    (r'/teachers/?', TeacherHandler, {'session': Session}),
-    (r'/schedules(?:/?|/([0-9]+))/?', ScheduleHandler, {'session': Session}),
-    (r'/classes(?:/?|/([0-9]+))/?', StudentClassHandler, {'session': Session}),
+    (r'/students/?', StudentHandler),
+    (r'/teachers/?', TeacherHandler),
+    (r'/schedules/class(?:/?|/([0-9]+))/?', ScheduleHandler),
+    (r'/classes(?:/?|/([0-9]+))/?', StudentClassHandler),
     (
         r'/attendances/(student|schedule|class)(?:/?$|/([0-9]+))(/?|/total)/?',
         AttendanceHanlder,
-        {'session': Session}
     ),
     (r'/static/(.*)/?', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
@@ -28,6 +27,7 @@ handlers = [
 if __name__ == "__main__":
     app = Application(
         handlers,
+        session=Session,
         debug=True
     )
 
