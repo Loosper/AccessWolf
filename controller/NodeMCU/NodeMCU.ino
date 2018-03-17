@@ -18,6 +18,8 @@ String server_ip;
 int room;
 
 const int TRIGGER_PIN = D3;
+const int BUZZER_PIN = D0;
+
 const char* CONFIG_FILE = "/config.json";
 
 bool initialConfig = false;
@@ -40,6 +42,7 @@ void setup () {
   rfid.PCD_Init(); // Init MFRC522 
 
   pinMode(TRIGGER_PIN, INPUT_PULLUP);
+  pinMode(BUZZER_PIN, OUTPUT);
   
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
@@ -122,14 +125,7 @@ void loop() {
       nuidPICC[i] = rfid.uid.uidByte[i];
     }
    
-    Serial.println(F("The NUID tag is:"));
-    Serial.print(F("In hex: "));
-    printHex(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
-    Serial.print(F("In dec: "));
-    printDec(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
-    
+    Serial.print(F("The NUID tag is:"));
     String uid = hexToString(rfid.uid.uidByte, rfid.uid.size);
     Serial.println();
 
@@ -152,11 +148,12 @@ void loop() {
     Serial.print("HTTP request send to: ");
     Serial.println(server_ip);
     if (httpCode == 200) { //Check the returning code
-
-    Serial.println("JSON Parsed succccsessfully");
-
+      Serial.println("JSON Parsed succccsessfully");
     } else if(httpCode == 401){
       Serial.println("No such database entry");
+      tone(BUZZER_PIN, 800);
+      delay(1000);
+      noTone(BUZZER_PIN);
     }
  
     http.end();   //Close connection
@@ -168,13 +165,6 @@ void loop() {
 
 }
 
-void printHex(byte *buffer, byte bufferSize) {
-  for (byte i = 0; i < bufferSize; i++) {
-    Serial.print(buffer[i] < 0x10 ? " 0" : " ");
-    Serial.print(buffer[i], HEX);
-  }
-}
-
 String hexToString(byte *buffer, byte bufferSize){
   String hexString = String("");
   for (byte i = 0; i < bufferSize; i++) {
@@ -184,13 +174,6 @@ String hexToString(byte *buffer, byte bufferSize){
   }
   Serial.println(hexString);
   return hexString;
-}
-
-void printDec(byte *buffer, byte bufferSize) {
-  for (byte i = 0; i < bufferSize; i++) {
-    Serial.print(buffer[i] < 0x10 ? " 0" : " ");
-    Serial.print(buffer[i], DEC);
-  }
 }
 
 bool readConfigFile() {
