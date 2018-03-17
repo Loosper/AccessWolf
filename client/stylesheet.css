@@ -143,13 +143,31 @@ a{
     text-decoration: none;
 }
 
+.class-menu{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
 .border{
     border-color: white;
     border-style: solid;
     border-width: 1px;
-    top: 30%;
+    top: 40%;
     position: absolute;
     padding: 20px;
     left: 50%;
     transform: translate(-50%, 0);
 }
+
+.class-menu h2{
+	font-family: MenuFont;
+    color: white;
+    text-align: center;
+}
+
+.selected{
+    color: black !important;
+}
+

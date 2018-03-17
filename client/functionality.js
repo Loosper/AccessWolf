@@ -1,7 +1,10 @@
 //grozen kod
-function updateStudentsPresence(){
-	var table = document.getElementById('studentsTable');
 
+function updateStudentsPresence(classNum, classLetter){
+	var table = document.getElementById('studentsTable');
+    //alert(classNum + classLetter);
+    var res = httpGet("/students?assigned_class="+classNum+"+"+classLetter);
+    alert(res);
 	//ime klas nomer vlqzul posl
 	addStudentRow(table, "Ime", "Klas", "Num", "isEnt", "last")
 }
@@ -31,7 +34,7 @@ function popUp(name, clas, number, abscences){
 function updateTeachersPresence(){
 	var table = document.getElementById('teachersTable');
 
-	//ime, predmet, isIn, lLoc
+	//ime, predmet, isIn, lLoc /students?assigned_class=(1..12)+(a..g)
 	addTeacherRow(table, "TNAME", "SUBJECT", "isIn", "loc");
 }
 
@@ -47,4 +50,37 @@ function addTeacherRow(table, name, subject, isIn, lLoc){
 	cell2.innerHTML = subject;
 	cell3.innerHTML = isIn;
 	cell4.innerHTML = lLoc;
+}
+
+function changeClassNum(num){
+    var arr = document.getElementsByClassName("classItemNum");
+    var i=0;
+    for(i=0; i<arr.length; i++){
+        arr[i].setAttribute("class", "classItemNum");
+    }
+    var elem = document.getElementById(num);
+    elem.className += (" selected");
+    var currentClassLetter = document.getElementsByClassName("classItemLetter selected")[0].id;
+    updateStudentsPresence(num, currentClassLetter);
+}
+
+function changeClassLetter(letter){
+    var arr = document.getElementsByClassName("classItemLetter");
+    var i=0;
+    for(i=0; i<arr.length; i++){
+        arr[i].setAttribute("class", "classItemLetter");
+    }
+    var elem = document.getElementById(letter);
+    elem.className += (" selected");
+
+    var currentClassNum = document.getElementsByClassName("classItemNum selected")[0].id.toString();
+
+    updateStudentsPresence(currentClassNum, letter);
+}
+
+function httpGet(theUrl){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
 }
