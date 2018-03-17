@@ -17,7 +17,7 @@
 String server_ip;
 int room;
 
-const int TRIGGER_PIN2 = D3; //
+const int TRIGGER_PIN = D3;
 const char* CONFIG_FILE = "/config.json";
 
 bool initialConfig = false;
@@ -39,7 +39,7 @@ void setup () {
   SPI.begin(); // Init SPI bus
   rfid.PCD_Init(); // Init MFRC522 
 
-  pinMode(TRIGGER_PIN2, INPUT_PULLUP);
+  pinMode(TRIGGER_PIN, INPUT_PULLUP);
   
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
@@ -47,15 +47,8 @@ void setup () {
 
   if (!readConfigFile()) {
     Serial.println("Failed to read configuration file, using default values");
-  }
-
-  WiFi.printDiag(Serial);
-
-  if (WiFi.SSID() == "") {
-    Serial.println("We haven't got any access point credentials, so get them now");
-    initialConfig = true;
   } else {
-    
+    WiFi.printDiag(Serial);
     WiFi.mode(WIFI_STA); 
     unsigned long startedAt = millis();
     Serial.print("After waiting ");
@@ -76,8 +69,8 @@ void setup () {
 }
  
 void loop() {
- if ( (digitalRead(TRIGGER_PIN2) == LOW) || (initialConfig)) {
-     Serial.println("Configuration portal requested");
+ if ( (digitalRead(TRIGGER_PIN) == LOW) || (initialConfig)) {
+    Serial.println("Configuration portal requested");
     
     char convertedValue[4];
     WiFiManagerParameter p_room("room", "Room Number", "", 4);
