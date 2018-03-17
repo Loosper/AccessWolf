@@ -22,7 +22,7 @@ class StudentClass(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
 
     number = Column(Integer, nullable=False)
-    name = Column(String, nullable=False)
+    name = Column(String(1), nullable=False)
 
     # one to many
     students = relationship('Student', back_populates='assigned_class')
@@ -60,8 +60,8 @@ class Teacher(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String, nullable=False)
-    name = Column(String, nullable=False)
+    guid = Column(String(12), nullable=False)
+    name = Column(String(128), nullable=False)
 
     # many to many
     schedules = relationship(
@@ -77,8 +77,8 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    guid = Column(String, nullable=False)
-    name = Column(String, nullable=False)
+    guid = Column(String(12), nullable=False)
+    name = Column(String(128), nullable=False)
     number_in_class = Column(Integer, nullable=False)
 
     class_id = Column(Integer, ForeignKey('student_classes.id'))
@@ -132,7 +132,7 @@ class CurrentAttendance(Base):
     checkout = Column(Time, nullable=True)
 
 
-print('{DB_TYPE}://{DB_PATH}')
+# print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
     '{}://{}'.format(DB_TYPE, DB_PATH),
     # connect_args={'check_same_thread': False},
