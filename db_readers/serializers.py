@@ -20,7 +20,7 @@ class StudentSchema(Schema):
         lambda obj:
             str(obj.assigned_class.number) + obj.assigned_class.name.lower()
     )
-    assigned_class_id = fields.Integer(attrubute='class_id')
+    assigned_class_id = fields.Integer(attrubute='student_class_id')
 
 
 class TeacherSchema(Schema):
@@ -40,6 +40,10 @@ class StudentClassSchema(Schema):
 class AttendanceSchema(Schema):
     id = fields.Integer()
     attended = fields.String()
-    date = fields.Date()
+    date = fields.DateTime()
     schedule_id = fields.Integer()
     student_id = fields.Integer()
+
+
+class CurrentAttendanceSchema(Schema):
+    pass

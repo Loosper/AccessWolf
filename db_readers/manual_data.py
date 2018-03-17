@@ -3,7 +3,8 @@ import sys
 import json
 
 from sqlalchemy.orm import sessionmaker
-from db_schema import engine, StudentClass, Teacher, Student, Schedule
+from db_schema import engine, StudentClass, Teacher, Student, Schedule,\
+    Attendance
 
 
 session = sessionmaker(bind=engine, autoflush=False)()
@@ -34,7 +35,9 @@ datatypes = {
     'student': Student,
     'teacher': SmartTeacher,
     'class': StudentClass,
-    'schedule': SmartSchedule
+    'schedule': SmartSchedule,
+    # opening myself for abuse here
+    'attendance': Attendance
 }
 
 with open(sys.argv[1], 'r') as file:

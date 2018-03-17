@@ -4,7 +4,7 @@ from tornado.web import RequestHandler, StaticFileHandler
 
 from db_schema import Student, Teacher, Schedule, StudentClass, Attendance
 from serializers import StudentSchema, TeacherSchema, ScheduleSchema,\
-    StudentClassSchema, AttendanceSchema
+    StudentClassSchema, AttendanceSchema, CurrentAttendanceSchema
 
 
 class SingleStaticHandler(StaticFileHandler):
@@ -81,7 +81,11 @@ class AttendanceHanlder(DatabaseHandler):
 
         if name == 'student':
             if id:
-                query.filter(Attendance.student_id == int(id))
+                query.filter(
+                    # REVIEW: this sometimes returns bogus people
+                    Attendance.student_id == int(id),
+                    Attendance.attended.is_(True)
+                )
             if total:
                 self.write(str(query.count()))
                 return
@@ -97,3 +101,9 @@ class AttendanceHanlder(DatabaseHandler):
 
     def get_schema(self):
         return AttendanceSchema(many=True)
+
+
+class CurrentAttendanceHandler(DatabaseHandler):
+
+    def get_schema(self):
+        return CurrentAttendanceSchema
