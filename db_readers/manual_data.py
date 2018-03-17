@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from db_schema import engine, StudentClass, Teacher, Student, Schedule
 
 
-session = sessionmaker(bind=engine)()
+session = sessionmaker(bind=engine, autoflush=False)()
 
 
 class SmartSchedule(Schedule):
