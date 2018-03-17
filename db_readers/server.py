@@ -17,7 +17,11 @@ handlers = [
     (r'/teachers/?', TeacherHandler, {'session': Session}),
     (r'/schedules/?', ScheduleHandler, {'session': Session}),
     (r'/classes/?', StudentClassHandler, {'session': Session}),
-    (r'/attendances/?', AttendanceHanlder, {'session': Session}),
+    (
+        r'/attendances/(student|schedule|class)(?:/?$|/([0-9]+))(/?|/total)/?',
+        AttendanceHanlder,
+        {'session': Session}
+    ),
     (r'/static/(.*)', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 

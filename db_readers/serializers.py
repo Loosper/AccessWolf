@@ -17,7 +17,8 @@ class StudentSchema(Schema):
     number_in_class = fields.Integer()
 
     assigned_class = fields.Function(
-        lambda obj: str(obj.assigned_class.number) + obj.assigned_class.name
+        lambda obj:
+            str(obj.assigned_class.number) + obj.assigned_class.name.lower()
     )
     assigned_class_id = fields.Integer(attrubute='class_id')
 
