@@ -10,15 +10,28 @@ class LogController < ApplicationController
     if @student.nil?
       head 401
     else
-      @currentattendance = CurrentAttendance.new
-      @currentattendance.student = @student
-      @currentattendance.checkin = Time.now
-      if @currentattendance.save!
-        head 200
+      @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
+
+      if @currentattendance.nil?
+        @currentattendance = CurrentAttendance.new
+        @currentattendance.student = @student
+        @currentattendance.checkin = Time.now
+        if @currentattendance.save!
+          head 200
+        else
+          head 401
+        end
       else
-        head 401
+        @currentattendance.delete
+        if @currentattendance.destroyed?
+          head 200
+        else
+          head 402
+        end
       end
     end
 
   end
+
+
 end
