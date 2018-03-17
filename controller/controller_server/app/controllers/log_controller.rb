@@ -5,13 +5,19 @@ class LogController < ApplicationController
     json = JSON.parse request.body.read
 
     @student = Student.where(:guid => json["uid"]).first;
-    puts "ROOM IS: #{json["room"]}"
+    # puts "ROOM IS: #{json["room"]}"
     # @student = "blabla"
     if @student.nil?
       head 401
     else
-      @CurrentAttendance = CurrentAttendance.new
-      head 200
+      @currentattendance = CurrentAttendance.new
+      @currentattendance.student = @student
+      @currentattendance.checkin = Time.now
+      if @currentattendance.save!
+        head 200
+      else
+        head 401
+      end
     end
 
   end

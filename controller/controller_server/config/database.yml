@@ -4,22 +4,40 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
+# default: &default
+#   adapter: sqlite3
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+#
+# development:
+#   <<: *default
+#   # database: db/development.sqlite3
+#   database: ../../database.db
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   <<: *default
+#   database: ../../database.db
+#
+# production:
+#   <<: *default
+#   database: ../../database.db
+
+
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: mysql2
+  pool: 5
+  username: c51segmentatio
+  password: mHf8hAkxVGH9
+  host: web01.hostbalkan.com
+  database: c51segmentatio
 
 development:
   <<: *default
-  # database: db/development.sqlite3
-  database: ../../database.db
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+
 test:
   <<: *default
-  database: ../../database.db
 
 production:
   <<: *default
-  database: ../../database.db
