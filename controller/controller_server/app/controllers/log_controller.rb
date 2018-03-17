@@ -51,7 +51,7 @@ class LogController < ApplicationController
 private
 
   def find_sch
-    @schedule = Schedule.where(:room => @currentattendance.room).where("start_time <= ? AND end_time <= ?", @currentattendance.checkin.to_s(:time), DateTime.now.to_s(:time)).first
+    @schedule = Schedule.where(:room => @currentattendance.room).where("start_time >= ? AND end_time <= ?", @currentattendance.checkin.to_s(:time), DateTime.now.to_s(:time)).first
 
     @attended = "true"
 
