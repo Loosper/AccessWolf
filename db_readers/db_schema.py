@@ -1,7 +1,7 @@
 from sqlalchemy import Column as NullColumn
 
 from sqlalchemy import Integer, String, DateTime, Date, Time,\
-    ForeignKey, Table, UniqueConstraint
+    ForeignKey, Table, UniqueConstraint, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -19,6 +19,12 @@ schedule_mapping = Table(
     'schedule_map', Base.metadata,
     Column('teacher_id', Integer, ForeignKey('teachers.id')),
     Column('schedule_id', Integer, ForeignKey('schedules.id'))
+)
+
+attend_mapping = Table(
+    'attend_map', Base.metadata,
+    Column('teacher_id', Integer, ForeignKey('teachers.id')),
+    Column('past_schedule_id', Integer, ForeignKey('past_schedules.id'))
 )
 
 
@@ -68,7 +74,8 @@ class Schedule(Base):
     # one to one
     assigned_class = relationship('StudentClass', back_populates='schedules')
     # one to many
-    attended = relationship('Attendance', back_populates='schedule')
+    # attended = relationship('Attendance', back_populates='schedule')
+    past_occurances = relationship('PastSchedule', back_populates='schedule')
 
 
 class Teacher(Base):
@@ -84,6 +91,10 @@ class Teacher(Base):
         'Schedule', secondary=schedule_mapping, back_populates='teachers'
     )
 
+    attended_schedules = relationship(
+        'PastSchedule', secondary=attend_mapping, back_populates='teachers'
+    )
+
     # def __repr__(self):
     #     return 'Teacher {}, id: {}'.format(self.name, self.guid)
 
@@ -97,7 +108,7 @@ class Student(Base):
     name = Column(String(128), unique=True)
     number_in_class = Column(Integer, unique=True)
 
-    class_id = Column(
+    student_class_id = Column(
         Integer, ForeignKey('student_classes.id'),
         nullable=False
     )
@@ -121,7 +132,7 @@ class Attendance(Base):
     __tablename__ = 'attendances'
     __table_args__ = (
         UniqueConstraint(
-            'student_id', 'schedule_id', 'date',
+            'student_id', 'past_schedule_id', 'date',
             name='unique_attendance'
         ),
     )
@@ -132,11 +143,11 @@ class Attendance(Base):
     # late = Column(Boolean, nullable=True)
     date = Column(Date)
 
-    schedule_id = Column(Integer, ForeignKey('schedules.id'))
+    past_schedule_id = Column(Integer, ForeignKey('past_schedules.id'))
     student_id = Column(Integer, ForeignKey('students.id'))
 
     # one to one
-    schedule = relationship('Schedule', back_populates='attended')
+    past_schedule = relationship('PastSchedule', back_populates='attended')
     # one to one
     student = relationship('Student', back_populates='attended_schedules')
 
@@ -165,6 +176,30 @@ class CurrentAttendance(Base):
     # # )
     checkin = Column(DateTime)
     checkout = Column(DateTime, nullable=True)
+
+
+class PastSchedule(Base):
+    __tablename__ = 'past_schedules'
+    __table_args__ = (
+        UniqueConstraint(
+            'schedule_id', 'occurance_date',
+            name='unique_past_schedule'
+        ),
+    )
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    occurance_date = Column(Date)
+    over = Column(Boolean)
+    schedule_id = Column(Integer, ForeignKey('schedules.id'))
+
+    teachers = relationship(
+        'Teacher',
+        secondary=attend_mapping,
+        back_populates='attended_schedules'
+    )
+    schedule = relationship('Schedule', back_populates='past_occurances')
+    attended = relationship('Attendance', back_populates='past_schedule')
 
 
 # print('{DB_TYPE}://{DB_PATH}')
