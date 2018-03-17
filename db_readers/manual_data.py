@@ -3,7 +3,7 @@ import sys
 import json
 
 from sqlalchemy.orm import sessionmaker
-from make_db import engine, StudentClass, Teacher, Student, Schedule
+from db_schema import engine, StudentClass, Teacher, Student, Schedule
 
 
 if len(sys.argv) < 2:

@@ -2,7 +2,7 @@ import os
 
 from tornado.web import RequestHandler, StaticFileHandler
 
-from make_db import Student, Teacher
+from db_schema import Student, Teacher
 from serializers import StudentSchema, TeacherSchema
 
 

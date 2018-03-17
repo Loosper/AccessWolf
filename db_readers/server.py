@@ -3,7 +3,7 @@ from tornado.web import Application, StaticFileHandler
 
 from sqlalchemy.orm import sessionmaker
 
-from make_db import engine
+from db_schema import engine
 from settings import HOST, PORT, ROOT
 from handlers import StudentHandler, SingleStaticHandler
 
