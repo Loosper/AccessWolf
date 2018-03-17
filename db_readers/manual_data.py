@@ -42,6 +42,7 @@ with open(sys.argv[1], 'r') as file:
         data = json.loads(file.read())
     except json.JSONDecodeError:
         print('Sorry, incorrect file')
+        sys.exit()
 
     for key in data.keys():
         schema = datatypes[key.lower()]
@@ -53,7 +54,10 @@ with open(sys.argv[1], 'r') as file:
         else:
             new_rows.append(schema(**data[key]))
 
-        session.add_all(new_rows)
-
-
-session.commit()
+        for row in new_rows:
+            try:
+                session.add(row)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                print(e)

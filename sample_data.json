@@ -9,20 +9,22 @@
         "number_in_class": 15,
         "class_id": 1
     },
-    "schedule": {
-        "start_time": "12:45",
-        "end_time": "13:45",
-        "class_id": 1,
-        "teachers": [1, 2]
-    },
     "teacher": [
         {
-            "guid": "trash",
-            "name": "sasho spasov"
+            "guid": "garbage_text",
+            "name": "sample name"
         },
         {
             "guid": "smart",
             "name": "nej"
         }
-    ]
+    ],
+    "schedule": {
+        "start_time": "12:45",
+        "end_time": "13:45",
+        "room": 31,
+        "class_id": 0,
+        "teachers": [1, 2]
+    }
+
 }
