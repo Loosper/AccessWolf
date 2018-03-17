@@ -12,6 +12,7 @@ class ScheduleSchema(Schema):
 
 class StudentSchema(Schema):
     id = fields.Integer()
+    guid = fields.String()
     name = fields.String()
     number_in_class = fields.Integer()
 
@@ -23,6 +24,7 @@ class StudentSchema(Schema):
 
 class TeacherSchema(Schema):
     id = fields.Integer()
+    guid = fields.String()
     name = fields.String()
 
     schedules = fields.Nested(ScheduleSchema, many=True)

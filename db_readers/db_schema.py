@@ -43,7 +43,7 @@ class Schedule(Base):
     __tablename__ = 'schedules'
     __table_args__ = (
         UniqueConstraint(
-            'start_time', 'end_time', 'class_id',
+            'start_time', 'end_time', 'room', 'class_id',
             name='unique_schedule'
         ),
     )
@@ -145,7 +145,7 @@ class CurrentAttendance(Base):
     __tablename__ = 'current_attendances'
     __table_args__ = (
         UniqueConstraint(
-            'student_id', 'schedule_id', 'checkin',
+            'student_id', 'room', 'checkin',
             name='unique_attendance'
         ),
     )
@@ -154,7 +154,7 @@ class CurrentAttendance(Base):
 
     room = Column(Integer)
     student_id = Column(Integer, ForeignKey('students.id'))
-    schedule_id = Column(Integer, ForeignKey('schedules.id'))
+    # schedule_id = Column(Integer, ForeignKey('schedules.id'))
 
     # one to one
     student = relationship('Student', back_populates='current_class')
