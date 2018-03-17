@@ -2,28 +2,24 @@ from marshmallow import Schema, fields
 
 
 class ScheduleSchema(Schema):
-    class_name = fields.Function(
-        lambda obj: obj.name,
-        load_from='assigned_class'
-    )
-    class_number = fields.Function(
-        lambda obj: obj.number,
-        load_from='assigned_class'
-    )
-
-    class Meta:
-        fields = ('id', 'start_time', 'end_time')
+    id = fields.Integer()
+    start_time = fields.Time()
+    end_time = fields.Time()
+    assigned_class = fields.Function(lambda obj: obj.id)
+    # NOTE: this should break on mutliple teachers
+    teachers = fields.List(fields.Function(lambda obj: obj.id))
 
 
 class StudentSchema(Schema):
-    schedules = fields.Nested(ScheduleSchema, many=True)
+    id = fields.Integer()
+    name = fields.String()
+    number_in_class = fields.Integer()
 
-    class Meta:
-        fields = ('id', 'name', 'class_number')
+    assigned_class = fields.Function(lambda obj: obj.id)
 
 
 class TeacherSchema(Schema):
-    schedules = fields.Nested(ScheduleSchema, many=True)
+    id = fields.Integer()
+    name = fields.String()
 
-    class Meta:
-        fields = ('id', 'name')
+    schedules = fields.Nested(ScheduleSchema, many=True)

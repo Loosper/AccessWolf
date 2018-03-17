@@ -6,6 +6,23 @@ from sqlalchemy.orm import sessionmaker
 from db_schema import engine, StudentClass, Teacher, Student, Schedule
 
 
+session = sessionmaker(bind=engine)()
+
+
+class SmartSchedule(Schedule):
+    def __init__(self, teachers=[], **kwargs):
+        teachers = session.query(Teacher).\
+            filter(Teacher.id.in_(teachers)).all()
+        super().__init__(teachers=teachers, **kwargs)
+
+
+class SmartTeacher(Teacher):
+    def __init__(self, schedules=[], **kwargs):
+        schedules = session.query(Schedule).\
+            filter(Teacher.id.in_(schedules)).all()
+        super().__init__(schedules=schedules, **kwargs)
+
+
 if len(sys.argv) < 2:
     print(
         '''Usage: [file to read from]
@@ -15,12 +32,10 @@ if len(sys.argv) < 2:
 
 datatypes = {
     'student': Student,
-    'teacher': Teacher,
+    'teacher': SmartTeacher,
     'class': StudentClass,
-    'schedule': Schedule
+    'schedule': SmartSchedule
 }
-
-session = sessionmaker(bind=engine)()
 
 with open(sys.argv[1], 'r') as file:
     try:
@@ -30,7 +45,15 @@ with open(sys.argv[1], 'r') as file:
 
     for key in data.keys():
         schema = datatypes[key.lower()]
-        new_rows = schema(**data[key])
-        session.add(new_rows)
+        new_rows = []
+
+        if isinstance(data[key], list):
+            for element in data[key]:
+                new_rows.append(schema(**element))
+        else:
+            new_rows.append(schema(**data[key]))
+
+        session.add_all(new_rows)
+
 
 session.commit()

@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker
 
 from db_schema import engine
 from settings import HOST, PORT, ROOT
-from handlers import StudentHandler, SingleStaticHandler
+from handlers import StudentHandler, SingleStaticHandler, TeacherHandler,\
+    ScheduleHandler
 
 
 Session = sessionmaker(bind=engine)
@@ -13,6 +14,8 @@ handlers = [
     # (.*)
     (r'/', SingleStaticHandler, {'path': ROOT + '/client/index.html'}),
     (r"/students/?", StudentHandler, {'session': Session}),
+    (r"/teachers/?", TeacherHandler, {'session': Session}),
+    (r"/schedules/?", ScheduleHandler, {'session': Session}),
     (r'/static/(.*)', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 

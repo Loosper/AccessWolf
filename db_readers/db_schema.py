@@ -69,7 +69,7 @@ class Teacher(Base):
     )
 
     def __repr__(self):
-        return 'Teacher {self.name}, id: {self.guid}'
+        return 'Teacher {}, id: {}'.format(self.name, self.guid)
 
 
 class Student(Base):
@@ -93,7 +93,9 @@ class Student(Base):
     attended_schedules = relationship('Attendance', back_populates='student')
 
     def __repr__(self):
-        return 'Student {self.name}, id: {self.guid}'
+        return 'Student {}, id: {}'.format(
+            self.name, self.guid
+        )
 
 
 class Attendance(Base):
@@ -101,7 +103,8 @@ class Attendance(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    status = Column(Boolean, nullable=False)
+    attended = Column(Boolean, nullable=False)
+    late = Column(Boolean, nullable=True)
     date = Column(Date, nullable=False)
 
     schedule_id = Column(Integer, ForeignKey('schedules.id'))
@@ -134,10 +137,10 @@ class CurrentAttendance(Base):
 
 # print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    '{}://{}'.format(DB_TYPE, DB_PATH),
+    '{}://{}'.format(DB_TYPE, DB_PATH)
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
-    echo=True
+    # echo=True
 )
 
 if __name__ == '__main__':
