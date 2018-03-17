@@ -37,8 +37,8 @@ class StudentHandler(DatabaseHandler):
         if class_id:
             class_id = class_id.strip().split()
             students.filter(
-                Student.assigned_class.number == int(class_id[0]),
-                Student.assigned_class.name == class_id[1].upper()
+                Student.assigned_class.has(number=int(class_id[0])),
+                Student.assigned_class.has(name=class_id[1].upper())
             )
 
         self.write(self.serializer(students.all()).data)
