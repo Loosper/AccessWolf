@@ -12,14 +12,34 @@ class ScheduleSchema(Schema):
 
 class StudentSchema(Schema):
     id = fields.Integer()
+    guid = fields.String()
     name = fields.String()
     number_in_class = fields.Integer()
 
-    assigned_class = fields.Function(lambda obj: obj.id)
+    assigned_class = fields.Function(
+        lambda obj:
+            str(obj.assigned_class.number) + obj.assigned_class.name.lower()
+    )
+    assigned_class_id = fields.Integer(attrubute='class_id')
 
 
 class TeacherSchema(Schema):
     id = fields.Integer()
+    guid = fields.String()
     name = fields.String()
 
     schedules = fields.Nested(ScheduleSchema, many=True)
+
+
+class StudentClassSchema(Schema):
+    id = fields.Integer()
+    number = fields.Integer()
+    name = fields.String()
+
+
+class AttendanceSchema(Schema):
+    id = fields.Integer()
+    attended = fields.String()
+    date = fields.Date()
+    schedule_id = fields.Integer()
+    student_id = fields.Integer()

@@ -1,28 +1,61 @@
 {
-    "class": {
-        "name": "A",
-        "number": 11
-    },
-    "student": {
-        "guid": "123456789012",
-        "name": "Is very long",
-        "number_in_class": 15,
-        "class_id": 1
-    },
-    "schedule": {
-        "start_time": "12:45",
-        "end_time": "13:45",
-        "class_id": 1,
-        "teachers": [1, 2]
-    },
+    "class": [
+        {
+            "name": "A",
+            "number": 11
+        }, {
+            "name": "B",
+            "number": 11
+        }
+    ],
+    "student": [
+        {
+            "guid": "123456789012",
+            "name": "Is very long",
+            "number_in_class": 15,
+            "class_id": 1
+        }, {
+            "guid": "random",
+            "name": "Simple",
+            "number_in_class": 11,
+            "class_id": 1
+        }, {
+            "guid": "random2",
+            "name": "Simpleew",
+            "number_in_class": 18,
+            "class_id": 2
+        }
+    ],
     "teacher": [
         {
-            "guid": "trash",
-            "name": "sasho spasov"
+            "guid": "garbage_text",
+            "name": "sample name"
         },
         {
             "guid": "smart",
             "name": "nej"
         }
+    ],
+    "schedule": [
+        {
+            "start_time": "17:07",
+            "end_time": "17:07",
+            "room": 31,
+            "class_id": 1,
+            "teachers": [1, 2]
+        }, {
+            "start_time": "12:45",
+            "end_time": "13:45",
+            "room": 31,
+            "class_id": 1,
+            "teachers": [1, 2]
+        }, {
+            "start_time": "14:40:00",
+            "end_time": "14:40:01",
+            "room": 31,
+            "class_id": 2,
+            "teachers": [2]
+        }
     ]
+
 }
