@@ -67,15 +67,7 @@ class Schedule(Base):
     teachers = relationship(
         'Teacher', secondary=schedule_mapping, back_populates='schedules'
     )
-    # one to many
-    # currently_attending = relationship(
-    #     'CurrentAttendance',
-    #     back_populates='current_schedule'
-    # )
-    # one to one
     assigned_class = relationship('StudentClass', back_populates='schedules')
-    # one to many
-    # attended = relationship('Attendance', back_populates='schedule')
     past_occurances = relationship('PastSchedule', back_populates='schedule')
 
 
@@ -95,9 +87,6 @@ class Teacher(Base):
     attended_schedules = relationship(
         'PastSchedule', secondary=attend_mapping, back_populates='teachers'
     )
-
-    # def __repr__(self):
-    #     return 'Teacher {}, id: {}'.format(self.name, self.guid)
 
 
 class Student(Base):
@@ -122,11 +111,6 @@ class Student(Base):
     )
     # one to many
     attended_schedules = relationship('Attendance', back_populates='student')
-
-    # def __repr__(self):
-    #     return 'Student {}, id: {}'.format(
-    #         self.name, self.guid
-    #     )
 
 
 class Attendance(Base):
@@ -170,11 +154,6 @@ class CurrentAttendance(Base):
 
     # one to one
     student = relationship('Student', back_populates='current_class')
-    # one to one
-    # current_schedule = relationship(
-    #     'Schedule',
-    # #     back_populates='currently_attending'
-    # # )
     checkin = Column(DateTime)
     checkout = Column(DateTime, nullable=True)
 
@@ -203,7 +182,6 @@ class PastSchedule(Base):
     attended = relationship('Attendance', back_populates='past_schedule')
 
 
-# print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
     '{}://{}'.format(DB_TYPE, DB_PATH),
     # connect_args={'check_same_thread': False},
