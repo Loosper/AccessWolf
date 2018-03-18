@@ -3,7 +3,7 @@
 function updateStudentsPresence(classNum, classLetter){
 	var table = document.getElementById('studentsTable');
     table.innerHTML = "<tr class='title'><td width='30%'>Name</td><td>Number</td><td>Entered</td><td>Last location</td></tr>";
-    var res = httpGet("/static/students?assigned_class="+classNum+"+"+classLetter);
+    var res = httpGet("/students?assigned_class="+classNum+"+"+classLetter);
 
     //name assigned_class guid id number_in_class
 	alert(res);
@@ -31,11 +31,11 @@ function updateStudentsPresence(classNum, classLetter){
 function updateTeachersPresence(){
 	var table = document.getElementById('teachersTable');
     table.innerHTML = "<tr class='title'><td width='30%'>Name</td><<td>Entered</td><td>Last location</td></tr>";
-	var res = httpGet("/static/teachers");
+	var res = httpGet("/teachers");
     var teachers = JSON.parse(res);
 	var i;
     for(i=0; i<teachers.length; i++){
-		var loc = httpGet("/static/current_attendances/teacher/"+teachers[i].id);
+		var loc = httpGet("/current_attendances/teacher/"+teachers[i].id);
 		var jsonTeacher = JSON.parse(res);
 		addTeacherRow(table, teachers[i].name, "IN", loc);
 	}
@@ -72,7 +72,7 @@ function addStudentRow(table, name, num, isEnt, lLoc, id){
 }
 
 function popUp(uid, name){
-    var absc = httpGet("/static/attendances/student/"+uid);
+    var absc = httpGet("/attendances/student/"+uid);
     document.getElementById("pop-name").innerHTML = name;
     document.getElementById("att").innerHTML = absc;
 	document.getElementById('pop').style.display='block';
