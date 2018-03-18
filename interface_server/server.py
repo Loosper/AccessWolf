@@ -1,10 +1,11 @@
+#! /usr/bin/env python
 import tornado.ioloop
 from tornado.web import Application, StaticFileHandler
 
 from sqlalchemy.orm import sessionmaker
 
 from db_schema import engine
-from settings import HOST, PORT, ROOT
+from settings import HOST, PORT, ROOT, DEBUG_SERVER
 from handlers import StudentHandler, SingleStaticHandler, TeacherHandler,\
     ScheduleHandler, StudentClassHandler, AttendanceHanlder,\
     TeacherAttendanceHandler, StudentAttendanceHandler
@@ -33,7 +34,7 @@ if __name__ == "__main__":
     app = Application(
         handlers,
         session=Session,
-        debug=True
+        debug=DEBUG_SERVER
     )
 
     print('Listening on port {}.\nPress Ctrl^C to stop.'.format(PORT))

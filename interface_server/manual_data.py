@@ -2,6 +2,7 @@
 import sys
 import json
 
+from datetime import datetime
 from sqlalchemy.orm import sessionmaker
 from db_schema import engine, StudentClass, Teacher, Student, Schedule,\
     Attendance
@@ -14,6 +15,13 @@ class SmartSchedule(Schedule):
     def __init__(self, teachers=[], **kwargs):
         teachers = session.query(Teacher).\
             filter(Teacher.id.in_(teachers)).all()
+        format = '%H:%M:%S'
+        kwargs['start_time'] = datetime.strptime(
+            kwargs['start_time'], format
+        ).time()
+        kwargs['end_time'] = datetime.strptime(
+            kwargs['end_time'], format
+        ).time()
         super().__init__(teachers=teachers, **kwargs)
 
 

@@ -8,16 +8,6 @@
 <body style="background-color:#7d4297">
     <table class="nav-bar">
 	<tr>
-		<td><a href="/static/index.html"><h2 class="navbar-text">Home</h2></a></td>
-		<td><a href="/static/students.html"><h2 class="navbar-text">Students</h2></a></td>
-		<td><a href="/static/teachers.html"><h2 class="navbar-text active">Teachers</h2></a></td>
-		<td><a href="/static/schedule.html"><h2 class="navbar-text">Schedule</h2></a></td>
-		<td><a href="/static/about.html"><h2 class="navbar-text">About</h2></a></td>
-	</tr>
-	</table>
-
-	<table class="nav-bar">
-	<tr>
 		<td><a href="index.html"><h2 class="navbar-text">Home</h2></a></td>
 		<td><a href="students.html"><h2 class="navbar-text">Students</h2></a></td>
 		<td><a href="teachers.html"><h2 class="navbar-text">Teachers</h2></a></td>
@@ -25,7 +15,194 @@
 		<td><a href="about.html"><h2 class="navbar-text">About</h2></a></td>
 	</tr>
 	</table>
-    <table id="schedule" border="1">	 
+	
+	<table class="class-menu" width="30%">
+        <tr>
+            <td>
+                <h2 onclick="changeClassNum('1', 'schedule')" id="1" class="classItemNum selected" style="color: #7d4297"> 1</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('2', 'schedule')" id="2" class="classItemNum" style="color: #7d4297">2</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('3', 'schedule')" id="3" class="classItemNum" style="color: #7d4297">3</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('4', 'schedule')" id="4" class="classItemNum" style="color: #7d4297">4</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('5', 'schedule')" id="5" class="classItemNum" style="color: #7d4297">5</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('6', 'schedule')" id="6" class="classItemNum" style="color: #7d4297">6</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('7', 'schedule')" id="7" class="classItemNum" style="color: #7d4297">7</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('8', 'schedule')" id="8" class="classItemNum" style="color: #7d4297">8</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('9', 'schedule')" id="9" class="classItemNum" style="color: #7d4297">9</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('10', 'schedule')" id="10" class="classItemNum" style="color: #7d4297">10</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('11', 'schedule')" id="11" class="classItemNum" style="color: #7d4297">11</h2>
+            </td>
+            <td>
+                <h2 onclick="changeClassNum('12', 'schedule')" id="12" class="classItemNum" style="color: #7d4297">12</h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h2 onclick="changeClassLetter('a', 'students')" id="a" class="classItemLetter selected" style="color: #7d4297">A</h2>
+            </td>
+            <td colspan="3">
+                <h2 onclick="changeClassLetter('b', 'students')" id="b" class="classItemLetter" style="color: #7d4297">B</h2>
+            </td>
+            <td colspan="3">
+                <h2 onclick="changeClassLetter('v', 'students')" id="v" class="classItemLetter" style="color: #7d4297">V</h2>
+            </td>
+            <td colspan="3">
+                <h2 onclick="changeClassLetter('g', 'students')" id="g" class="classItemLetter" style="color: #7d4297">G</h2>
+            </td>
+        </tr>
     </table>
+	
+    <div class="border">
+        <div class="topleft box"></div>
+        <div class="topcenter box"></div>
+        <div class="topright box"></div>
+		<table id="scheduleTable" width="700">
+			<tr>
+				<td width="50"><h2 style="text-align:center; color:black">M<br>o<br>n<br>d<br>a<br>y</h2></td>
+				<td>
+					<table>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+					</table>
+				</td>
+				<td width="50"><h2 style="text-align:center; color:black">T<br>u<br>e<br>s<br>d<br>a<br>y</h2></td>
+				<td>
+					<table>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+					</table>
+				</td>
+				<td width="50"><h2 style="text-align:center; color:black">W<br>e<br>d<br>n<br>e<br>s<br>d<br>a<br>y</h2></td>
+				<td>
+					<table>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<tr>
+					<td colspan="6">
+						<hr>
+					</td>
+				<tr>
+			</tr>
+			<tr>
+				<td width="50"><h2 style="text-align:center; color:black">T<br>h<br>u<br>r<br>s<br>d<br>a<br>y</h2></td>
+				<td>
+					<table>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+					</table>
+				</td>
+				<td width="50"><h2 style="text-align:center; color:black">F<br>r<br>i<br>d<br>a<br>y</h2></td>
+				<td>
+					<table>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+						<tr style="line-height: 0px">
+							<td><h2>Subject</h2></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
