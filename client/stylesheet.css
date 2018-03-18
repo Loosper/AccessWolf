@@ -93,7 +93,7 @@ body{
 
 .nav-bar{
 	position: absolute;
-	top: 10%;
+	top: 5%;
 	right: 0;
 }
 
@@ -174,18 +174,22 @@ a{
 .class-menu h2{
     padding-top: 10px;
 	font-family: MenuFont;
-    color: #ff7b0f;
     text-align: center;
     background-color: white;
     margin: 5%;
     height: 40px;
     font-size:20pt;
 	border-radius: 15%;
+    cursor: pointer;
 }
 
 .selected{
-    color: #ff7b0f !important;
+	color: #ff7b0f !important;
+    background-color: black !important;
+}
 
+.selected[style="color: #7d4297"]{
+	color: #7d4297 !important;
     background-color: black !important;
 }
 
@@ -257,6 +261,11 @@ a{
     font-family: MenuFont;
 }
 
+#scheduleTable tr{
+    color: white;
+    font-family: MenuFont;
+}
+
 .title td{
     color: black;
 }
@@ -291,8 +300,8 @@ a{
 }
 
 @keyframes animatetop{
-    from{top:-300px;opacity:0}
-    to{top:0;opacity:1}
+    from{top:-300px; opacity:0}
+    to{top:0; opacity:1}
 }
 
 .colored{
@@ -305,4 +314,20 @@ a{
     padding: 10px;
     font-family: MenuFont;
     font-size: 17pt;
+}
+
+#hack-tues{
+	-webkit-transition:all 0.5s ease-out;
+	-moz-transition:all 0.5s ease-out;
+	-ms-transition:all 0.5s ease-out;
+	-o-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+
+#hack-tues:hover{
+	-webkit-transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	-ms-transform:scale(1.1);
+	-o-transform:scale(1.1);
+	transform:scale(1.1);
 }
