@@ -57,5 +57,5 @@ class PastScheduleSchema(Schema):
     occurance_date = fields.DateTime()
     over = fields.Boolean()
     schedule_id = fields.Integer()
-    teacher = fields.Integer(attribute='teacher_id')
+    teachers = fields.Integer(attrubute='teacher_id')
     # teachers = fields.Function(lambda obj: list([t.id for t in obj.teachers]))

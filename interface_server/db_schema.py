@@ -174,7 +174,7 @@ class PastSchedule(Base):
     schedule_id = Column(Integer, ForeignKey('schedules.id'), nullable=True)
     teacher_id = Column(Integer, ForeignKey('teachers.id'), nullable=True)
 
-    teacher = relationship('Teacher', back_populates='attended_schedules')
+    teachers = relationship('Teacher', back_populates='attended_schedules')
     # teachers = relationship(
     #     'Teacher',
     #     secondary=attend_mapping,
