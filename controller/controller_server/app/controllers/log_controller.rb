@@ -8,7 +8,7 @@ class LogController < ApplicationController
     if @student.nil?
       @teacher = Teacher.where(:guid => json["uid"]).first
       if !@teacher.nil? #found teacher
-        @pastschedule = PastSchedule.where(:teacher_id => @teacher.id).first
+        @pastschedule = PastSchedule.where(:teacher_id => @teacher.id, :over => false).first
         if !@pastschedule.nil?
           @pastschedule.over = true
 
