@@ -23,9 +23,9 @@ class LogController < ApplicationController
             head 400
           end
         end
-
-
-
+      else #didnt find TEACHER
+        head 401
+      end
     else
       @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
 
