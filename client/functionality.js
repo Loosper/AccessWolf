@@ -38,11 +38,16 @@ function updateTeachersPresence(){
 		var loc = httpGet("/current_attendances/teacher/"+teachers[i].id);
 		var jsonTeacher = JSON.parse(res);
 		addTeacherRow(table, teachers[i].name, "IN", loc);
+		var row = table.insertRow(-1);
+        var cell = row.insertCell(-1);
+        cell.colSpan = 3;
+        cell.appendChild(document.createElement("HR"));
 	}
 }
 
 function addTeacherRow(table, name, isIn, lLoc){
 	var row = table.insertRow(-1);
+    row.classList.add('teacher-row');
 	
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
@@ -56,7 +61,6 @@ function addTeacherRow(table, name, isIn, lLoc){
 function addStudentRow(table, name, num, isEnt, lLoc, id){
     //alert(id);
 	var row = table.insertRow(-1);
-	var ab = [2,4];
 	row.onclick = function(){ popUp(id, name); };
     row.classList.add('student-row');
 

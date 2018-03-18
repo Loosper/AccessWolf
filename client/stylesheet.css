@@ -252,11 +252,11 @@ a{
     background-color: white;
 }
 
-#studentsTable hr{
+#data-table hr{
     width: 100%;
 }
 
-#studentsTable tr{
+#data-table tr{
     color: white;
     font-family: MenuFont;
 }
