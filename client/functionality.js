@@ -7,6 +7,7 @@ function updateStudentsPresence(classNum, classLetter){
 
     //name assigned_class guid id number_in_class
 	alert(res);
+	/*
     var students = JSON.parse(res);
 	alert(students);
     var i;
@@ -23,6 +24,7 @@ function updateStudentsPresence(classNum, classLetter){
             cell.appendChild(document.createElement("HR"));
         }
     }
+	*/
 	//ime klas nomer vlqzul posl
 }
 
