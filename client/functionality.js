@@ -6,7 +6,9 @@ function updateStudentsPresence(classNum, classLetter){
     var res = httpGet("/static/students?assigned_class="+classNum+"+"+classLetter);
 
     //name assigned_class guid id number_in_class
+	alert(res);
     var students = JSON.parse(res);
+	alert(students);
     var i;
     for(i=0; i<students.length; i++){
 	    if(students[i].assigned_class == classNum+classLetter){
@@ -26,7 +28,7 @@ function updateStudentsPresence(classNum, classLetter){
 
 function updateTeachersPresence(){
 	var table = document.getElementById('teachersTable');
-    table.innerHTML = "<tr class='title'><td width='30%'>Name</td><td>Subject</td><td>Entered</td><td>Last location</td></tr>";
+    table.innerHTML = "<tr class='title'><td width='30%'>Name</td><<td>Entered</td><td>Last location</td></tr>";
 	var res = httpGet("/static/teachers");
     var teachers = JSON.parse(res);
 	var i;
