@@ -19,10 +19,11 @@ int room;
 
 const int TRIGGER_PIN = D3;
 const int BUZZER_PIN = D0;
+const int RED_LED_PIN = A0;
+const int GREEN_LED_PIN = D4;
 
 const char* CONFIG_FILE = "/config.json";
 
-bool initialConfig = false;
 bool readConfigFile();
 bool writeConfigFile();
 
@@ -43,6 +44,8 @@ void setup () {
 
   pinMode(TRIGGER_PIN, INPUT_PULLUP);
   pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(RED_LED_PIN, OUTPUT);
+  pinMode(GREEN_LED_PIN, OUTPUT);
   
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
@@ -72,7 +75,7 @@ void setup () {
 }
  
 void loop() {
- if ( (digitalRead(TRIGGER_PIN) == LOW) || (initialConfig)) {
+ if ( (digitalRead(TRIGGER_PIN) == LOW)) {
     Serial.println("Configuration portal requested");
     
     char convertedValue[4];
@@ -149,10 +152,27 @@ void loop() {
     Serial.println(server_ip);
     if (httpCode == 200) { //Check the returning code
       Serial.println("JSON Parsed succccsessfully");
+      digitalWrite(GREEN_LED_PIN, HIGH);
+      delay(1000);
+      digitalWrite(GREEN_LED_PIN, LOW);
     } else if(httpCode == 401){
       Serial.println("No such database entry");
+      digitalWrite(RED_LED_PIN, HIGH);
       tone(BUZZER_PIN, 800);
       delay(1000);
+      digitalWrite(RED_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+    }else{
+      tone(BUZZER_PIN, 800);
+      delay(500);
+      noTone(BUZZER_PIN);
+      delay(200);
+      tone(BUZZER_PIN, 800);
+      delay(500);
+      noTone(BUZZER_PIN);
+      delay(200);
+      tone(BUZZER_PIN, 800);
+      delay(500);
       noTone(BUZZER_PIN);
     }
  

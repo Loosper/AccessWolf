@@ -24,7 +24,6 @@
 #   <<: *default
 #   database: ../../database.db
 
-
 default: &default
 
 development:
