@@ -12,18 +12,33 @@
         {
             "guid": "123456789012",
             "name": "Is very long",
-            "number_in_class": 15,
+            "number_in_class": 2,
             "class_id": 1
         }, {
             "guid": "random",
             "name": "Simple",
-            "number_in_class": 11,
+            "number_in_class": 14,
             "class_id": 1
         }, {
             "guid": "random2",
             "name": "Simpleew",
             "number_in_class": 18,
             "class_id": 2
+        }, {
+            "guid": "fc61bc10",
+            "name": "Kaloyan Savov",
+            "number_in_class": 11,
+            "class_id": 1
+        }, {
+            "guid": "c5c5cf65",
+            "name": "Martin Petrov",
+            "number_in_class": 15,
+            "class_id": 1
+        }, {
+            "guid": "aa6b5bce",
+            "name": "Vladimir Vladinov",
+            "number_in_class": 7,
+            "class_id": 1
         }
     ],
     "teacher": [
