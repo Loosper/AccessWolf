@@ -54,7 +54,8 @@ class CurrentAttendanceSchema(Schema):
 
 class PastScheduleSchema(Schema):
     id = fields.Integer()
-    occurance_date = fields.Date()
+    occurance_date = fields.DateTime()
     over = fields.Boolean()
     schedule_id = fields.Integer()
-    teachers = fields.Function(lambda obj: list([t.id for t in obj.teachers]))
+    # teachers = fields.Function(lambda obj: list([t.id for t in obj.teachers]))
+    teacher = fields.Integer(attrubute='teacher_id')

@@ -133,7 +133,7 @@ class TeacherAttendanceHandler(DatabaseHandler):
         query = self.session.query
         id = int(id)
         query = query(PastSchedule).\
-            filter(PastSchedule.teachers.any(id=id))
+            filter(PastSchedule.teacher_id == id)
 
         self.write(self.serializer(query.all()).data)
 

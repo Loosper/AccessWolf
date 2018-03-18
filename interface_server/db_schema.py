@@ -169,15 +169,17 @@ class PastSchedule(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    occurance_date = Column(Date)
+    occurance_date = Column(DateTime)
     over = Column(Boolean)
-    schedule_id = Column(Integer, ForeignKey('schedules.id'))
+    schedule_id = Column(Integer, ForeignKey('schedules.id'), nullable=True)
+    teacher_id = Column(Integer, ForeignKey('teachers.id'), nullable=True)
 
-    teachers = relationship(
-        'Teacher',
-        secondary=attend_mapping,
-        back_populates='attended_schedules'
-    )
+    teacher = relationship('Teacher', back_populates='attended_schedules')
+    # teachers = relationship(
+    #     'Teacher',
+    #     secondary=attend_mapping,
+    #     back_populates='attended_schedules'
+    # )
     schedule = relationship('Schedule', back_populates='past_occurances')
     attended = relationship('Attendance', back_populates='past_schedule')
 

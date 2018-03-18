@@ -25,8 +25,9 @@ handlers = [
         r'/attendances/(student|schedule|class)(?:/?$|/([0-9]+))(/?|/total)/?',
         AttendanceHanlder,
     ),
+    # (r'/attendancces/teacher/([0-9]+)/?', TeacherAttendanceHandler),
     (r'/current_attendaces/student/([0-9]+)/?', StudentAttendanceHandler),
-    (r'/current_attendaces/teacher/([0-9]+)/?', TeacherAttendanceHandler),
+    (r'/current_attendances/teacher/([0-9]+)/?', TeacherAttendanceHandler),
     (r'/static/(.*)/?', StaticFileHandler, {'path': ROOT + '/client'}),
 ]
 
