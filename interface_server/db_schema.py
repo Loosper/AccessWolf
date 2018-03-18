@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 from sqlalchemy import Column as NullColumn
 
 from sqlalchemy import Integer, String, DateTime, Date, Time,\
@@ -6,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
-from settings import DB_PATH, DB_TYPE
+from settings import DB_PATH, DB_TYPE, DEBUG_DB_ECHO
 
 Base = declarative_base()
 
@@ -204,10 +205,10 @@ class PastSchedule(Base):
 
 # print('{DB_TYPE}://{DB_PATH}')
 engine = create_engine(
-    '{}://{}'.format(DB_TYPE, DB_PATH)
+    '{}://{}'.format(DB_TYPE, DB_PATH),
     # connect_args={'check_same_thread': False},
     # poolclass=StaticPool,
-    # echo=True
+    echo=DEBUG_DB_ECHO
 )
 
 if __name__ == '__main__':
