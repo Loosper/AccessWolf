@@ -14,7 +14,7 @@ html{
 }
 
 body{
-	-webkit-user-select: none; /* Safari */        
+	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
 	user-select: none; /* Standard */
@@ -124,11 +124,11 @@ body{
 	0%{
 		-webkit-transform: translateY(-100px);
 		opacity: 0;
-	}       
+	}
   100%{
 		-webkit-transform: translateY(0px);
 		opacity: 1;
-	} 
+	}
 }
 
 hr{
@@ -252,11 +252,20 @@ a{
     background-color: white;
 }
 
-#data-table hr{
+#studentsTable hr{
     width: 100%;
 }
 
-#data-table tr{
+#studentsTable tr{
+    color: white;
+    font-family: MenuFont;
+}
+
+#teachersTable hr{
+    width: 100%;
+}
+
+#teachersTable tr{
     color: white;
     font-family: MenuFont;
 }
