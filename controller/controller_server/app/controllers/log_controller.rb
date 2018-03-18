@@ -11,8 +11,20 @@ class LogController < ApplicationController
         @pastschedule = PastSchedule.where(:teacher_id => @teacher.id).first
         if !@pastschedule.nil?
           @pastschedule.over = true
-          @pastschedule.save
-        else
+
+          find_teacher_sch
+          if !@schedule.nil? #if schedule is found -> add it else leave it like that
+            @pastschedule.schedule_id = @schedule.id
+
+            mark_missing
+          end
+
+          if @pastschedule.save!
+            head 200
+          else
+            head 400
+          end
+        else #create new PastSchedule
           @pastschedule = PastSchedule.new
           @pastschedule.teacher_id = @teacher.id
           @pastschedule.occurance_date = DateTime.now.to_s
@@ -84,6 +96,29 @@ private
         @attended = "late"
       end
     end
+  end
+
+  def find_teacher_sch
+    @schedule = Schedule.where(:room => json["room"]).where("start_time >= ? AND end_time <= ?", @pastschedule.occurance_date.to_s(:time), DateTime.now.to_s(:time)).first
+  end
+
+  def mark_missing
+
+    Student.where(:class_id => @schedule.class_id).each do |student|
+      if Attendance.where(:student_id => student.id, :schedule_id => @schedule.id).first.nil? #if attendance doesnt excist
+        @att = Attendance.new
+        @att.schedule_id = @schedule.id
+        @att.student_id = student.id
+        @att.attended = "false"
+        @att.pastschedule = @pastschedule.id
+        if @att.save!
+          puts "Runner punished."
+        else
+          puts "U won this time."
+        end
+      end
+    end
+
   end
 
 end
