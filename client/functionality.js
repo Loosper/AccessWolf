@@ -5,7 +5,7 @@ function updateStudentsPresence(classNum, classLetter){
     var res = httpGet("/students?assigned_class="+classNum+"+"+classLetter);
 
     //name assigned_class guid id number_in_class
-	alert(res);
+	//alert(res);
 
     var students = JSON.parse(res);
 	//alert(students);
@@ -13,10 +13,10 @@ function updateStudentsPresence(classNum, classLetter){
     for(i=0; i<students.length; i++){
 	    if(students[i].assigned_class == classNum+classLetter){
 
-			var loc = httpGet("/current_attendances/student/"+students[i].id);
+			var loc = httpGet("/current_attendaces/student/"+students[i].id);
 			var jsonStudent = JSON.parse(res);
 
-            addStudentRow(table, students[i].name, students[i].number_in_class, "ENT", jsonStudent.room.toString(), students[i].id);
+            addStudentRow(table, students[i].name, students[i].number_in_class, "ENT", students[i].room, students[i].id);
             var row = table.insertRow(-1);
             var cell = row.insertCell(-1);
             cell.colSpan = 4;
@@ -44,7 +44,7 @@ function updateTeachersPresence(){
 	}
 }
 
-function UpdateSchedule(num, letter){
+function updateSchedule(num, letter){
 	if(num.toString()=="11" && letter=="a"){
 		document.getElementById("a1").innerHTML = "Math";
 		document.getElementById("a2").innerHTML = "Math";
@@ -67,8 +67,8 @@ function UpdateSchedule(num, letter){
 		document.getElementById("c5").innerHTML = "Web Design";
 		document.getElementById("c6").innerHTML = "Web Design";
 
-		document.getElementById("d1").innerHTML = "Computer Science";
-		document.getElementById("d2").innerHTML = "Computer Science";
+		document.getElementById("d1").innerHTML = "Science";
+		document.getElementById("d2").innerHTML = "Science";
 		document.getElementById("d3").innerHTML = "Math";
 		document.getElementById("d4").innerHTML = "Math";
 		document.getElementById("d5").innerHTML = "English";
@@ -78,41 +78,6 @@ function UpdateSchedule(num, letter){
 		document.getElementById("e2").innerHTML = "Literature";
 		document.getElementById("e3").innerHTML = "Programming";
 		document.getElementById("e4").innerHTML = "Programming";
-		document.getElementById("e5").innerHTML = "Russian";
-		document.getElementById("e6").innerHTML = "Russian";
-	}else if(num.toString()=="11" && letter=="b"){
-		document.getElementById("a1").innerHTML = "English";
-		document.getElementById("a2").innerHTML = "English";
-		document.getElementById("a3").innerHTML = "Literature";
-		document.getElementById("a4").innerHTML = "Literature";
-		document.getElementById("a5").innerHTML = "Math";
-		document.getElementById("a6").innerHTML = "Math";
-
-		document.getElementById("b1").innerHTML = "Web Design";
-		document.getElementById("b2").innerHTML = "Web Design";
-		document.getElementById("b3").innerHTML = "Russian";
-		document.getElementById("b4").innerHTML = "Russian";
-		document.getElementById("b5").innerHTML = "History";
-		document.getElementById("b6").innerHTML = "History";
-
-		document.getElementById("c1").innerHTML = "Math";
-		document.getElementById("c2").innerHTML = "Math";
-		document.getElementById("c3").innerHTML = "Programming";
-		document.getElementById("c4").innerHTML = "Programming";
-		document.getElementById("c5").innerHTML = "Philosophy";
-		document.getElementById("c6").innerHTML = "Philosophy";
-
-		document.getElementById("d1").innerHTML = "Programming";
-		document.getElementById("d2").innerHTML = "Programming";
-		document.getElementById("d3").innerHTML = "English";
-		document.getElementById("d4").innerHTML = "English";
-		document.getElementById("d5").innerHTML = "Math";
-		document.getElementById("d6").innerHTML = "Math";
-
-		document.getElementById("e1").innerHTML = "Programming";
-		document.getElementById("e2").innerHTML = "Programming";
-		document.getElementById("e3").innerHTML = "Literature";
-		document.getElementById("e4").innerHTML = "Literature";
 		document.getElementById("e5").innerHTML = "Russian";
 		document.getElementById("e6").innerHTML = "Russian";
 	}else{
@@ -184,7 +149,7 @@ function addStudentRow(table, name, num, isEnt, lLoc, id){
 }
 
 function popUp(uid, name){
-    var absc = httpGet("/attendances/student/"+uid);
+    var absc = httpGet("/attendances/student/"+uid.toString());
     document.getElementById("pop-name").innerHTML = name;
     document.getElementById("att").innerHTML = absc;
 	document.getElementById('pop').style.display='block';

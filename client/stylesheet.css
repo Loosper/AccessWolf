@@ -114,7 +114,7 @@ body{
 
 .icon{
 	display: block;
-    padding-top:15%;
+    padding-top:5%;
 	margin: 0 auto;
     -webkit-animation: flyinleftanim 1s ease;
 }
@@ -164,7 +164,7 @@ a{
     border-style: solid;
     border-width: 1px;
     width: 750px;
-    top: 40%;
+    top: 50%;
     position: absolute;
     padding: 20px;
     left: 50%;
