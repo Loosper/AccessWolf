@@ -172,7 +172,7 @@ class PastSchedule(Base):
     occurance_date = Column(DateTime)
     over = Column(Boolean)
     schedule_id = Column(Integer, ForeignKey('schedules.id'), nullable=True)
-    teacher_id = Column(Integer, ForeignKey('teachers.id'), nullable=True)
+    # teacher_id = Column(Integer, ForeignKey('teachers.id'), nullable=True)
 
     teachers = relationship('Teacher', back_populates='attended_schedules')
     # teachers = relationship(
