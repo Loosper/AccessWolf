@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 import tornado.ioloop
 from tornado.web import Application, StaticFileHandler
 

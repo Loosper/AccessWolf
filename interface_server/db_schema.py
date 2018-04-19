@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 from sqlalchemy import Column as NullColumn
 
 from sqlalchemy import Integer, String, DateTime, Date, Time,\
