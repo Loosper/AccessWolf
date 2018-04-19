@@ -1,5 +1,5 @@
 class Attendance < ApplicationRecord
-  has_one :student
+  belongs_to :student
   has_one :schedule
   has_one :past_schedule
 end

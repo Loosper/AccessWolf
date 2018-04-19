@@ -25,7 +25,13 @@
 #   database: ../../database.db
 
 default: &default
-
+  adapter: mysql2
+  pool: 5
+  username: c51segmentatio
+  password: mHf8hAkxVGH9
+  host: web01.hostbalkan.com
+  database: c51segmentatio
+  
 development:
   <<: *default
 
