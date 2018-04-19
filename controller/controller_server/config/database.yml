@@ -24,14 +24,33 @@
 #   <<: *default
 #   database: ../../database.db
 
+# HACKTUES DB
+# default: &default
+#   adapter: mysql2
+#   pool: 5
+#   username: c51segmentatio
+#   password: mHf8hAkxVGH9
+#   host: web01.hostbalkan.com
+#   database: c51segmentatio
+#
+# development:
+#   <<: *default
+#
+# test:
+#   <<: *default
+#
+# production:
+#   <<: *default
+
 default: &default
   adapter: mysql2
-  pool: 5
-  username: c51segmentatio
-  password: mHf8hAkxVGH9
-  host: web01.hostbalkan.com
-  database: c51segmentatio
-  
+  database: hacktues
+  encoding: utf8
+  username: root
+  password: danyto
+  host: 127.0.0.1
+  port: 3306
+
 development:
   <<: *default
 
@@ -40,3 +59,4 @@ test:
 
 production:
   <<: *default
+  
