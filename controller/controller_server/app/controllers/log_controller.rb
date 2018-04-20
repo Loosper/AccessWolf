@@ -8,30 +8,40 @@ class LogController < ApplicationController
     if @student.nil?
       @teacher = Teacher.where(:guid => json["uid"]).first
       if !@teacher.nil? #found teacher
-        @pastschedule = PastSchedule.where(:teacher_id => @teacher.id, :over => false).first
+        # @pastschedule = PastSchedule.where(:teacher_id => @teacher.id, :over => false).first
+        @pastschedule = @teacher.past_schedules.where(:over => false).first #Could get ugly here
         if !@pastschedule.nil?
           @pastschedule.over = true
 
           find_teacher_sch
+
           if !@schedule.nil? #if schedule is found -> add it else leave it like that
             @pastschedule.schedule_id = @schedule.id
 
             mark_missing
-          end
 
-          if @pastschedule.save!
-            head 200
-          else
-            head 400
+            if @pastschedule.save!
+              head 200
+            else
+              head 400
+            end
           end
+          puts "Teacher in n out"
+          head 400
         else #create new PastSchedule
           @pastschedule = PastSchedule.new
-          @pastschedule.teacher_id = @teacher.id
+          # @pastschedule.teacher_id = @teacher.id
           @pastschedule.occurance_date = DateTime.now.to_s
+          @pastschedule.over = 0;
           if @pastschedule.save!
+            attend = AttendMap.new
+            attend.past_schedule_id = @pastschedule.id
+            attend.teacher_id = @teacher.id
+            attend.save
             puts "Wohoo PastSchedule saved"
             head 200
           else
+            puts "PastSChedule creation didn't save"
             head 400
           end
         end
@@ -39,7 +49,8 @@ class LogController < ApplicationController
         head 401
       end
     else
-      @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
+      # @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
+      @currentattendance = @student.current_attendance
 
       if @currentattendance.nil? #GETTING IN
         @currentattendance = CurrentAttendance.new
@@ -103,7 +114,6 @@ private
   end
 
   def mark_missing
-
     Student.where(:class_id => @schedule.class_id).each do |student|
       if Attendance.where(:student_id => student.id, :schedule_id => @schedule.id).first.nil? #if attendance doesnt excist
         @att = Attendance.new
