@@ -50,7 +50,7 @@ class Schedule(Base):
     __tablename__ = 'schedules'
     __table_args__ = (
         UniqueConstraint(
-            'start_time', 'end_time', 'room', 'class_id',
+            'start_time', 'end_time', 'room', 'student_class_id',
             name='unique_schedule'
         ),
     )
@@ -61,7 +61,7 @@ class Schedule(Base):
     start_time = Column(Time)
     end_time = Column(Time)
 
-    class_id = Column(Integer, ForeignKey('student_classes.id'))
+    student_class_id = Column(Integer, ForeignKey('student_classes.id'))
 
     # many to many
     teachers = relationship(

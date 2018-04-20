@@ -56,19 +56,19 @@
             "start_time": "17:07:00",
             "end_time": "17:07:00",
             "room": 31,
-            "class_id": 1,
+            "student_class_id": 1,
             "teachers": [1, 2]
         }, {
             "start_time": "12:45:00",
             "end_time": "13:45:00",
             "room": 31,
-            "class_id": 1,
+            "student_class_id": 1,
             "teachers": [1, 2]
         }, {
             "start_time": "14:40:00",
             "end_time": "14:40:01",
             "room": 31,
-            "class_id": 2,
+            "student_class_id": 2,
             "teachers": [2]
         }
     ]
