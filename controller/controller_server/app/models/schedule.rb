@@ -6,6 +6,6 @@ class Schedule < ApplicationRecord
   has_many :attendances
   has_many :past_schedules
 
-  has_one :student_class, primary_key: "class_id"
+  has_one :student_class
   has_many :students, through: :student_class
 end

@@ -71,6 +71,14 @@
             "student_class_id": 2,
             "teachers": [2]
         }
+    ],
+    "current_attendance": [
+      {
+        "id": 1,
+        "room": 31,
+        "student_id": 1,
+        "checkin": "2018-05-18"
+      }
     ]
 
 }

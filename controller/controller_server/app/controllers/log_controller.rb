@@ -75,7 +75,7 @@ class LogController < ApplicationController
           @attended = nil
           find_sch
           if !@schedule.nil? #if u checked wihtout a schedule there u can fak of
-            @attendance.schedule_id = @schedule.id
+            @attendance.past_schedule_id = @schedule.id
             @attendance.attended = @attended
             if !@attended.nil?
               if @attendance.save!

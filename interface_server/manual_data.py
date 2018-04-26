@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from sqlalchemy.orm import sessionmaker
 from db_schema import engine, StudentClass, Teacher, Student, Schedule,\
-    Attendance
+    Attendance, CurrentAttendance
 
 
 session = sessionmaker(bind=engine, autoflush=False)()
@@ -45,7 +45,8 @@ datatypes = {
     'class': StudentClass,
     'schedule': SmartSchedule,
     # opening myself for abuse here
-    'attendance': Attendance
+    'attendance': Attendance,
+    'current_attendance': CurrentAttendance
 }
 
 with open(sys.argv[1], 'r') as file:
