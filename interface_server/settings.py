@@ -5,8 +5,8 @@ ROOT = abspath(dirname(dirname(__file__)))
 # DB_PATH = '/' + ROOT + '/database.db'
 
 DB_TYPE = 'mysql+mysqldb'
-DB_PATH = 'root:root@localhost/hacktues'
-PORT = 8080
+DB_PATH = 'root:danyto@localhost/hacktues'
+PORT = 80
 HOST = '0.0.0.0'
 
 DEBUG_DB_ECHO = False

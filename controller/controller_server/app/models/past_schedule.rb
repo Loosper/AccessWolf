@@ -4,5 +4,5 @@ class PastSchedule < ApplicationRecord
 
   has_many :attendances
 
-  has_one :schedule
+  belongs_to :schedule, optional: true
 end

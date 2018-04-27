@@ -1,134 +1,144 @@
 class LogController < ApplicationController
 
-  # POST /logs.json
-  def create
-    json = JSON.parse request.body.read
+	# POST /logs.json
+	def create
 
-    @student = Student.where(:guid => json["uid"]).first
-    if @student.nil?
-      @teacher = Teacher.where(:guid => json["uid"]).first
-      if !@teacher.nil? #found teacher
-        # @pastschedule = PastSchedule.where(:teacher_id => @teacher.id, :over => false).first
-        @pastschedule = @teacher.past_schedules.where(:over => false).first #Could get ugly here
-        if !@pastschedule.nil?
-          @pastschedule.over = true
+		json = JSON.parse request.body.read
 
-          find_teacher_sch
+		@student = Student.where(:guid => json["uid"]).first
+		if @student.nil?
+				@teacher = Teacher.where(:guid => json["uid"]).first
+				if !@teacher.nil? #found teacher
+						# @pastschedule = PastSchedule.where(:teacher_id => @teacher.id, :over => false).first
+						@pastschedule = @teacher.past_schedules.where(:over => false).first #Could get ugly here
+						if !@pastschedule.nil?
+								@pastschedule.over = true
 
-          if !@schedule.nil? #if schedule is found -> add it else leave it like that
-            @pastschedule.schedule_id = @schedule.id
+								find_teacher_sch json["room"]
+								# @schedule = Schedule.where(:id => "2").first
 
-            mark_missing
+								if !@schedule.nil? #if schedule is found -> add it, else leave it like that
+										@pastschedule.schedule_id = @schedule.id
 
-            if @pastschedule.save!
-              head 200
-            else
-              head 400
-            end
-          end
-          puts "Teacher in n out"
-          head 400
-        else #create new PastSchedule
-          @pastschedule = PastSchedule.new
-          # @pastschedule.teacher_id = @teacher.id
-          @pastschedule.occurance_date = DateTime.now.to_s
-          @pastschedule.over = 0;
-          if @pastschedule.save!
-            attend = AttendMap.new
-            attend.past_schedule_id = @pastschedule.id
-            attend.teacher_id = @teacher.id
-            attend.save
-            puts "Wohoo PastSchedule saved"
-            head 200
-          else
-            puts "PastSChedule creation didn't save"
-            head 400
-          end
-        end
-      else #didnt find TEACHER
-        head 401
-      end
-    else
-      # @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
-      @currentattendance = @student.current_attendance
+                                        if @pastschedule.save!
+                                            head 200
+                                        else
+                                            head 400
+                                        end
 
-      if @currentattendance.nil? #GETTING IN
-        @currentattendance = CurrentAttendance.new
-        @currentattendance.student = @student
-        @currentattendance.checkin = DateTime.now.to_s(:time)
-        @currentattendance.room = json["room"]
+										mark_missing
+								else
+										puts "Teacher in n out"
+										# head 200
+                                        if @pastschedule.save!
+                                            head 200
+                                        else
+                                            head 400
+                                        end
+								end
+						else #create new PastSchedule
+								@pastschedule = PastSchedule.new
+								# @pastschedule.teacher_id = @teacher.id
+								@pastschedule.occurance_date = DateTime.now.to_s(:time)
+								@pastschedule.over = 0;
+								if @pastschedule.save!
+										attend = AttendMap.new
+										attend.past_schedule_id = @pastschedule.id
+										attend.teacher_id = @teacher.id
+										attend.save
+										puts "Wohoo PastSchedule saved"
+										head 200
+								else
+										puts "PastSChedule creation didn't save"
+										head 400
+								end
+						end
+				else #didnt find TEACHER
+						head 401
+				end
+		else #found student
+			# @currentattendance = CurrentAttendance.where(:student_id => @student.id).first
+			@currentattendance = @student.current_attendance
 
-        if @currentattendance.save!
-          head 200
-        else
-          head 401
-        end
-      else #GETTING OUT
-        @currentattendance.delete
-        if @currentattendance.destroyed?
+			if @currentattendance.nil? #GETTING IN
+				@currentattendance = CurrentAttendance.new
+				@currentattendance.student = @student
+				@currentattendance.checkin = DateTime.now.to_s(:time)
+				@currentattendance.room = json["room"]
 
-          @attendance = Attendance.new
-          @attendance.date = DateTime.now.to_s
-          @attendance.student_id = @student.id
-          # @attendance.schedule = find_sch(@currentattendance.checkin, Time.now)
-          # @attendance.attended = attended?(@attendance)
-          @attended = nil
-          find_sch
-          if !@schedule.nil? #if u checked wihtout a schedule there u can fak of
-            @attendance.past_schedule_id = @schedule.id
-            @attendance.attended = @attended
-            if !@attended.nil?
-              if @attendance.save!
-                head 200
-              else
-                head 402
-              end
-            end
-          else
-            head 300 #u nibba checked w/e u want not that it matters
-          end
-        else
-          head 402
-        end
-      end
-    end
-  end
+				if @currentattendance.save!
+					head 200
+				else
+					head 401
+				end
+			else #GETTING OUT
+				@currentattendance.delete
+				if @currentattendance.destroyed?
+
+					@attendance = Attendance.new
+					@attendance.date = DateTime.now.to_s
+					@attendance.student_id = @student.id
+					# @attendance.schedule = find_sch(@currentattendance.checkin, Time.now)
+					# @attendance.attended = attended?(@attendance)
+					@attended = nil
+					find_sch
+					if !@schedule.nil? #if u checked wihtout a schedule there u can fak of
+						@attendance.past_schedule_id = @schedule.id
+						@attendance.attended = @attended
+						if !@attended.nil?
+							if @attendance.save!
+								head 200
+							else
+								head 402
+							end
+						end
+					else
+						head 300 #u nibba checked w/e u want not that it matters
+					end
+				else
+					head 402
+				end
+			end
+		end
+	end
 
 private
 
-  def find_sch
-    @schedule = Schedule.where(:room => @currentattendance.room).where("start_time >= ? AND end_time <= ?", @currentattendance.checkin.to_s(:time), DateTime.now.to_s(:time)).first
+	def find_sch
+		@schedule = Schedule.where(:room => @currentattendance.room).where("? <= start_time AND end_time <= ?", @currentattendance.checkin.to_s(:time), DateTime.now.to_s(:time)).first
 
-    if !@schedule.nil?
-      @attended = "true"
-    else
-      @schedule = Schedule.where(:room => @currentattendance.room).where("start_time >= ? AND end_time <= ?", (@currentattendance.checkin - 15.minutes).to_s(:time), DateTime.now.to_s(:time)).first
-      if !@schedule.nil?
-        @attended = "late"
-      end
-    end
-  end
+		if !@schedule.nil?
+			@attended = "true"
+		else
+			@schedule = Schedule.where(:room => @currentattendance.room).where("? >= start_time AND end_time <= ?", (@currentattendance.checkin - 15.minutes).to_s(:time), DateTime.now.to_s(:time)).first
+			if !@schedule.nil?
+				@attended = "late"
+			end
+		end
+	end
 
-  def find_teacher_sch
-    @schedule = Schedule.where(:room => json["room"]).where("start_time >= ? AND end_time <= ?", @pastschedule.occurance_date.to_s(:time), DateTime.now.to_s(:time)).first
-  end
+	def find_teacher_sch room
+		@schedule = Schedule.where(:room => room).where("? <= start_time AND end_time <= ?", (@pastschedule.occurance_date - 15.minutes).to_s(:time), DateTime.now.to_s(:time)).first
+	end
 
-  def mark_missing
-    Student.where(:class_id => @schedule.class_id).each do |student|
-      if Attendance.where(:student_id => student.id, :schedule_id => @schedule.id).first.nil? #if attendance doesnt excist
-        @att = Attendance.new
-        @att.schedule_id = @schedule.id
-        @att.student_id = student.id
-        @att.attended = "false"
-        @att.pastschedule = @pastschedule.id
-        if @att.save!
-          puts "Runner punished."
-        else
-          puts "U won this time."
-        end
-      end
-    end
+	def mark_missing
+		# Student.where(:class_id => @schedule.class_id).each do |student|
+        @pastschedule.schedule.students.each do |student|
+			# if Attendance.where(:student_id => student.id, :past_schedule_id => @schedule.id).first.nil? #if attendance doesnt exist
+            if student.attendances.where(:past_schedule_id => @pastschedule.id).first.nil? #if attendance doesnt exist
+				@att = Attendance.new
+				@att.student_id = student.id
+				@att.attended = "false"
+				@att.past_schedule_id = @pastschedule.id
+				@att.date = DateTime.now.to_s(:date)
+				if @att.save!
+					puts "Runner punished."
+				else
+					puts "U won this time."
+				end
+			end
+		end
 
-  end
+end
 
 end
