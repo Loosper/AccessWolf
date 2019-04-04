@@ -1,0 +1,17 @@
+.event-column {
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: .3s ease box-shadow;
+  margin: 16px;
+  max-width: 400px;
+  min-width: 300px;
+  padding: 16px;
+}
+
+.event-column:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.event-column .card:not(:last-child) {
+  margin-bottom: 16px;
+}
