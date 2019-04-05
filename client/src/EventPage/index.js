@@ -11,6 +11,7 @@ const events = [
 	description: 'yesyesyesrak',
     dateStart: new Date(),
     dateEnd: new Date(),
+	image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
     groups: [{
       name: 'Tumor'
     }],
@@ -26,6 +27,7 @@ const events = [
 	description: 'yesyesyesrak',
     dateStart: new Date(),
     dateEnd: new Date(),
+	image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
     groups: [{
       name: 'Tumor'
     }]
@@ -34,11 +36,11 @@ const events = [
 
 export default function EventPage({ match: { params: { id } } }) {
   return (
-	<Container>
+	<Container className="event-background">
 	
 	<Row>
 		<Col xs={4}>
-			<Row>PIC</Row>
+			<img class="card-img-top" src={events[0].image} />
 		</Col>
 		<Col>
 			<div><h1>{events[0].name}</h1></div>
@@ -46,20 +48,20 @@ export default function EventPage({ match: { params: { id } } }) {
 		</Col>
 	</Row>
 	
-	<hr></hr>
+	<hr/>
 	
 	<Row>
 		<Col><h3>{events[0].description}</h3></Col>
 	</Row>
 	
-	<hr></hr>
+	<hr/>
 	
 	<Row>
-		<Col><h4>START_TIME</h4></Col>
-		<Col><h4>END_TIME</h4></Col>
+		<Col><h4>{events[0].dateStart.ToString}</h4></Col>
+		<Col><h4>{events[0].dateEnd.ToString}</h4></Col>
 	</Row>
 	
-	<hr></hr>
+	<hr/>
 	
 	<Row>
 		<Col><h5>{events[0].groups.length}</h5></Col>

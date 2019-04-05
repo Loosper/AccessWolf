@@ -5,9 +5,12 @@ import EventPage from './EventPage';
 import EventsPage from './EventsPage';
 import { Container } from 'react-bootstrap';
 import Navbar from './shared/Navbar';
+import Search from './shared/Search';
 
 function App({ history }) {
   return (
+  
+  
     <Container>
       <Router history={history}>
         <Navbar />

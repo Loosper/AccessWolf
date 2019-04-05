@@ -3,12 +3,15 @@ div[class^="col"]{
 }
 
 .container{
-	background-color: lightgray;
+	background-color: #44633F;
+	background-image: url("../shared/Assets/bright-squares.png");
 	border-radius: 15px;
+	padding-bottom: 15px;
 }
 
 h1{
 	text-align: center;
+	color: #fff;
 }
 
 h2{
@@ -17,16 +20,30 @@ h2{
 
 h3{
 	text-align: left;
+	color: #fff;
+	font-size: 15pt;
 }
 
 h4{
 	text-align: center;
+	font-weight: bold;
 }
 
 h5{
 	text-align: center;
+	font-size: 25pt;
 }
 
 h6{
 	text-align: center;
+	color: #fff;
+}
+
+.event-background{
+	background-color: rgba(5,5,5,0.4) !important;
+	padding-bottom: 10px;
+}
+
+hr{
+	border: 1px solid #3F4B3B;
 }

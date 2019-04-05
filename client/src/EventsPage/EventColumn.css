@@ -1,3 +1,7 @@
+*:focus{
+	outline: none;
+}
+
 .event-column {
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -14,4 +18,114 @@
 
 .event-column .card:not(:last-child) {
   margin-bottom: 16px;
+}
+
+.navbar{
+	background-color: #44633F;
+	margin: 0px -15px 0px -15px;
+	z-index: 100;
+}
+
+.navbar-button{
+	text-decoration: none;
+	position: relative;
+	color: #5A9367;
+	font-weight: bold;
+	margin-bottom: -8px;
+}
+.navbar-button {
+	width: 33.33333%;
+	text-align: center;
+	padding: 3px; 
+	border-radius: 1px; 
+	background-color: rgba(107,54,62,0.1);
+	-webkit-transition: all 0.15s ease; 
+	-moz-transition: all 0.15s ease; 
+	transition: all 0.15s ease;
+	background-size: 100% 200%; 
+	background-position: 0 -100%; 
+	background-image: linear-gradient(to top, transparent 50%, #5A9367 50%);
+}
+
+.navbar-button:hover {
+	color: #fff;
+	background-position: 0 0;
+	text-decoration: none;
+}
+
+.selected{
+	color: #3F4B3B !important;
+	background-position: 0 0;
+}
+
+.search > .field{
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
+  height: 50px;
+  position: relative;
+  top: -10px;
+}
+
+.search > .field::placeholder{
+	color: #3F4B3B;
+}
+
+.search > input{
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: rgba(90, 147, 103, 0.6);
+	color: #3F4B3B;
+    border: 0;
+	padding-left: 10px;
+}
+
+*:focus{
+	outline: none;
+}
+
+#magnifyer-icon{
+	background-image: url("../shared/Assets/magnifying-glass.svg");
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+    padding: 10px;
+	margin-left: auto;
+	margin-right: 20px;
+	margin-top: -45px;
+	z-index: 1000;
+}
+
+.event-column{
+	background-color: rgba(92,171,125,0.3);
+}
+
+.card{
+	background-color: #5A9367;
+	opacity: 1;
+}
+
+.card-img-top{
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+	margin: 10px;
+}
+
+.btn{
+	margin: 0 auto 10px;
+	width: 80%;
+	background-color: #5CAA7D;
+	border-color: #3F4B3B;
+	color: #3F4B3B;
+}
+
+.btn:hover{
+	background-color: #3F4B3B;
+	border-color: #85DBAA;
+	color: #85DBAA;
+}
+
+.search.row, .events-background{
+	background-color: #44633F;
+	background-image: url("../shared/Assets/bright-squares.png");
 }

@@ -83,7 +83,7 @@ const grouped = events.reduce((map, event) => {
 
 export default function EventsPage() {
   return (
-    <Row>
+    <Row className="events-background">
       {Object.entries(grouped).map(([name, events]) => (
         <EventColumn key={name} events={events} name={name} />
       ))}
