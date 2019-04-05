@@ -9,15 +9,13 @@ import Search from './shared/Search';
 
 function App({ history }) {
   return (
-  
-  
     <Container>
       <Router history={history}>
         <Navbar />
         <Search />
         <Switch location={navigator.location}>
-          <Route exact path='/events' component=  {EventsPage} />
-          <Route exact path='/event/:id' component= {EventPage} />
+          <Route exact path='/events' component={EventsPage} />
+          <Route exact path='/event/:id' component={EventPage} />
           <Route component={EventsPage} />
         </Switch>
       </Router>

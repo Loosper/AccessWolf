@@ -47,16 +47,15 @@
 	background-image: linear-gradient(to top, transparent 50%, #5A9367 50%);
 }
 
+.navbar-button.selected {
+  color: red;
+}
+
 .navbar-button:hover {
 	color: #fff;
 	background-position: 0 0;
 	text-decoration: none;
-}
-
-.selected{
-	color: #3F4B3B !important;
-	background-position: 0 0;
-}
+}	
 
 .search > .field{
   width: 100%;
@@ -75,7 +74,7 @@
 	margin-right: 10px;
 	background-color: rgba(90, 147, 103, 0.6);
 	color: #3F4B3B;
-    border: 0;
+  border: 0;
 	padding-left: 10px;
 }
 
@@ -88,7 +87,7 @@
 	background-size: contain;
 	width: 25px;
 	height: 25px;
-    padding: 10px;
+  padding: 10px;
 	margin-left: auto;
 	margin-right: 20px;
 	margin-top: -45px;

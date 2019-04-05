@@ -1,18 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from "react-router";
 
-export default function Navbar() {
+const pages = [
+  ['/events', 'Events'],
+  ['/rooms', 'Rooms'],
+  ['/people', 'People & Groups']
+]
+
+export default withRouter(function Navbar({ location: { pathname } }) {
+  console.log(pathname)
   return (
-    <div class="navbar">
-      <Link to='/events' class="navbar-button" id="events-button">
-        Events
-      </Link> 
-      <Link to='/rooms' class="navbar-button">
-        Rooms
-      </Link>
-      <Link to='/people' class="navbar-button">
-        People
-      </Link>
+    <div className="navbar">
+      {pages.map(([path, title]) => (
+        <Link 
+        key={path}
+        to={path} 
+        // eslint-disable-next-line no-undef
+        className={list("navbar-button", path === pathname && 'selected')}
+        >
+          {title}
+        </Link> 
+      ))}
     </div>
   )
-}
+})
