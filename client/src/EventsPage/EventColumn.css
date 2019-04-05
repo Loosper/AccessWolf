@@ -2,27 +2,58 @@ input:focus {
 	outline: none;
 }
 
-.event-column {
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  transition: .3s ease box-shadow;
-  margin: 16px;
-  max-width: 400px;
-  min-width: 300px;
-  padding: 16px;
+.events-kanban {
+	height: calc(100vh - 56px - 176px - 16px);
 }
 
-.event-column:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+.events-kanban > .row {
+	height: 100%;
+}
+
+.event-column {
+  border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+  margin-right: 16px;
+  max-width: 300px;
+  min-width: 200px;
+	padding: 16px;
+	background: white;
+	color: black;
+	height: 100%;
+}
+
+.event-column > div {
+	overflow: scroll;
+	max-height: calc(100% - 24px);
+	margin: 0 -16px;
+	padding: 0 16px;
+}
+
+.event-column > h1 {
+	height: 24px;
+	font-size: 24px;
+	line-height: 24px;
+}
+
+.event-column .card:hover {
+	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+	transform: scale(1.02);
 }
 
 .event-column .card:not(:last-child) {
-  margin-bottom: 16px;
+	margin-bottom: 16px;
 }
 
+.event-column .card {
+	transition: .2s ease-in-out box-shadow, .2s transform ease-in-out;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+}
 
-
-.search > .field{
+.search > .field {
   width: 100%;
   border-radius: 0px 0px 15px 15px;
   height: 50px;
@@ -30,6 +61,6 @@ input:focus {
   top: -10px;
 }
 
-.search > .field::placeholder{
+.search > .field::placeholder {
 	color: #3F4B3B;
 }

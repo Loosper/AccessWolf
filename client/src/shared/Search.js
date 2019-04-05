@@ -8,6 +8,5 @@ export default function Search() {
 		  <input placeholder='Search for an event...' />
 		  <img alt='search' src='/static/media/magnifying-glass.037e78ed.svg' />
     </Row>
-	
   )
 }

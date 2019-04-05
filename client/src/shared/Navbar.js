@@ -11,7 +11,7 @@ const pages = [
 
 export default withRouter(function Navbar({ location: { pathname } }) {
   return (
-    <div className="navbar">
+    <navbar>
       {pages.map(([path, title]) => (
         <Link 
           key={path}
@@ -22,6 +22,6 @@ export default withRouter(function Navbar({ location: { pathname } }) {
           {title}
         </Link> 
       ))}
-    </div>
+    </navbar>
   )
 })

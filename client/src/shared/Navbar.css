@@ -1,25 +1,22 @@
-.navbar{
-	margin: 0px -15px 0px -15px;
-	z-index: 100;
+navbar {
+	display: flex;
+	width: 100%;
 }
 
-.navbar-button{
+.navbar-button {
 	text-decoration: none;
 	font-size: 14pt;
 	position: relative;
 	color: #9A9A9A;
 	font-weight: bold;
-	margin-top: -8px;
 	height: 56px;
 }
 
 .navbar-button {
-	width: 33.33333%;
+	flex-grow: 1;
 	text-align: center;
-	padding: 10px;
-	border-radius: 1px; 
-	background-color: rgba(107,54,62,0.1);
-	transition: all 0.15s ease;
+	padding: 16px;
+	transition: background .15s ease-in-out, color .15s ease-in-out;
 	background-size: 100% 200%; 
 	background-position: 0 -100%; 
 	background-image: linear-gradient(to top, transparent 50%, #334562 50%);

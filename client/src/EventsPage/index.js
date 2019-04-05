@@ -84,10 +84,12 @@ const grouped = events.reduce((map, event) => {
 
 export default function EventsPage() {
   return (
-    <Row className="events-background">
-      {Object.entries(grouped).map(([name, events]) => (
-        <EventColumn key={name} events={events} name={name} />
-      ))}
-    </Row>
+    <div className="events-kanban">
+      <Row>
+        {Object.entries(grouped).map(([name, events]) => (
+          <EventColumn key={name} events={events} name={name} />
+          ))}
+      </Row>
+    </div>
   )
 }

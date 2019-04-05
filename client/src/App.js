@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Router, Switch, Route, Link } from 'react-router-dom';
 import EventPage from './EventPage';
 import EventsPage from './EventsPage';
