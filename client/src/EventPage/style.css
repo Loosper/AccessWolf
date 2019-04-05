@@ -1,16 +1,24 @@
+.card-img-top{
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+	padding: 10px;
+}
 
 h1{
 	text-align: center;
-	color: #fff;
+	color: #334562;
+	padding: 10px;
 }
 
 h2{
 	text-align: center;
+	font-size: 12pt;
 }
 
 h3{
 	text-align: left;
-	color: #fff;
+	color: #334562;
 	font-size: 15pt;
 }
 
@@ -26,14 +34,16 @@ h5{
 
 h6{
 	text-align: center;
-	color: #fff;
+	color: #334562;
 }
 
 .event-background{
-	background-color: rgba(5,5,5,0.4) !important;
+	background: rgb(255,255,255);
+	background: linear-gradient(180deg, #f0f0f0 0%, #d6d6de 100%);
 	padding-bottom: 10px;
+	border-radius: 15px;
 }
 
 hr{
-	border: 1px solid #3F4B3B;
+	border: 1px solid rgba(51, 69, 98, 0.4);
 }

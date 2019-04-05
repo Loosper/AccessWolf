@@ -20,42 +20,7 @@ input:focus {
   margin-bottom: 16px;
 }
 
-.navbar{
-	background-color: #44633F;
-	margin: 0px -15px 0px -15px;
-	z-index: 100;
-}
 
-.navbar-button{
-	text-decoration: none;
-	position: relative;
-	color: #5A9367;
-	font-weight: bold;
-	margin-bottom: -8px;
-}
-.navbar-button {
-	width: 33.33333%;
-	text-align: center;
-	padding: 3px; 
-	border-radius: 1px; 
-	background-color: rgba(107,54,62,0.1);
-	-webkit-transition: all 0.15s ease; 
-	-moz-transition: all 0.15s ease; 
-	transition: all 0.15s ease;
-	background-size: 100% 200%; 
-	background-position: 0 -100%; 
-	background-image: linear-gradient(to top, transparent 50%, #5A9367 50%);
-}
-
-.navbar-button.selected {
-  color: red;
-}
-
-.navbar-button:hover {
-	color: #fff;
-	background-position: 0 0;
-	text-decoration: none;
-}	
 
 .search > .field{
   width: 100%;

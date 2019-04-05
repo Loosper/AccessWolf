@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from "react-router";
+import './Navbar.css'
 
 const pages = [
   ['/events', 'Events'],
