@@ -10,7 +10,7 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   },
@@ -21,7 +21,7 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   },
@@ -32,7 +32,7 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   },
@@ -43,7 +43,7 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   },
@@ -54,7 +54,7 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   },
@@ -65,14 +65,15 @@ const events = [
     dateStart: new Date(),
     dateEnd: new Date(),
     image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    groups: [{
+    organizers: [{
       name: 'Tumor'
     }]
   }
 ]
 
-events[1].dateStart.setDate(5)
-events[3].dateStart.setDate(5)
+events[1].dateStart.setDate(6)
+events[3].dateStart.setDate(6)
+
 const grouped = events.reduce((map, event) => {
   map[event.dateStart.getDate()] = map[event.dateStart.getDate()] || []
 

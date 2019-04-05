@@ -1,13 +1,3 @@
-div[class^="col"]{
-	border: 0px solid black;
-}
-
-.container{
-	background-color: #44633F;
-	background-image: url("../shared/Assets/bright-squares.png");
-	border-radius: 15px;
-	padding-bottom: 15px;
-}
 
 h1{
 	text-align: center;

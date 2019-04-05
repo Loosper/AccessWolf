@@ -9,15 +9,14 @@ const pages = [
 ]
 
 export default withRouter(function Navbar({ location: { pathname } }) {
-  console.log(pathname)
   return (
     <div className="navbar">
       {pages.map(([path, title]) => (
         <Link 
-        key={path}
-        to={path} 
-        // eslint-disable-next-line no-undef
-        className={list("navbar-button", path === pathname && 'selected')}
+          key={path}
+          to={path} 
+          // eslint-disable-next-line no-undef
+          className={list("navbar-button", path === pathname && 'selected')}
         >
           {title}
         </Link> 
