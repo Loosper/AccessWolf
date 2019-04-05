@@ -23,6 +23,11 @@ class RoomViewSet(viewsets.ModelViewSet):
     serializer_class = ser.RoomSerializer
 
 
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = ser.EventSerializer
+
+
 class CheckInViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()
     serializer_class = ser.AttendanceSerializer
@@ -39,12 +44,28 @@ class CheckInViewSet(viewsets.ModelViewSet):
         if checked_in:
             checked_in.check_out = timezone.now()
             checked_in.save()
-
+            return Response(status=status.HTTP_201_CREATED)
         else:
             attendance = Attendance(
                 person=person,
                 room=room
             )
             attendance.save()
+            return Response(status=status.HTTP_200_OK)
 
-        return Response(status=status.HTTP_201_CREATED)
+
+class LocationView(APIView):
+    def get(self, request, user_id):
+        try:
+            person = Person.objects.get(id=user_id)
+        except Person.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        location = Attendance.objects.filter(person=person, check_out=None).first()
+        # if location:
+        #     location = location.room
+        # else:
+        #     location = Attendance.objects.filter(person)
+
+        print(ser.PersonSerializer(person).data)
+        return Response()
+        # return Response(ser.RoomSerializer(location).data)

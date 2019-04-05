@@ -27,13 +27,13 @@ class Room(models.Model):
 
 class Event(models.Model):
     name = CharField(max_length=100)
-    start = TimeField()
-    end = TimeField()
-    date = DateField()
+    start_time = TimeField()
+    start_date = DateField()
+    duration = TimeField()
     room = ForeignKey(Room, on_delete=models.CASCADE)
     organisers = ManyToManyField(Person, related_name='organisers')
-    groups = ManyToManyField(Group)
-    people = ManyToManyField(Person, related_name='attendees')
+    groups = ManyToManyField(Group, blank=True)
+    people = ManyToManyField(Person, blank=True, related_name='attendees')
 
 
 class Attendance(models.Model):
