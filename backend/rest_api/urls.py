@@ -10,4 +10,8 @@ router.register(r'rooms', views.RoomViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path(
+        'check_in/<str:card_id>/room/<str:room_id>',
+        views.CheckInViewSet.as_view({'get': 'check_in'})
+    ),
 ]
