@@ -1,8 +1,10 @@
 # HOW TO RUN
-1. `pip install -r requirements.txt`
-1. `python manage.py makemigrations rest_api`
-1. `python manage.py migrate`
-1. `pyton3 manage.py runserver`
+1. `pip3 install -r requirements.txt`
+1. `python3 manage.py makemigrations rest_api`
+1. `python3 manage.py migrate`
+1. `python3 manage.py runserver`  
+optional:
+`python3 manage.py createsuperuser` to give yourself access to the admin page (in `/admin`)
 
 # Endpoints
 all are prefixes with `/api/`  

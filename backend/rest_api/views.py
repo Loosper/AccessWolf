@@ -15,7 +15,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
-    serializer_class = ser.PersonSerializer
+    serializer_class = ser.FullPersonSerializer
 
 
 class RoomViewSet(viewsets.ModelViewSet):
@@ -26,6 +26,16 @@ class RoomViewSet(viewsets.ModelViewSet):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ser.EventSerializer
+
+    # this is necessary because the other sesrialiser can't create just by id
+    def create(slef, request):
+        serializer = ser.WriteEventSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CheckInViewSet(viewsets.ModelViewSet):
@@ -61,11 +71,12 @@ class LocationView(APIView):
         except Person.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         location = Attendance.objects.filter(person=person, check_out=None).first()
+        # TODO:
         # if location:
         #     location = location.room
         # else:
         #     location = Attendance.objects.filter(person)
 
-        print(ser.PersonSerializer(person).data)
+        print(ser.FullPersonSerializer(person).data)
         return Response()
         # return Response(ser.RoomSerializer(location).data)

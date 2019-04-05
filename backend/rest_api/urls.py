@@ -13,9 +13,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path(
         'check_in/<str:card_id>/room/<str:room_id>',
-        views.CheckInViewSet.as_view({'get': 'check_in'})
+        views.CheckInViewSet.as_view({'post': 'check_in'})
     ), path(
         'where/<str:user_id>', views.LocationView.as_view()
     ),
-    # path('people/', views.EventViewSet.as_view({'get': 'list'}))
 ]

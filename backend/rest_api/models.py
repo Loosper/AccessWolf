@@ -27,6 +27,7 @@ class Room(models.Model):
 
 class Event(models.Model):
     name = CharField(max_length=100)
+    description = CharField(max_length=250, blank=True)
     start_time = TimeField()
     start_date = DateField()
     duration = TimeField()
