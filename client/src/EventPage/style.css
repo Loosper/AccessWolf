@@ -5,45 +5,47 @@
 	padding: 10px;
 }
 
-h1{
+.event-name{
 	text-align: center;
 	color: #334562;
 	padding: 10px;
 }
 
-h2{
+.event-organizer{
 	text-align: center;
 	font-size: 12pt;
 }
 
-h3{
+.event-desc{
 	text-align: left;
 	color: #334562;
 	font-size: 15pt;
 }
 
-h4{
+.event-date{
 	text-align: center;
 	font-weight: bold;
 }
 
-h5{
+.event-count{
 	text-align: center;
 	font-size: 25pt;
 }
 
-h6{
+.event-participant{
 	text-align: center;
 	color: #334562;
 }
 
 .event-background{
 	background: rgb(255,255,255);
-	background: linear-gradient(180deg, #f0f0f0 0%, #d6d6de 100%);
+	background: linear-gradient(180deg, #f0f0f0 0%, #dbdbde 100%);
 	padding-bottom: 10px;
 	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12),
+				0 2px 4px 0 rgba(0,0,0,0.08);
 }
 
-hr{
-	border: 1px solid rgba(51, 69, 98, 0.4);
+.hr-event{
+	border: 1px solid rgba(51, 69, 98, 0.3);
 }

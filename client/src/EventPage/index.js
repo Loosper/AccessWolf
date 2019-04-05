@@ -43,42 +43,42 @@ export default function EventPage({ match: { params: { id } } }) {
 			<img class="card-img-top" src={events[0].image} />
 		</Col>
 		<Col>
-			<div><h1>{events[0].name}</h1></div>
-			<div><h2>{events[0].organizer}</h2></div>
+			<div><h1 className="event-name">{events[0].name}</h1></div>
+			<div><h2 className="event-organizer">{events[0].organizer}</h2></div>
 		</Col>
 	</Row>
 	
-	<hr/>
+	<hr className="hr-event"/>
 	
 	<Row>
-		<Col><h3>{events[0].description}</h3></Col>
+		<Col><h3 className="event-desc">{events[0].description}</h3></Col>
 	</Row>
 	
-	<hr/>
+	<hr className="hr-event"/>
 	
 	<Row>
-		<Col><h4>{events[0].dateStart.ToString}</h4></Col>
-		<Col><h4>{events[0].dateEnd.ToString}</h4></Col>
+		<Col><h4 className="event-date">{events[0].dateStart.ToString}</h4></Col>
+		<Col><h4 className="event-date">{events[0].dateEnd.ToString}</h4></Col>
 	</Row>
 	
-	<hr/>
+	<hr className="hr-event"/>
 	
 	<Row>
-		<Col><h5>{events[0].groups.length}</h5></Col>
-		<Col><h5>{events[0].individuals.length}</h5></Col>
+		<Col><h5 className="event-count">{events[0].groups.length}</h5></Col>
+		<Col><h5 className="event-count">{events[0].individuals.length}</h5></Col>
 	</Row>
 	
 	<Row>
 		<Col>
 		{events[0].groups.map(group => (
-			<h6>
+			<h6 className="event-participant">
 				{group.name}
 			</h6>
 		))}
 		</Col>
 		<Col>
 			{events[0].individuals.map(individuals => (
-				<h6>
+				<h6 className="event-participant">
 					{individuals.name}
 				</h6>
 			))}
