@@ -1,3 +1,3 @@
-window.list = function list(...classNames) {
+export function list(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }

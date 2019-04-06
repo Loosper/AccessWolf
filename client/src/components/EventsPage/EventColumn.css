@@ -16,32 +16,31 @@ input:focus {
   margin-right: 16px;
   max-width: 300px;
   min-width: 200px;
-	padding: 16px;
+	padding: 0;
 	background: white;
 	color: black;
 	height: 100%;
+	overflow: auto;
 }
-
+/* 
 .event-column > div {
-	overflow: scroll;
-	max-height: calc(100% - 24px);
+	max-height: calc(100% - 16px);
 	margin: 0 -16px;
 	padding: 0 16px;
-}
+} */
 
 .event-column > h1 {
-	height: 24px;
+	padding: 0 16px;
+	height: 40px;
 	font-size: 24px;
-	line-height: 24px;
-}
-
-.event-column .card:hover {
-	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
-	transform: scale(1.02);
-}
-
-.event-column .card:not(:last-child) {
-	margin-bottom: 16px;
+	position: sticky;
+	top: 0px;
+	background-color: #fdfbfb;
+	z-index: 1;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
 .event-column .card {
@@ -51,16 +50,17 @@ input:focus {
 	border: none;
 	cursor: pointer;
 	overflow: hidden;
+	margin: 0 16px 16px;
+	background-color: #fdfbfb;
 }
 
-.search > .field {
-  width: 100%;
-  border-radius: 0px 0px 15px 15px;
-  height: 50px;
-  position: relative;
-  top: -10px;
+.event-column .card:first-of-type {
+	margin-top: 16px;
 }
 
-.search > .field::placeholder {
-	color: #3F4B3B;
+.event-column .card:hover {
+	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+	transform: scale(1.02);
+	/* z-index: 2; */
 }
+

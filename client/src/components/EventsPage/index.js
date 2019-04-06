@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col, Card, Button } from 'react-bootstrap';
+import React from 'react'
+import { Row } from 'react-bootstrap'
 import EventColumn from './EventColumn'
 
 const events = [
