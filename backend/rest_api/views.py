@@ -22,6 +22,21 @@ class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = ser.RoomSerializer
 
+    def retrieve(self, request, pk=None):
+        try:
+            people_attend = Attendance.objects.filter(room=pk, check_out=None)
+
+            people = Person.objects.filter(id__in=people_attend)
+
+            people_ser = ser.ShortPersonSerializer(people, many=True)
+
+            retrieve_data = dict(ser.RoomSerializer(Room.objects.get(pk=pk)).data)
+            retrieve_data['people'] = people_ser.data
+            response = Response(retrieve_data)
+        except Room.DoesNotExist:
+            response = Response(status=status.HTTP_400_BAD_REQUEST)
+        return response
+
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
