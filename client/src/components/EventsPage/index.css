@@ -90,7 +90,6 @@
   align-items: center;
 }
 
-.rbc-date-cell.rbc-now.rbc-current > a {
-  background-color: #ff9a9e;
-  font-weight: normal;
+.rbc-day-bg.rbc-today {
+  background-color: #fecfef58;
 }

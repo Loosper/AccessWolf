@@ -1,0 +1,46 @@
+.menu-icon {
+	position: fixed;
+  top: 4px;
+  left: -40px;
+  fill: #29323c;
+  cursor: pointer;
+  z-index: 1;
+	padding: 4px 0;
+	display: flex;
+	width: 32px;
+	height: 32px;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 2;
+}
+
+.menu-icon > .menu-bar {
+	height: 4px;
+	width: 100%;
+	background: #29323c;
+	z-index: 2;
+	border-radius: 2px;
+	transition: opacity .4s ease, width .4s ease, transform .4s ease, box-shadow .4s ease;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+	opacity: 1;
+}
+
+.menu-icon:hover > .menu-bar {
+	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.21), 0 5px 15px 0 rgba(0,0,0,0.28);
+}
+
+.menu-icon.toggled > .menu-bar:first-child {
+	width: 50%;
+	transform: rotate(-45deg) translateY(8px);
+}
+
+.menu-icon.toggled > .menu-bar:nth-child(2) {
+	opacity: 0;
+	width: 0;
+}
+
+.menu-icon.toggled > .menu-bar:last-child {
+	width: 50%;
+	transform: rotate(45deg) translateY(-8px);
+}
