@@ -17,12 +17,18 @@ code {
 .view-container { 
   min-height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.21), 0 5px 15px 0 rgba(0,0,0,0.28);
-  transition: transform ease .3s;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  transition: transform ease .3s, box-shadow ease .3s;
   will-change: transform;
   padding: 64px 16px 16px;
   display: flex;
   flex-flow: column;
+  transform: translateY(0px);
+  margin-left: 16px;
+}
+
+input:focus {
+	outline: none;
 }
 
 .view-container > h1 {

@@ -6,7 +6,7 @@ nav {
 	transition: transform ease .3s, filter ease .3s;
 	will-change: transform;
 	transform: translateX(-80px);
-	filter: brightness(0.8);
+	/* filter: brightness(0.8); */
 }
 
 nav > .menu {
@@ -14,15 +14,23 @@ nav > .menu {
 	width: 300px;
 	display: flex;
 	flex-flow: column;
+	opacity: 0;
+	will-change: opacity;
+	transition: opacity ease .3s;
 }
 
 nav.open {
-	filter: brightness(1);
+	/* filter: brightness(1); */
 	transform: translateX(0);
+}
+
+nav.open > .menu {
+	opacity: 1;
 }
 
 nav.open + .view-container {
 	transform: translateX(300px);
+	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.21), 0 5px 15px 0 rgba(0,0,0,0.28);
 }
 
 .navbar-button {
