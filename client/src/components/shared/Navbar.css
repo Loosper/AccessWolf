@@ -36,10 +36,10 @@ nav.open + .view-container {
 .navbar-button {
 	text-decoration: none;
 	font-size: 14pt;
-	color: #565e67;
+	color: #4c5058;
 	height: 48px;
 	border-radius: 0 28px 28px 0;
-	padding-left: 32px;
+	padding-left: 16px;
 	display: flex;
 	align-items: center;
 	margin-right: 32px;
@@ -53,13 +53,14 @@ nav.open + .view-container {
 
 .navbar-button.selected {
 	color: #29323c;
-	background-color: #ffffff82;
+	background-color: #ffffff62;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
 .navbar-button:hover {
-	color: #565e67;
+	color: #4c5058;
 	text-decoration: none;
-	background-color: #ffffff54;
+	background-color: #ffffff34;
 }
 
 .bg {
@@ -69,7 +70,8 @@ nav.open + .view-container {
 	width: 100vw;
 	height: 100vh;
 	opacity: 0;
-	transition: opacity .6s ease;
+	transition: opacity 1s ease;
+	will-change: opacity;
 	z-index: -1;
 }
 

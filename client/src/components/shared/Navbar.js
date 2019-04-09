@@ -18,7 +18,10 @@ export default withRouter(function Navbar({ location: { pathname }, isOpen, togg
       {pages.map(([pageName]) => (
         <div 
           key={pageName} 
-          className={list(`bg ${pageName.substring(1)}-bg`, visibleBG === pageName.substring(1) && 'visible')} 
+          className={list(
+            `bg ${pageName.substring(1)}-bg`, 
+            visibleBG === pageName.substring(1) && 'visible'
+          )} 
         />
       ))}
       <div className='menu' onClick={toggle}>

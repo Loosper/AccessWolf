@@ -16,8 +16,9 @@ const store = createStore(rootReducer)
 render(
   <Provider store={store}>
     <App history={history} />
-  </Provider>
-, document.getElementById('root'))
+  </Provider>, 
+  document.getElementById('root')
+)
 
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register()

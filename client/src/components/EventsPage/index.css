@@ -1,3 +1,96 @@
 .view-container > .rbc-calendar {
   flex-grow: 1;
+  margin-top: 16px;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar {
+  margin-bottom: 16px;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar > .rbc-btn-group {
+  height: 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #29323c;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar > .rbc-btn-group button {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  color: #29323c;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar > .rbc-btn-group button:not(:first-child) {
+  border-left: 1px solid #29323c;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar > .rbc-toolbar-label {
+  font-size: 1.3rem;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar > .rbc-btn-group button.rbc-active {
+  background-color: #29323c;
+  color: white;
+  box-shadow: none;
+}
+
+.view-container > .rbc-calendar > .rbc-toolbar + div {
+  /* border-radius: 8px; */
+  border: none;
+}
+
+.rbc-month-view .rbc-month-header .rbc-header {
+  border: none;
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: right;
+  border-left: none;
+  padding: 0 8px;
+}
+
+.rbc-month-view > .rbc-row + .rbc-month-row {
+  border-radius: 8px 8px 0 0;
+  border-top: 1px solid #00000012;
+}
+
+.rbc-month-view > .rbc-month-row:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.rbc-month-view .rbc-month-row + .rbc-month-row {
+  border-top: none;
+}
+
+.rbc-month-view > .rbc-month-row {
+  border-left: 1px solid #00000012;
+  border-right: 1px solid #00000012;
+  border-bottom: 1px solid #00000012;
+}
+
+
+.rbc-row > .rbc-date-cell {
+  padding: 4px 5px;
+}
+
+.rbc-row .rbc-event {
+  padding: 1px 4px;
+  font-size: 10pt;
+  background-color: #ff9a9e;
+  color: #29323c;
+}
+
+.rbc-date-cell > a {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rbc-date-cell.rbc-now.rbc-current > a {
+  background-color: #ff9a9e;
+  font-weight: normal;
 }
