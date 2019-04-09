@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #29323c;
 }
 
 code {
@@ -16,8 +17,8 @@ code {
 .view-container { 
   min-height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
-  transition: transform ease-out .3s;
+  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.21), 0 5px 15px 0 rgba(0,0,0,0.28);
+  transition: transform ease .3s;
   will-change: transform;
   padding: 64px 16px 16px;
   display: flex;
@@ -26,6 +27,8 @@ code {
 
 .view-container > h1 {
   font-size: 3rem;
+  border-bottom: 1px solid #00000012;
+  margin: 0;
 }
 
 .view-container > svg {

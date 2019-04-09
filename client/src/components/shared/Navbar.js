@@ -10,10 +10,18 @@ const pages = [
   ['/people', 'People & Groups']
 ]
 
-export default withRouter(function Navbar({ location: { pathname }, isOpen }) {
+export default withRouter(function Navbar({ location: { pathname }, isOpen, toggle }) {
+  const visibleBG = pathname.substring(1)
+
   return (
     <nav className={list(isOpen && 'open')}>
-      <div>
+      {pages.map(([pageName]) => (
+        <div 
+          key={pageName} 
+          className={list(`bg ${pageName.substring(1)}-bg`, visibleBG === pageName.substring(1) && 'visible')} 
+        />
+      ))}
+      <div className='menu' onClick={toggle}>
         {pages.map(([path, title]) => (
           <Link 
             key={path}

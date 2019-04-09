@@ -2,82 +2,15 @@ import React from 'react'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import './index.css'
+import { connect } from 'react-redux'
 
 const localizer = BigCalendar.momentLocalizer(moment)
 
-const events = [
-  {
-    id: 1,
-    title: 'Math',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  },
-  {
-    id: 2,
-    title: 'Bel',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  },
-  {
-    id: 4,
-    title: 'Da',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  },
-  {
-    id: 3,
-    title: 'Ne',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  },
-  {
-    id: 5,
-    title: 'Da',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  },
-  {
-    id: 6,
-    title: 'Ne',
-    description: 'wow so amazing',
-    start: new Date(),
-    end: new Date(),
-    image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-    organizers: [{
-      title: 'Tumor'
-    }]
-  }
-]
+function mapStateToProps({ events }) {
+  return { events: Object.values(events) }
+}
 
-events[1].start.setDate(6)
-events[3].start.setDate(6)
-
-export default function EventsPage() {
+function EventsPage({ events }) {
   return (
     <>
       <h1>Events</h1>
@@ -90,3 +23,5 @@ export default function EventsPage() {
     </>
   )
 }
+
+export default connect(mapStateToProps)(EventsPage)

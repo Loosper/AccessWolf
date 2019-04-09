@@ -1,13 +1,15 @@
 import React from 'react'
 import { Col, Card } from 'react-bootstrap'
+import { withRouter } from "react-router"
+
 import './EventColumn.css'
 
-export default function EventColumn({ name, events }) {
+function EventColumn({ name, events, history: { push } }) {
   return (
     <Col className='event-column'>
       <h1>{name}</h1>
       {events.map(event => (
-        <Card key={event.id}>
+        <Card key={event.id} onClick={() => push(`/event/${event.id}`)}>
           <Card.Img variant="top" src={event.image} />
           <Card.Body>
             <Card.Title>{event.name}</Card.Title>
@@ -20,3 +22,5 @@ export default function EventColumn({ name, events }) {
     </Col>
   )
 }
+
+export default withRouter(EventColumn)

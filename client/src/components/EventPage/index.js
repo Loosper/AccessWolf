@@ -1,30 +1,23 @@
 import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import './index.css'
 
-const event = {
-  id: 1,
-  name: 'Math',
-  description: 'wow so amazing',
-	organizer: 'sa6ko',
-  dateStart: new Date(),
-  dateEnd: new Date(),
-	image: "https://www.boell.de/sites/default/files/uploads/2016/06/brexit.png",
-  groups: [{
-    name: 'Tumor'
-  }],
-	individuals: [
-		{ name: 'az' },
-		{ name: 'ti' }
-	]
+function mapStateToProps({ events }, { match: { params: { id } } }) {
+	return { event: events[id] }
 }
 
-export default function EventPage({ match: { params: { id } } }) {
+function EventPage({ event }) {
+	if (!event) {
+		return <Redirect to='/events' />
+	}
+
   return (
 		<Container className="event-background">
 			<Row>
 				<Col xs={4}>
-					<img alt='event' class="card-img-top" src={event.image} />
+					<img alt='event' className="card-img-top" src={event.image} />
 				</Col>
 				<Col>
 					<div><h1 className="event-name">{event.name}</h1></div>
@@ -37,8 +30,8 @@ export default function EventPage({ match: { params: { id } } }) {
 			</Row>
 			<hr className="hr-event"/>
 			<Row>
-				<Col><h4 className="event-date">{event.dateStart.ToString}</h4></Col>
-				<Col><h4 className="event-date">{event.dateEnd.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.start.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.end.ToString}</h4></Col>
 			</Row>
 			<hr className="hr-event"/>
 			<Row>
@@ -48,15 +41,15 @@ export default function EventPage({ match: { params: { id } } }) {
 			<Row>
 				<Col>
 				{event.groups.map(group => (
-					<h6 className="event-participant">
+					<h6 className="event-participant" key={group.name}>
 						{group.name}
 					</h6>
 				))}
 				</Col>
 				<Col>
-					{event.individuals.map(individuals => (
-						<h6 className="event-participant">
-							{individuals.name}
+					{event.individuals.map(individual => (
+						<h6 className="event-participant" key={individual.name}>
+							{individual.name}
 						</h6>
 					))}
 				</Col>
@@ -64,3 +57,5 @@ export default function EventPage({ match: { params: { id } } }) {
 		</Container>
   )
 }
+
+export default connect(mapStateToProps)(EventPage)
