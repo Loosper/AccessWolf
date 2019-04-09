@@ -3,7 +3,8 @@ input:focus {
 }
 
 .events-kanban {
-	height: calc(100vh - 56px - 176px - 16px);
+	height: calc(100vh - 145px);
+	margin: 0 15px;
 }
 
 .events-kanban > .row {

@@ -3,10 +3,11 @@ nav {
 	width: 100vw;
 	position: fixed;
 	display: flex;
-	transition: transform ease-out .4s;
+	transition: transform ease-out .3s, filter ease .3s;
 	will-change: transform;
 	transform: translateX(-80px);
 	background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+	filter: brightness(0.8);
 }
 
 nav > div {
@@ -17,6 +18,7 @@ nav > div {
 }
 
 nav.open {
+	filter: brightness(1);
 	transform: translateX(0);
 }
 
@@ -26,7 +28,7 @@ nav.open + .view-container {
 
 .navbar-button {
 	text-decoration: none;
-	font-size: 16pt;
+	font-size: 14pt;
 	color: #6b7682;
 	height: 48px;
 	border-radius: 0 28px 28px 0;
@@ -39,7 +41,7 @@ nav.open + .view-container {
 }
 
 .navbar-button:not(:last-of-type) {
-	margin-bottom: 8px;
+	/* margin-bottom: 8px; */
 }
 
 .navbar-button.selected {

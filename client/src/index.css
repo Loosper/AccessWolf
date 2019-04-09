@@ -17,9 +17,15 @@ code {
   min-height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
-  transition: transform ease-out .4s;
+  transition: transform ease-out .3s;
   will-change: transform;
-  padding: 64px;
+  padding: 64px 16px 16px;
+  display: flex;
+  flex-flow: column;
+}
+
+.view-container > h1 {
+  font-size: 3rem;
 }
 
 .view-container > svg {

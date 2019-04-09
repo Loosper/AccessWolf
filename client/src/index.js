@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 import { createBrowserHistory } from 'history'
+
+import './index.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const history = createBrowserHistory()
 

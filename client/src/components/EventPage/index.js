@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
-import './style.css'
+import './index.css'
 
 const event = {
   id: 1,

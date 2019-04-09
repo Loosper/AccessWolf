@@ -1,9 +1,6 @@
 import React from 'react'
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
-import './index.css'
-
-const localizer = BigCalendar.momentLocalizer(moment)
+import { Row } from 'react-bootstrap'
+import EventColumn from './EventColumn'
 
 const events = [
   {
@@ -77,16 +74,25 @@ const events = [
 events[1].start.setDate(6)
 events[3].start.setDate(6)
 
-export default function EventsPage() {
+const grouped = events.reduce((map, event) => {
+  map[event.start.getDate()] = map[event.start.getDate()] || []
+
+  map[event.start.getDate()].push(event)
+
+  return map
+}, {})
+
+export default function RoomsPage() {
   return (
     <>
-      <h1>Events</h1>
-      <BigCalendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-      />
+      <h1>Rooms</h1>
+      <div className="events-kanban">
+        <Row>
+          {Object.entries(grouped).map(([title, events]) => (
+            <EventColumn key={title} events={events} name={title} />
+          ))}
+        </Row>
+      </div>  
     </>
   )
 }

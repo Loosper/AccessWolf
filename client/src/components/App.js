@@ -1,10 +1,11 @@
 import React from 'react'
 import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import EventPage from './EventPage'
-import EventsPage from './EventsPage'
+import RoomsPage from './RoomsPage'
 import Navbar from './shared/Navbar'
-import Search from './shared/Search'
+import EventsPage from './EventsPage'
 import { ReactComponent as Menu } from '../img/menu.svg'
+import Search from './shared/Search'
 
 function NotFound() {
   return <Redirect to='/events' />
@@ -24,6 +25,7 @@ function App({ history }) {
         <Menu onClick={toggleMenu} />
         <Switch location={navigator.location}>
           <Route exact path='/events' component={EventsPage} />
+          <Route exact path='/rooms' component={RoomsPage} />
           <Route exact path='/event/:id' component={EventPage} />
           <Route render={NotFound} />
         </Switch>
