@@ -10,18 +10,20 @@ const pages = [
   ['/people', 'People & Groups']
 ]
 
-export default withRouter(function Navbar({ location: { pathname } }) {
+export default withRouter(function Navbar({ location: { pathname }, isOpen }) {
   return (
-    <nav>
-      {pages.map(([path, title]) => (
-        <Link 
-          key={path}
-          to={path} 
-          className={list("navbar-button", path === pathname && 'selected')}
-        >
-          {title}
-        </Link> 
-      ))}
+    <nav className={list(isOpen && 'open')}>
+      <div>
+        {pages.map(([path, title]) => (
+          <Link 
+            key={path}
+            to={path} 
+            className={list("navbar-button", path === pathname && 'selected')}
+          >
+            {title}
+          </Link> 
+        ))}
+      </div>
     </nav>
   )
 })
