@@ -6,7 +6,8 @@ import Navbar from './shared/Navbar'
 import EventsPage from './EventsPage'
 import PeoplePage from './PeoplePage'
 
-import { ReactComponent as Menu } from '../img/menu.svg'
+// import { ReactComponent as Menu } from '../img/menu.svg'
+import MenuIcon from './shared/MenuIcon';
 // import Search from './shared/Search'
 
 function NotFound() {
@@ -24,7 +25,7 @@ function App({ history }) {
     <Router history={history}>
       <Navbar isOpen={isMenuOpen} toggle={toggleMenu} />
       <div className='view-container'>
-        <Menu onClick={toggleMenu} />
+        <MenuIcon onClick={toggleMenu} toggle={isMenuOpen} />
         <Switch location={navigator.location}>
           <Route exact path='/events' component={EventsPage} />
           <Route exact path='/people' component={PeoplePage} />

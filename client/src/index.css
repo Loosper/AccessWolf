@@ -18,13 +18,13 @@ code {
   min-height: 100vh;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
-  transition: transform ease .3s, box-shadow ease .3s;
+  transition: transform ease .36s, box-shadow ease .4s;
   will-change: transform;
   padding: 64px 16px 16px;
   display: flex;
   flex-flow: column;
   transform: translateY(0px);
-  margin-left: 16px;
+  margin-left: 48px;
 }
 
 input:focus {
@@ -37,10 +37,3 @@ input:focus {
   margin: 0;
 }
 
-.view-container > svg {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  fill: #29323c;
-  cursor: pointer;
-}
