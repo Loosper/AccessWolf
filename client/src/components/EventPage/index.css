@@ -1,0 +1,41 @@
+.event-name {
+	text-align: center;
+}
+
+.event-organizer {
+	text-align: center;
+	font-size: 12pt;
+}
+
+.event-desc {
+	text-align: left;
+	color: #334562;
+	font-size: 15pt;
+}
+
+.event-date {
+	text-align: center;
+	font-weight: bold;
+}
+
+.event-count {
+	text-align: center;
+	font-size: 25pt;
+}
+
+.event-participant {
+	text-align: center;
+	color: #334562;
+}
+
+.event-background { 
+	background: rgb(255,255,255);
+	background: linear-gradient(180deg, #f0f0f0 0%, #dbdbde 100%);
+	padding-bottom: 10px;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 	0 2px 4px 0 rgba(0,0,0,0.08);
+}
+
+.hr-event {
+	border: 1px solid rgba(51, 69, 98, 0.3);
+}
