@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .vscode/
 .env/
+
+# django files that don't need version control
+db.sqlite3
+# this could get commited from time to time on 'releases'
+migrations/

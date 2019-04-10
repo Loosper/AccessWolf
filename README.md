@@ -1,9 +1,8 @@
-Running:
+# Accesswolf
+Accesswolf is a helper for managing room schedules.     It tracks people's whereabouts as well as any room's status.  
 
-- `pip install -r requirements.txt`
-
-db_readers:
-- `apt install libmysqlclient-dev`
-- run `db_schema.py`
-- you can now run `server.py`
-- use `manual_data.py` for manual data input
+# Components
+## Frontend
+Info and source in `client`.
+## Backend
+Info and source in `backend`. View README for details like running it.
