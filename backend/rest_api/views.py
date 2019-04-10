@@ -22,25 +22,32 @@ class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = ser.RoomSerializer
 
-    def retrieve(self, request, pk=None):
-        try:
-            people_attend = Attendance.objects.filter(room=pk, check_out=None)
 
-            people = Person.objects.filter(id__in=people_attend)
-
-            people_ser = ser.ShortPersonSerializer(people, many=True)
-
-            retrieve_data = dict(ser.RoomSerializer(Room.objects.get(pk=pk)).data)
-            retrieve_data['people'] = people_ser.data
-            response = Response(retrieve_data)
-        except Room.DoesNotExist:
-            response = Response(status=status.HTTP_400_BAD_REQUEST)
-        return response
+class WriteEventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = ser.WriteEventSerializer
 
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ser.EventSerializer
+
+    def list(self, request):
+        # get events dict to modify
+        data = self.get_serializer_class()(Event.objects.all(), many=True).data
+
+        for index, event_obj in enumerate(data):
+            event = Event.objects.get(id=event_obj['id'])
+            people = event.people.all()
+
+            for group in event.groups.all():
+                people &= Person.filter(groups__in=group).all()
+
+            # people is a list of unique people
+            data[index]['people'] = len(people)
+            data[index].pop('groups')
+
+        return Response(data)
 
     # this is necessary because the other sesrialiser can't create just by id
     def create(slef, request):
@@ -85,13 +92,22 @@ class LocationView(APIView):
             person = Person.objects.get(id=user_id)
         except Person.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        location = Attendance.objects.filter(person=person, check_out=None).first()
-        # TODO:
-        # if location:
-        #     location = location.room
-        # else:
-        #     location = Attendance.objects.filter(person)
 
-        print(ser.FullPersonSerializer(person).data)
-        return Response()
-        # return Response(ser.RoomSerializer(location).data)
+        check_ins = Attendance.objects.filter(person=person)
+        current = check_ins.filter(check_out=None).first()
+
+        if current:
+            location = current.room
+            active = True
+            last_seen = current.check_in
+        else:
+            last = check_ins.order_by('check_out').last()
+            # if person has never been anywhere
+            location = getattr(last, 'room', None)
+            active = False
+            last_seen = last.check_out
+
+        data = ser.RoomSerializer(location).data
+        data['active'] = active
+        data['last_seen'] = last_seen
+        return Response(data)

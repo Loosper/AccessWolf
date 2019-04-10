@@ -14,7 +14,7 @@ class Group(models.Model):
 
 class Person(models.Model):
     name = CharField(max_length=100)
-    card_id = CharField(max_length=10)
+    card_id = CharField(max_length=10, unique=True)
     groups = ManyToManyField(Group, blank=True)
 
     def __str__(self):

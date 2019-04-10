@@ -12,9 +12,9 @@ router.register(r'events', views.EventViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path(
-        'check_in/<str:card_id>/room/<str:room_id>',
+        'check_in/<str:card_id>/room/<str:room_id>/',
         views.CheckInViewSet.as_view({'post': 'check_in'})
     ), path(
-        'where/<str:user_id>', views.LocationView.as_view()
+        'where/<str:user_id>/', views.LocationView.as_view()
     ),
 ]
