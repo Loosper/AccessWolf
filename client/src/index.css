@@ -37,3 +37,10 @@ input:focus {
   margin: 0;
 }
 
+@media screen and (max-width: 420px) {
+  .view-container {
+    /* margin-left: 0px; */
+    /* margin-top: 48px; */
+  }
+}
+
