@@ -26,5 +26,6 @@ GET  - `/<id\>/` - inspect
 ####  `groups/`  
 ####  `people/`  
 ####  `rooms/`  
+returns an additional field pople, with a list of all people in the room  
 ####  `events/`  
 NOTE: list only returns number of people invited  

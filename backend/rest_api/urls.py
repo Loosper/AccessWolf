@@ -15,6 +15,6 @@ urlpatterns = [
         'check_in/<str:card_id>/room/<str:room_id>/',
         views.CheckInViewSet.as_view({'post': 'check_in'})
     ), path(
-        'where/<str:user_id>/', views.LocationView.as_view()
+        'where/<str:user_id>/', views.LocationView.as_view({'get': 'locate'})
     ),
 ]

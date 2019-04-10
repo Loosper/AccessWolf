@@ -22,6 +22,16 @@ class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = ser.RoomSerializer
 
+    # this is slow, but i don't want to reimplement retrieve
+    def retrieve(self, request, pk):
+        response = super().retrieve(request, pk)
+        room = Room.objects.get(id=response.data['id'])
+        people = [
+            att.person for att in Attendance.objects.filter(room=room, check_out=None).all()
+        ]
+        response.data['people'] = ser.ShortPersonSerializer(people, many=True).data
+        return response
+
 
 class WriteEventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
@@ -86,8 +96,9 @@ class CheckInViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_200_OK)
 
 
-class LocationView(APIView):
-    def get(self, request, user_id):
+class LocationView(viewsets.ViewSet):
+    @action(detail=True, methods=['get'])
+    def locate(self, request, user_id):
         try:
             person = Person.objects.get(id=user_id)
         except Person.DoesNotExist:
@@ -105,7 +116,7 @@ class LocationView(APIView):
             # if person has never been anywhere
             location = getattr(last, 'room', None)
             active = False
-            last_seen = last.check_out
+            last_seen = getattr(last, 'check_out', None)
 
         data = ser.RoomSerializer(location).data
         data['active'] = active
