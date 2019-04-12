@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.db.models import CharField, ForeignKey, ManyToManyField
-from django.db.models import TimeField, DateField, DateTimeField
+from django.db.models import DateTimeField
 
 
 class Group(models.Model):
@@ -28,9 +28,8 @@ class Room(models.Model):
 class Event(models.Model):
     name = CharField(max_length=100)
     description = CharField(max_length=250, blank=True)
-    start_time = TimeField()
-    start_date = DateField()
-    duration = TimeField()
+    start_time = DateTimeField()
+    end_time = DateTimeField()
     room = ForeignKey(Room, on_delete=models.CASCADE)
     organisers = ManyToManyField(Person, related_name='organisers')
     groups = ManyToManyField(Group, blank=True)
