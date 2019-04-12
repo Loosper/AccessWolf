@@ -1,28 +1,20 @@
-const mockPeople = [
-  {
-      "id": 1,
-      "name": "Steve",
-      "card_id": "111",
-      "groups": []
-  },
-  {
-      "id": 2,
-      "name": "Richard",
-      "card_id": "222",
-      "groups": [
-          1
-      ]
-  },
-  {
-      "id": 3,
-      "name": "Lewis",
-      "card_id": "333",
-      "groups": [
-          1
-      ]
-  }
-]
+import { REQUEST_PEOPLE, RECEIVE_PEOPLE } from '../actions/people'
 
-export default function people(state = mockPeople, action) {
-  return state
+export default function people(
+  state = {
+    isFetching: false,
+    entries: new Map()
+  }, 
+  action,
+) {
+  switch (action.type) {
+    case REQUEST_PEOPLE:
+      return { ...state, isFetching: true }
+
+    case RECEIVE_PEOPLE:
+      return { isFetching: false, entries: action.people }
+
+    default:
+      return state
+  }
 }

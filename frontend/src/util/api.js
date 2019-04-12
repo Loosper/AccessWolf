@@ -7,8 +7,8 @@ export async function getEvents() {
   return toIDMap(await get('/events'))
 }
 
-export async function getRooms() {
-  return toIDMap(await get('/rooms'))
+export async function getGroups() {
+  return toIDMap(await get('/groups'))
 }
 
 export async function getPeople() {

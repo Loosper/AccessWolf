@@ -77,7 +77,7 @@
 .rbc-row .rbc-event {
   padding: 1px 4px;
   font-size: 10pt;
-  background-color: #ff9a9e;
+  background-color: #FF719A;
   color: #29323c;
 }
 
@@ -91,5 +91,5 @@
 }
 
 .rbc-day-bg.rbc-today {
-  background-color: #fecfef58;
+  background-color: #FFA99F64;
 }

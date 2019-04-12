@@ -3,7 +3,7 @@ export function list(...classNames) {
 }
 
 export function toIDMap(entries) {
-  if (!entries[0] || !entries[0].id) {
+  if (!entries || (entries.length && !entries[0].id)) {
     console.log(entries)
     throw new Error('Entries do not have id')
   }

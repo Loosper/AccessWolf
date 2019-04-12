@@ -2,25 +2,38 @@ import React from 'react'
 import { Row } from 'react-bootstrap'
 import EventColumn from './EventColumn'
 import { connect } from 'react-redux'
+import { fetchEventsIfNeeded } from '../../actions/events'
+import { useFetch } from '../../util/hooks'
 
 function mapStateToProps({ events }) {
-  const groupedByRoom = Object.values(events).reduce((map, event) => {
-      map[event.room] = map[event.room] || []
-      map[event.room].push(event)
+  return { 
+    events: [...events.entries.values()].reduce((map, event) => {
+      if (!map.has(event.room)) {
+        map.set(event.room, [])
+      }
+
+      map.get(event.room).push(event)
 
       return map
-    }, {})
-
-  return { events: groupedByRoom }
+    }, new Map()) 
+  }
 }
 
-function RoomsPage({ events }) {
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvents: () => dispatch(fetchEventsIfNeeded())
+  }
+}
+
+function RoomsPage({ events, fetchEvents }) {
+  useFetch(fetchEvents)
+
   return (
     <>
       <h1>Rooms</h1>
       <div className="events-kanban">
         <Row>
-          {Object.entries(events).map(([title, events]) => (
+          {[...events.entries()].map(([title, events]) => (
             <EventColumn key={title} events={events} name={title} />
           ))}
         </Row>
@@ -29,4 +42,4 @@ function RoomsPage({ events }) {
   )
 }
 
-export default connect(mapStateToProps)(RoomsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(RoomsPage)

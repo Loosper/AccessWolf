@@ -1,4 +1,4 @@
-import { getEvents } from '../util/api';
+import { getEvents } from '../util/api'
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS'
 function requestEvents() {
@@ -27,7 +27,8 @@ function fetchEvents() {
 }
 
 export function fetchEventsIfNeeded() {
-  return async(dispatch, getState) => {
+  return (dispatch, getState) => {
+    console.log(dispatch, getState)
     if (shouldFetchEvents(getState())) {
       return dispatch(fetchEvents())
     } else {

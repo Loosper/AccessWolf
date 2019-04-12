@@ -1,9 +1,11 @@
 import React from 'react'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
-import './index.css'
 import { connect } from 'react-redux'
 import { fetchEventsIfNeeded } from '../../actions/events'
+import { useFetch } from '../../util/hooks'
+
+import './index.css'
 
 const localizer = BigCalendar.momentLocalizer(moment)
 
@@ -13,14 +15,12 @@ function mapStateToProps({ events, isFetching }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchEvents() {
-      dispatch(fetchEventsIfNeeded())
-    }
+    fetchEvents: () => dispatch(fetchEventsIfNeeded())
   }
 }
 
 function EventsPage({ events, fetchEvents, isFetching }) {
-  React.useEffect(fetchEvents, [])
+  useFetch(fetchEvents)
 
   return (
     <>
