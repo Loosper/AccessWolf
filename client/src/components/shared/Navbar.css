@@ -4,7 +4,7 @@ nav {
 	position: fixed;
 	display: flex;
 	transition: transform ease .4s;
-	will-change: transform;
+	/* will-change: transform; */
 	transform: translateX(-320px);
 	cursor: pointer;
 	/* filter: brightness(0.8); */
@@ -17,7 +17,7 @@ nav > .menu {
 	flex-flow: column;
 	mix-blend-mode: multiply;
 	transition: opacity .4s ease;
-	will-change: opacity;
+	/* will-change: opacity; */
 	opacity: 0.6;
 }
 
@@ -59,10 +59,11 @@ nav.open + .view-container {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
-.navbar-button:hover {
+.navbar-button:hover, .navbar-button:focus {
 	color: white;
 	text-decoration: none;
 	background-color: #29323cd6;
+	outline: none;
 }
 
 .bg {
@@ -73,7 +74,7 @@ nav.open + .view-container {
 	height: 100vh;
 	opacity: 0;
 	transition: opacity 1s ease;
-	will-change: opacity;
+	/* will-change: opacity; */
 	z-index: -1;
 	animation: AnimationName 16s ease infinite;
 	background-size: 200% 200%;
@@ -84,7 +85,7 @@ nav.open + .view-container {
 }
 
 .events-bg {
-	background-image: linear-gradient(16deg, #ff9a9e 0%, #fecfef 100%);
+	background-image: linear-gradient(16deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
 }
 
 .people-bg {
@@ -92,7 +93,7 @@ nav.open + .view-container {
 }
 
 .rooms-bg {
-	background-image: linear-gradient(16deg, #f6d365 0%, #fda085 100%);
+	background-image: linear-gradient(16deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
 }
 
 @media screen and (max-width: 420px) {

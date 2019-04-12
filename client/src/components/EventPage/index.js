@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import './index.css'
 
 function mapStateToProps({ events }, { match: { params: { id } } }) {
-	return { event: events[id] }
+	return { event: events.entries.get(id) }
 }
 
 function EventPage({ event }) {
