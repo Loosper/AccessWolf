@@ -10,11 +10,11 @@ const pages = [
   ['/people', 'People & Groups']
 ]
 
-export default withRouter(function Navbar({ location: { pathname }, isOpen, toggle }) {
+function Navbar({ location: { pathname }, isOpen, toggle }) {
   const visibleBG = pathname.substring(1)
 
   return (
-    <nav className={list(isOpen && 'open')}>
+    <nav className={list(isOpen && 'open')} onClick={toggle}>
       {pages.map(([pageName]) => (
         <div 
           key={pageName} 
@@ -24,7 +24,7 @@ export default withRouter(function Navbar({ location: { pathname }, isOpen, togg
           )} 
         />
       ))}
-      <div className='menu' onClick={toggle}>
+      <div className='menu'>
         {pages.map(([path, title]) => (
           <Link 
             key={path}
@@ -37,4 +37,6 @@ export default withRouter(function Navbar({ location: { pathname }, isOpen, togg
       </div>
     </nav>
   )
-})
+}
+
+export default withRouter(Navbar)
