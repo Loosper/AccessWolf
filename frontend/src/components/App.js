@@ -1,20 +1,18 @@
 import React from 'react'
-import { Router, Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import EventPage from './EventPage'
 import RoomsPage from './RoomsPage'
 import Navbar from './shared/Navbar'
 import EventsPage from './EventsPage'
 import PeoplePage from './PeoplePage'
 
-// import { ReactComponent as Menu } from '../img/menu.svg'
-import MenuIcon from './shared/MenuIcon';
-// import Search from './shared/Search'
+import MenuIcon from './shared/MenuIcon'
 
 function NotFound() {
   return <Redirect to='/events' />
 }
 
-function App({ history }) {
+function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   function toggleMenu() {
@@ -22,7 +20,7 @@ function App({ history }) {
   }
 
   return (
-    <Router history={history}>
+    <>
       <Navbar isOpen={isMenuOpen} toggle={toggleMenu} />
       <div className='view-container'>
         <MenuIcon onClick={toggleMenu} toggle={isMenuOpen} />
@@ -34,7 +32,7 @@ function App({ history }) {
           <Route render={NotFound} />
         </Switch>
       </div>
-    </Router>
+    </>
   )
 }
 

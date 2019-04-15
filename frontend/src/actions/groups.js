@@ -22,7 +22,7 @@ function shouldFetchGroups(state) {
 function fetchGroups() {
   return async dispatch => {
     dispatch(requestGroups())
-    return receiveGroups(await getGroups())
+    return dispatch(receiveGroups(await getGroups()))
   }
 }
 

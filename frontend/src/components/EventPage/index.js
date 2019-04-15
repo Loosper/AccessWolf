@@ -31,8 +31,8 @@ function EventPage({ event }) {
 			</Row>
 			<hr className="hr-event"/>
 			<Row>
-				<Col><h4 className="event-date">{event.start_time.ToString}</h4></Col>
-				<Col><h4 className="event-date">{event.end_time.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.start.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.end.ToString}</h4></Col>
 			</Row>
 			<hr className="hr-event"/>
 			<Row>

@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker'
 import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { Router } from 'react-router-dom'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
@@ -16,7 +17,9 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 render(
   <Provider store={store}>
-    <App history={history} />
+    <Router history={history}> 
+      <App />
+    </Router>
   </Provider>, 
   document.getElementById('root')
 )

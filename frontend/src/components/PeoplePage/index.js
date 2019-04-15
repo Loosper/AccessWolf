@@ -1,23 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchPeopleIfNeeded } from '../../actions/people';
-import { fetchGroupsIfNeeded } from '../../actions/groups';
-import { useFetch } from '../../util/hooks';
+import { fetchPeopleIfNeeded } from '../../actions/people'
+import { fetchGroupsIfNeeded } from '../../actions/groups'
+import { useFetch } from '../../util/hooks'
+import { toIDMap } from '../../util'
 
 function mapStateToProps({ groups, people }) {
-  const grouped = [...groups.entries.values()].map(group => ({ 
-    ...group, 
-    events: [],
-  }))
+  let grouped = null
 
-  for (const person of people.entries.values()) {
-    for (const group of person.groups) {
-      grouped[group].people.push(person)
+  if (groups.entries.size && people.entries.size) {
+    grouped = toIDMap([...groups.entries.values()])
+    
+    for (const person of people.entries.values()) {
+      for (const group of person.groups) {
+        grouped.get(group).people.push(person)
+      }
     }
   }
 
   return { 
-    groups: grouped, 
+    groups: grouped ? [...grouped.values()] : [], 
     people: [...people.entries.values()],
   }
 }
@@ -30,8 +32,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function PeoplePage({ groups, people, fetchPeople, fetchGroups }) {
-  useFetch(fetchGroups)
-  useFetch(fetchPeople)
+  useFetch(fetchGroups, fetchPeople)
 
   return (
     <>

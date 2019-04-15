@@ -12,7 +12,7 @@ function EventColumn({ name, events, history: { push } }) {
         <Card key={event.id} onClick={() => push(`/event/${event.id}`)}>
           <Card.Img variant="top" src={event.image} />
           <Card.Body>
-            <Card.Title>{event.name}</Card.Title>
+            <Card.Title>{event.title}</Card.Title>
             <Card.Text>
               {event.description}
             </Card.Text>

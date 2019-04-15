@@ -22,7 +22,7 @@ function shouldFetchPeople(state) {
 function fetchPeople() {
   return async dispatch => {
     dispatch(requestPeople())
-    return receivePeople(await getPeople())
+    return dispatch(receivePeople(await getPeople()))
   }
 }
 

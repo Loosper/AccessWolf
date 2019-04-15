@@ -8,11 +8,17 @@ export async function getEvents() {
 }
 
 export async function getGroups() {
-  return toIDMap(await get('/groups'))
+  const groups = await get('/groups')
+  
+  return toIDMap(groups.map(group => ({ ...group, people: [] })))
 }
 
 export async function getPeople() {
   return toIDMap(await get('/people'))
+}
+
+export async function getRooms() {
+  return toIDMap(await get('/rooms'))
 }
 
 async function get(url) {

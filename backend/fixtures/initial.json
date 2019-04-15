@@ -87,10 +87,10 @@
     "model": "rest_api.event",
     "pk": 3,
     "fields": {
-        "name": "Order 66",
+        "title": "Order 66",
         "description": "Execute",
-        "start_time": "2019-04-20T14:00:00Z",
-        "end_time": "2019-04-20T16:00:00Z",
+        "start": "2019-04-20T14:00:00Z",
+        "end": "2019-04-20T16:00:00Z",
         "room": 2,
         "organisers": [
             3
@@ -107,10 +107,10 @@
     "model": "rest_api.event",
     "pk": 4,
     "fields": {
-        "name": "The future",
+        "title": "The future",
         "description": "mandatory",
-        "start_time": "2019-04-30T12:00:00Z",
-        "end_time": "2019-04-30T18:00:00Z",
+        "start": "2019-04-30T12:00:00Z",
+        "end": "2019-04-30T18:00:00Z",
         "room": 3,
         "organisers": [
             2

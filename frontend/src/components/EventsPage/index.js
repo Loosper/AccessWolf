@@ -25,7 +25,6 @@ function EventsPage({ events, fetchEvents, isFetching }) {
   return (
     <>
       <h1>Events</h1>
-      {isFetching}
       <BigCalendar
         localizer={localizer}
         events={events}

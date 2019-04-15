@@ -93,7 +93,7 @@ nav.open + .view-container {
 }
 
 .rooms-bg {
-	background-image: linear-gradient(16deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+	background-image: linear-gradient(16deg, #B19FFF 0%, #ECA1FE 100%);
 }
 
 @media screen and (max-width: 420px) {

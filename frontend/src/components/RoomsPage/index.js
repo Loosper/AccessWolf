@@ -8,11 +8,11 @@ import { useFetch } from '../../util/hooks'
 function mapStateToProps({ events }) {
   return { 
     events: [...events.entries.values()].reduce((map, event) => {
-      if (!map.has(event.room)) {
-        map.set(event.room, [])
+      if (!map.has(event.room.id)) {
+        map.set(event.room.id, [])
       }
 
-      map.get(event.room).push(event)
+      map.get(event.room.id).push(event)
 
       return map
     }, new Map()) 
@@ -28,13 +28,19 @@ function mapDispatchToProps(dispatch) {
 function RoomsPage({ events, fetchEvents }) {
   useFetch(fetchEvents)
 
+  console.log(events)
+
   return (
     <>
       <h1>Rooms</h1>
       <div className="events-kanban">
         <Row>
-          {[...events.entries()].map(([title, events]) => (
-            <EventColumn key={title} events={events} name={title} />
+          {[...events.values()].map((events) => (
+            <EventColumn 
+              key={events[0].room.id} 
+              events={events} 
+              name={events[0].room.name} 
+            />
           ))}
         </Row>
       </div>  

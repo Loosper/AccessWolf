@@ -22,13 +22,12 @@ function shouldFetchEvents(state) {
 function fetchEvents() {
   return async dispatch => {
     dispatch(requestEvents())
-    return receiveEvents(await getEvents())
+    return dispatch(receiveEvents(await getEvents()))
   }
 }
 
 export function fetchEventsIfNeeded() {
   return (dispatch, getState) => {
-    console.log(dispatch, getState)
     if (shouldFetchEvents(getState())) {
       return dispatch(fetchEvents())
     } else {
