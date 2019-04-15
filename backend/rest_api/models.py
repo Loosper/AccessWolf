@@ -24,6 +24,9 @@ class Person(models.Model):
 class Room(models.Model):
     name = CharField(max_length=100)
 
+    def __str__(self):
+        return f'Room {self.name}'
+
 
 class Event(models.Model):
     name = CharField(max_length=100)
@@ -35,9 +38,16 @@ class Event(models.Model):
     groups = ManyToManyField(Group, blank=True)
     people = ManyToManyField(Person, blank=True, related_name='attendees')
 
+    def __str__(self):
+        return f'Event {self.name}'
+
 
 class Attendance(models.Model):
     check_in = DateTimeField(auto_now=True)
     check_out = DateTimeField(null=True)
     person = ForeignKey(Person, on_delete=models.CASCADE)
     room = ForeignKey(Room, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Attendance {self.name}'
+

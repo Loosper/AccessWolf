@@ -33,6 +33,9 @@ class RoomViewSet(viewsets.ModelViewSet):
         return response
 
 
+# TODO: absences; timeframes or single event?
+# TODO: create recurring events
+
 class WriteEventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ser.WriteEventSerializer
@@ -50,8 +53,8 @@ class EventViewSet(viewsets.ModelViewSet):
             event = Event.objects.get(id=event_obj['id'])
             people = event.people.all()
 
-            for group in event.groups.all():
-                people &= Person.filter(groups__in=group).all()
+            # for group in event.groups.all():
+            people |= Person.objects.filter(groups__in=event.groups.all()).all()
 
             # people is a list of unique people
             data[index]['people'] = len(people)
@@ -69,11 +72,12 @@ class EventViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(detail=False, methods=['post'])
+    def recurring(self, request):
+        return Response()
 
-class CheckInViewSet(viewsets.ModelViewSet):
-    queryset = Attendance.objects.all()
-    serializer_class = ser.AttendanceSerializer
 
+class LocationView(viewsets.ViewSet):
     @action(detail=True, methods=['post'])
     def check_in(self, request, card_id, room_id):
         try:
@@ -82,7 +86,7 @@ class CheckInViewSet(viewsets.ModelViewSet):
         except (Person.DoesNotExist, Room.DoesNotExist):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        checked_in = self.get_queryset().filter(person=person, check_out=None).first()
+        checked_in = Attendance.objects.filter(person=person, check_out=None).first()
         if checked_in:
             checked_in.check_out = timezone.now()
             checked_in.save()
@@ -95,8 +99,6 @@ class CheckInViewSet(viewsets.ModelViewSet):
             attendance.save()
             return Response(status=status.HTTP_200_OK)
 
-
-class LocationView(viewsets.ViewSet):
     @action(detail=True, methods=['get'])
     def locate(self, request, user_id):
         try:

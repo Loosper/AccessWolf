@@ -1,592 +1,124 @@
 [
-   {
-      "model" : "rest_api.group",
-      "fields" : {
-         "name" : "Orange"
-      },
-      "pk" : 1
-   },
-   {
-      "pk" : 2,
-      "fields" : {
-         "name" : "Lemon"
-      },
-      "model" : "rest_api.group"
-   },
-   {
-      "pk" : 3,
-      "fields" : {
-         "name" : "Apple"
-      },
-      "model" : "rest_api.group"
-   },
-   {
-      "fields" : {
-         "groups" : [],
-         "name" : "Steve",
-         "card_id" : "111"
-      },
-      "model" : "rest_api.person",
-      "pk" : 1
-   },
-   {
-      "fields" : {
-         "name" : "Richard",
-         "card_id" : "222",
-         "groups" : [
+{
+    "model": "rest_api.group",
+    "pk": 1,
+    "fields": {
+        "name": "Winner"
+    }
+},
+{
+    "model": "rest_api.group",
+    "pk": 2,
+    "fields": {
+        "name": "Loser"
+    }
+},
+{
+    "model": "rest_api.group",
+    "pk": 3,
+    "fields": {
+        "name": "Football"
+    }
+},
+{
+    "model": "rest_api.group",
+    "pk": 4,
+    "fields": {
+        "name": "The empire"
+    }
+},
+{
+    "model": "rest_api.person",
+    "pk": 2,
+    "fields": {
+        "name": "The dude",
+        "card_id": "111",
+        "groups": [
             1
-         ]
-      },
-      "model" : "rest_api.person",
-      "pk" : 2
-   },
-   {
-      "model" : "rest_api.person",
-      "fields" : {
-         "groups" : [
-            1
-         ],
-         "card_id" : "333",
-         "name" : "Lewis"
-      },
-      "pk" : 3
-   },
-   {
-      "fields" : {
-         "name" : "Olympus"
-      },
-      "model" : "rest_api.room",
-      "pk" : 1
-   },
-   {
-      "pk" : 2,
-      "fields" : {
-         "name" : "Google"
-      },
-      "model" : "rest_api.room"
-   },
-   {
-      "model" : "rest_api.event",
-      "fields" : {
-         "people" : [
-            1
-         ],
-         "start_time" : "07:56:58",
-         "duration" : "03:00:00",
-         "name" : "Masterclass",
-         "organisers" : [
-            1
-         ],
-         "groups" : [],
-         "room" : 1,
-         "start_date" : "2019-04-05",
-         "description" : "best event"
-      },
-      "pk" : 1
-   },
-   {
-      "pk" : 2,
-      "fields" : {
-         "people" : [
+        ]
+    }
+},
+{
+    "model": "rest_api.person",
+    "pk": 3,
+    "fields": {
+        "name": "The emperror",
+        "card_id": "66",
+        "groups": [
             1,
-            2,
+            4
+        ]
+    }
+},
+{
+    "model": "rest_api.person",
+    "pk": 4,
+    "fields": {
+        "name": "Steve",
+        "card_id": "222",
+        "groups": [
+            1,
             3
-         ],
-         "start_time" : "12:45:00",
-         "duration" : "03:00:00",
-         "name" : "Seminair",
-         "organisers" : [
-            1
-         ],
-         "start_date" : "2019-05-05",
-         "room" : 2,
-         "description" : "bad event",
-         "groups" : []
-      },
-      "model" : "rest_api.event"
-   },
-   {
-      "fields" : {
-         "app_label" : "rest_api",
-         "model" : "group"
-      },
-      "model" : "contenttypes.contenttype",
-      "pk" : 1
-   },
-   {
-      "model" : "contenttypes.contenttype",
-      "fields" : {
-         "app_label" : "rest_api",
-         "model" : "room"
-      },
-      "pk" : 2
-   },
-   {
-      "pk" : 3,
-      "fields" : {
-         "model" : "person",
-         "app_label" : "rest_api"
-      },
-      "model" : "contenttypes.contenttype"
-   },
-   {
-      "fields" : {
-         "app_label" : "rest_api",
-         "model" : "event"
-      },
-      "model" : "contenttypes.contenttype",
-      "pk" : 4
-   },
-   {
-      "fields" : {
-         "model" : "attendance",
-         "app_label" : "rest_api"
-      },
-      "model" : "contenttypes.contenttype",
-      "pk" : 5
-   },
-   {
-      "pk" : 6,
-      "model" : "contenttypes.contenttype",
-      "fields" : {
-         "model" : "logentry",
-         "app_label" : "admin"
-      }
-   },
-   {
-      "fields" : {
-         "app_label" : "auth",
-         "model" : "permission"
-      },
-      "model" : "contenttypes.contenttype",
-      "pk" : 7
-   },
-   {
-      "pk" : 8,
-      "fields" : {
-         "app_label" : "auth",
-         "model" : "group"
-      },
-      "model" : "contenttypes.contenttype"
-   },
-   {
-      "model" : "contenttypes.contenttype",
-      "fields" : {
-         "app_label" : "auth",
-         "model" : "user"
-      },
-      "pk" : 9
-   },
-   {
-      "fields" : {
-         "app_label" : "contenttypes",
-         "model" : "contenttype"
-      },
-      "model" : "contenttypes.contenttype",
-      "pk" : 10
-   },
-   {
-      "pk" : 11,
-      "fields" : {
-         "model" : "session",
-         "app_label" : "sessions"
-      },
-      "model" : "contenttypes.contenttype"
-   },
-   {
-      "pk" : 1,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 1,
-         "codename" : "add_group",
-         "name" : "Can add group"
-      }
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 1,
-         "name" : "Can change group",
-         "codename" : "change_group"
-      },
-      "pk" : 2
-   },
-   {
-      "fields" : {
-         "name" : "Can delete group",
-         "codename" : "delete_group",
-         "content_type" : 1
-      },
-      "model" : "auth.permission",
-      "pk" : 3
-   },
-   {
-      "pk" : 4,
-      "fields" : {
-         "content_type" : 1,
-         "name" : "Can view group",
-         "codename" : "view_group"
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "pk" : 5,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 2,
-         "name" : "Can add room",
-         "codename" : "add_room"
-      }
-   },
-   {
-      "pk" : 6,
-      "fields" : {
-         "codename" : "change_room",
-         "name" : "Can change room",
-         "content_type" : 2
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can delete room",
-         "codename" : "delete_room",
-         "content_type" : 2
-      },
-      "pk" : 7
-   },
-   {
-      "pk" : 8,
-      "fields" : {
-         "content_type" : 2,
-         "codename" : "view_room",
-         "name" : "Can view room"
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "fields" : {
-         "content_type" : 3,
-         "codename" : "add_person",
-         "name" : "Can add person"
-      },
-      "model" : "auth.permission",
-      "pk" : 9
-   },
-   {
-      "pk" : 10,
-      "fields" : {
-         "name" : "Can change person",
-         "codename" : "change_person",
-         "content_type" : 3
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "pk" : 11,
-      "fields" : {
-         "content_type" : 3,
-         "codename" : "delete_person",
-         "name" : "Can delete person"
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "codename" : "view_person",
-         "name" : "Can view person",
-         "content_type" : 3
-      },
-      "pk" : 12
-   },
-   {
-      "fields" : {
-         "content_type" : 4,
-         "codename" : "add_event",
-         "name" : "Can add event"
-      },
-      "model" : "auth.permission",
-      "pk" : 13
-   },
-   {
-      "pk" : 14,
-      "model" : "auth.permission",
-      "fields" : {
-         "codename" : "change_event",
-         "name" : "Can change event",
-         "content_type" : 4
-      }
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can delete event",
-         "codename" : "delete_event",
-         "content_type" : 4
-      },
-      "pk" : 15
-   },
-   {
-      "pk" : 16,
-      "fields" : {
-         "codename" : "view_event",
-         "name" : "Can view event",
-         "content_type" : 4
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "fields" : {
-         "codename" : "add_attendance",
-         "name" : "Can add attendance",
-         "content_type" : 5
-      },
-      "model" : "auth.permission",
-      "pk" : 17
-   },
-   {
-      "fields" : {
-         "content_type" : 5,
-         "name" : "Can change attendance",
-         "codename" : "change_attendance"
-      },
-      "model" : "auth.permission",
-      "pk" : 18
-   },
-   {
-      "fields" : {
-         "name" : "Can delete attendance",
-         "codename" : "delete_attendance",
-         "content_type" : 5
-      },
-      "model" : "auth.permission",
-      "pk" : 19
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 5,
-         "name" : "Can view attendance",
-         "codename" : "view_attendance"
-      },
-      "pk" : 20
-   },
-   {
-      "pk" : 21,
-      "fields" : {
-         "content_type" : 6,
-         "codename" : "add_logentry",
-         "name" : "Can add log entry"
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 6,
-         "name" : "Can change log entry",
-         "codename" : "change_logentry"
-      },
-      "pk" : 22
-   },
-   {
-      "pk" : 23,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 6,
-         "name" : "Can delete log entry",
-         "codename" : "delete_logentry"
-      }
-   },
-   {
-      "pk" : 24,
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can view log entry",
-         "codename" : "view_logentry",
-         "content_type" : 6
-      }
-   },
-   {
-      "fields" : {
-         "name" : "Can add permission",
-         "codename" : "add_permission",
-         "content_type" : 7
-      },
-      "model" : "auth.permission",
-      "pk" : 25
-   },
-   {
-      "fields" : {
-         "name" : "Can change permission",
-         "codename" : "change_permission",
-         "content_type" : 7
-      },
-      "model" : "auth.permission",
-      "pk" : 26
-   },
-   {
-      "pk" : 27,
-      "fields" : {
-         "content_type" : 7,
-         "name" : "Can delete permission",
-         "codename" : "delete_permission"
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "pk" : 28,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 7,
-         "name" : "Can view permission",
-         "codename" : "view_permission"
-      }
-   },
-   {
-      "fields" : {
-         "content_type" : 8,
-         "codename" : "add_group",
-         "name" : "Can add group"
-      },
-      "model" : "auth.permission",
-      "pk" : 29
-   },
-   {
-      "pk" : 30,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 8,
-         "codename" : "change_group",
-         "name" : "Can change group"
-      }
-   },
-   {
-      "pk" : 31,
-      "fields" : {
-         "codename" : "delete_group",
-         "name" : "Can delete group",
-         "content_type" : 8
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "pk" : 32,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 8,
-         "name" : "Can view group",
-         "codename" : "view_group"
-      }
-   },
-   {
-      "pk" : 33,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 9,
-         "name" : "Can add user",
-         "codename" : "add_user"
-      }
-   },
-   {
-      "fields" : {
-         "content_type" : 9,
-         "name" : "Can change user",
-         "codename" : "change_user"
-      },
-      "model" : "auth.permission",
-      "pk" : 34
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can delete user",
-         "codename" : "delete_user",
-         "content_type" : 9
-      },
-      "pk" : 35
-   },
-   {
-      "fields" : {
-         "content_type" : 9,
-         "name" : "Can view user",
-         "codename" : "view_user"
-      },
-      "model" : "auth.permission",
-      "pk" : 36
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can add content type",
-         "codename" : "add_contenttype",
-         "content_type" : 10
-      },
-      "pk" : 37
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "codename" : "change_contenttype",
-         "name" : "Can change content type",
-         "content_type" : 10
-      },
-      "pk" : 38
-   },
-   {
-      "pk" : 39,
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can delete content type",
-         "codename" : "delete_contenttype",
-         "content_type" : 10
-      }
-   },
-   {
-      "pk" : 40,
-      "fields" : {
-         "name" : "Can view content type",
-         "codename" : "view_contenttype",
-         "content_type" : 10
-      },
-      "model" : "auth.permission"
-   },
-   {
-      "pk" : 41,
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 11,
-         "codename" : "add_session",
-         "name" : "Can add session"
-      }
-   },
-   {
-      "pk" : 42,
-      "model" : "auth.permission",
-      "fields" : {
-         "name" : "Can change session",
-         "codename" : "change_session",
-         "content_type" : 11
-      }
-   },
-   {
-      "model" : "auth.permission",
-      "fields" : {
-         "content_type" : 11,
-         "name" : "Can delete session",
-         "codename" : "delete_session"
-      },
-      "pk" : 43
-   },
-   {
-      "fields" : {
-         "content_type" : 11,
-         "codename" : "view_session",
-         "name" : "Can view session"
-      },
-      "model" : "auth.permission",
-      "pk" : 44
-   }
+        ]
+    }
+},
+{
+    "model": "rest_api.room",
+    "pk": 2,
+    "fields": {
+        "name": "Saturn"
+    }
+},
+{
+    "model": "rest_api.room",
+    "pk": 3,
+    "fields": {
+        "name": "The bar"
+    }
+},
+{
+    "model": "rest_api.room",
+    "pk": 4,
+    "fields": {
+        "name": "Submarine"
+    }
+},
+{
+    "model": "rest_api.event",
+    "pk": 3,
+    "fields": {
+        "name": "Order 66",
+        "description": "Execute",
+        "start_time": "2019-04-20T14:00:00Z",
+        "end_time": "2019-04-20T16:00:00Z",
+        "room": 2,
+        "organisers": [
+            3
+        ],
+        "groups": [
+            3
+        ],
+        "people": [
+            2
+        ]
+    }
+},
+{
+    "model": "rest_api.event",
+    "pk": 4,
+    "fields": {
+        "name": "The future",
+        "description": "mandatory",
+        "start_time": "2019-04-30T12:00:00Z",
+        "end_time": "2019-04-30T18:00:00Z",
+        "room": 3,
+        "organisers": [
+            2
+        ],
+        "groups": [],
+        "people": [
+            4
+        ]
+    }
+}
 ]

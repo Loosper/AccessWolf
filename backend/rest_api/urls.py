@@ -13,8 +13,9 @@ urlpatterns = [
     path('', include(router.urls)),
     path(
         'check_in/<str:card_id>/room/<str:room_id>/',
-        views.CheckInViewSet.as_view({'post': 'check_in'})
+        views.LocationView.as_view({'post': 'check_in'})
     ), path(
-        'where/<str:user_id>/', views.LocationView.as_view({'get': 'locate'})
+        'where/<str:user_id>/', views.LocationView.as_view({'get': 'locate'}),
     ),
+    # path('events/recurring/', views.EventViewSet.as_view({'post': 'recurring'}))
 ]

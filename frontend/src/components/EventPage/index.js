@@ -21,7 +21,8 @@ function EventPage({ event }) {
 				</Col>
 				<Col>
 					<div><h1 className="event-name">{event.name}</h1></div>
-					<div><h2 className="event-organizer">{event.organizer}</h2></div>
+					{/* REVIEW: this is a list */}
+					<div><h2 className="event-organizer">{event.organisers}</h2></div>
 				</Col>
 			</Row>
 			<hr className="hr-event"/>
@@ -30,13 +31,13 @@ function EventPage({ event }) {
 			</Row>
 			<hr className="hr-event"/>
 			<Row>
-				<Col><h4 className="event-date">{event.start.ToString}</h4></Col>
-				<Col><h4 className="event-date">{event.end.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.start_time.ToString}</h4></Col>
+				<Col><h4 className="event-date">{event.end_time.ToString}</h4></Col>
 			</Row>
 			<hr className="hr-event"/>
 			<Row>
 				<Col><h5 className="event-count">{event.groups.length}</h5></Col>
-				<Col><h5 className="event-count">{event.individuals.length}</h5></Col>
+				<Col><h5 className="event-count">{event.people.length}</h5></Col>
 			</Row>
 			<Row>
 				<Col>
@@ -47,7 +48,7 @@ function EventPage({ event }) {
 				))}
 				</Col>
 				<Col>
-					{event.individuals.map(individual => (
+					{event.people.map(individual => (
 						<h6 className="event-participant" key={individual.name}>
 							{individual.name}
 						</h6>
