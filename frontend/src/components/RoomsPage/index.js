@@ -4,42 +4,36 @@ import EventColumn from './EventColumn'
 import { connect } from 'react-redux'
 import { fetchEventsIfNeeded } from '../../actions/events'
 import { useFetch } from '../../util/hooks'
+import { Map, List } from 'immutable'
 
 function mapStateToProps({ events }) {
   return { 
-    events: [...events.entries.values()].reduce((map, event) => {
-      if (!map.has(event.room.id)) {
-        map.set(event.room.id, [])
-      }
-
-      map.get(event.room.id).push(event)
-
-      return map
-    }, new Map()) 
+    rooms: events.entries.reduce((rooms, event) => {
+      const events = rooms.get(event.room.id) || List()
+      
+      return rooms.set(event.room.id, events.push(event))
+    }, Map()).valueSeq().toArray()
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchEvents: () => dispatch(fetchEventsIfNeeded())
-  }
+const mapDispatchToProps = {
+  fetchEvents: fetchEventsIfNeeded
 }
 
-function RoomsPage({ events, fetchEvents }) {
+function RoomsPage({ rooms, fetchEvents, history: { push } }) {
   useFetch(fetchEvents)
-
-  console.log(events)
 
   return (
     <>
       <h1>Rooms</h1>
       <div className="events-kanban">
         <Row>
-          {[...events.values()].map((events) => (
+          {rooms.map((events) => (
             <EventColumn 
-              key={events[0].room.id} 
+              key={events.first().room.id} 
+              name={events.first().room.name}
               events={events} 
-              name={events[0].room.name} 
+              push={push}
             />
           ))}
         </Row>

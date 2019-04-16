@@ -5,6 +5,7 @@ import RoomsPage from './RoomsPage'
 import Navbar from './shared/Navbar'
 import EventsPage from './EventsPage'
 import PeoplePage from './PeoplePage'
+import { connect } from 'react-redux'
 
 import MenuIcon from './shared/MenuIcon'
 
@@ -24,11 +25,11 @@ function App() {
       <Navbar isOpen={isMenuOpen} toggle={toggleMenu} />
       <div className='view-container'>
         <MenuIcon onClick={toggleMenu} toggle={isMenuOpen} />
-        <Switch location={navigator.location}>
+        <Switch>
           <Route exact path='/events' component={EventsPage} />
           <Route exact path='/people' component={PeoplePage} />
           <Route exact path='/rooms' component={RoomsPage} />
-          <Route exact path='/event/:id' component={EventPage} />
+          <Route exact path='/events/:id' component={EventPage} />
           <Route render={NotFound} />
         </Switch>
       </div>
@@ -36,4 +37,5 @@ function App() {
   )
 }
 
-export default App
+
+export default connect()(App)

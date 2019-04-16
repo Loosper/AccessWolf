@@ -11,7 +11,7 @@ const pages = [
 ]
 
 function Navbar({ location: { pathname }, isOpen, toggle }) {
-  const visibleBG = pathname.substring(1)
+  const [visibleBG] = pathname.substring(1).split('/')
 
   return (
     <nav className={list(isOpen && 'open')} onClick={toggle}>

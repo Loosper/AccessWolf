@@ -7,13 +7,13 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 import rootReducer from './reducers'
 
 import './index.css'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const history = createBrowserHistory()
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
 render(
   <Provider store={store}>

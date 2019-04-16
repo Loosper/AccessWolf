@@ -4,7 +4,17 @@ import { toIDMap } from '.'
 const BASE_URL = 'http://127.0.0.1:8000/api'
 
 export async function getEvents() {
-  return toIDMap(await get('/events'))
+  const events = await get('/events')
+
+  return toIDMap(events.map(({ start, end, ...event }) => ({ 
+    ...event, 
+    start: new Date(start),
+    end: new Date(end),
+  })))
+}
+
+export function getEvent(id) {
+  return get(`/events/${id}`)
 }
 
 export async function getGroups() {

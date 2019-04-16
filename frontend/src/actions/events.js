@@ -1,4 +1,4 @@
-import { getEvents } from '../util/api'
+import { getEvents, getEvent } from '../util/api'
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS'
 function requestEvents() {
@@ -12,6 +12,14 @@ function receiveEvents(events) {
   return {
     type: RECEIVE_EVENTS,
     events,
+  }
+}
+
+export const RECEIVE_EVENT = 'RECEIVE_EVENT'
+function receiveEvent(event) {
+  return {
+    type: RECEIVE_EVENT,
+    event,
   }
 }
 
@@ -33,5 +41,12 @@ export function fetchEventsIfNeeded() {
     } else {
       return Promise.resolve()
     }
+  }
+}
+
+export function fetchEvent(id) {
+  return async (dispatch) => {
+    dispatch(requestEvents())
+    return dispatch(receiveEvent(await getEvent(id)))
   }
 }

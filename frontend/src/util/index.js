@@ -1,3 +1,5 @@
+import { Map } from 'immutable'
+
 export function list(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }
@@ -7,8 +9,8 @@ export function toIDMap(entries) {
     throw new Error('Entries do not have id')
   }
 
-  return entries.reduce((map, entry) => {
-    map.set(entry.id, entry)
+  return Map(entries.reduce((map, entry) => {
+    map[entry.id] = entry
     return map
-  }, new Map())
+  }, {}))
 }

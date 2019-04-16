@@ -2,13 +2,30 @@ import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { useFetch } from '../../util/hooks'
+import { fetchEvent } from '../../actions/events'
+
 import './index.css'
 
-function mapStateToProps({ events }, { match: { params: { id } } }) {
-	return { event: events.entries.get(id) }
+function mapStateToProps({ events, isFetching }, { match: { params: { id } } }) {
+	return { 
+		event: events.getEntry(id),
+		isFetching,
+	}
 }
 
-function EventPage({ event }) {
+function EventPage({ event, isFetching, match: { params: { id } }, dispatch }) {
+	const [hasFetched, setHasFetched] = React.useState(false)
+
+	useFetch(async () => {
+		await dispatch(fetchEvent(id))
+		setHasFetched(true)
+	})
+
+	if (isFetching || !hasFetched) {
+		return null
+	}
+
 	if (!event) {
 		return <Redirect to='/events' />
 	}
@@ -22,7 +39,7 @@ function EventPage({ event }) {
 				<Col>
 					<div><h1 className="event-name">{event.name}</h1></div>
 					{/* REVIEW: this is a list */}
-					<div><h2 className="event-organizer">{event.organisers}</h2></div>
+					{/* <div><h2 className="event-organizer">{event.organisers}</h2></div> */}
 				</Col>
 			</Row>
 			<hr className="hr-event"/>

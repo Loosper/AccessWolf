@@ -1,18 +1,25 @@
-import { REQUEST_EVENTS, RECEIVE_EVENTS } from '../actions/events'
+import { 
+  REQUEST_EVENTS, 
+  RECEIVE_EVENTS,
+  RECEIVE_EVENT,
+ } from '../actions/events'
+import Entries from '../util/entries'
 
 export default function events(
-  state = {
-    isFetching: false,
-    entries: new Map()
-  }, 
+  state = new Entries(), 
   action,
 ) {
   switch (action.type) {
     case REQUEST_EVENTS:
-      return { ...state, isFetching: true }
+      return state.setIsFetching(true)
 
     case RECEIVE_EVENTS:
-      return { isFetching: false, entries: action.events }
+      return state.setEntries(action.events)
+        .setIsFetching(false)
+
+    case RECEIVE_EVENT:
+      return state.setEntry(action.event)
+        .setIsFetching(false)
 
     default:
       return state

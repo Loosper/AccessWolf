@@ -6,11 +6,15 @@ import { fetchEventsIfNeeded } from '../../actions/events'
 import { useFetch } from '../../util/hooks'
 
 import './index.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = BigCalendar.momentLocalizer(moment)
 
 function mapStateToProps({ events, isFetching }) {
-  return { events: [...events.entries.values()], isFetching }
+  return { 
+    events: events.entries, 
+    isFetching 
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -27,7 +31,7 @@ function EventsPage({ events, fetchEvents, isFetching }) {
       <h1>Events</h1>
       <BigCalendar
         localizer={localizer}
-        events={events}
+        events={events.valueSeq().toArray()}
         startAccessor="start"
         endAccessor="end"
       />

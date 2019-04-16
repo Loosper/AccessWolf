@@ -1,18 +1,14 @@
 import { REQUEST_PEOPLE, RECEIVE_PEOPLE } from '../actions/people'
+import Entries from '../util/entries'
 
-export default function people(
-  state = {
-    isFetching: false,
-    entries: new Map()
-  }, 
-  action,
-) {
+export default function people(state = new Entries(), action) {
   switch (action.type) {
     case REQUEST_PEOPLE:
-      return { ...state, isFetching: true }
+      return state.setIsFetching(true)
 
     case RECEIVE_PEOPLE:
-      return { isFetching: false, entries: action.people }
+      return state.setEntries(action.events)
+        .setIsFetching(false)
 
     default:
       return state
