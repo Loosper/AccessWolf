@@ -3,12 +3,13 @@ import {
   RECEIVE_EVENTS,
   RECEIVE_EVENT,
  } from '../actions/events'
-import Entries from '../util/entries'
+import Entries from '../records/entries'
+import Fetchable from '../records/fetchable'
+import { recordMixin } from '../util'
 
-export default function events(
-  state = new Entries(), 
-  action,
-) {
+const State = recordMixin(Entries, Fetchable)
+
+export default function events(state = new State(), action) {
   switch (action.type) {
     case REQUEST_EVENTS:
       return state.setIsFetching(true)

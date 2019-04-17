@@ -1,4 +1,4 @@
-.group, .person {
+.group {
   border-radius: 8px;
   border: 1px solid #00000012;
   padding: 32px;
@@ -6,30 +6,58 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 16px;
   width: 192px;
   height: 192px;
   background: white;
   box-shadow: none;
   transition: .3s ease box-shadow;
   cursor: pointer;
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.person {
+  cursor: pointer;
+  padding: 16px;
+  transition: .3s background ease;
+  display: flex;
+  align-items: center;
+}
+
+.person:hover {
+  background-color: white;
+}
+
+.person:not(:last-child) {
+  border-bottom: 1px solid #00000012;
 }
 
 .group > h4, .person > h4 {
   margin: 0;
 }
 
-.group:hover, .person:hover {
+.group:hover {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
-.group > img, .person > img {
+.group > img {
   border-radius: 50%;
   width: 80px;
   height: 80px;
   margin-bottom: 16px;
 }
 
-.view-container > h2:first-of-type {
-  margin-top: 16px;
+.person > img {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  margin-right: 16px;
+}
+
+.view-container > h2 {
+  margin: 16px 0;
+}
+
+.view-container > h2 + .col {
+  padding: 0;
 }

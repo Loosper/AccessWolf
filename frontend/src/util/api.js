@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { toIDMap } from '.'
-import { List } from 'immutable'
 
 const BASE_URL = 'http://127.0.0.1:8000/api'
 
@@ -30,6 +29,10 @@ export async function getPeople() {
 
 export async function getRooms() {
   return toIDMap(await get('/rooms'))
+}
+
+export async function getAttendances(eventId) {
+  return await get(`/events/${eventId}/attendance`)
 }
 
 async function get(url) {

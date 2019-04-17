@@ -1,10 +1,11 @@
 import { REQUEST_GROUPS, RECEIVE_GROUPS } from '../actions/groups'
-import Entries from '../util/entries'
+import Entries from '../records/entries'
+import { recordMixin } from '../util'
+import Fetchable from '../records/fetchable'
 
-export default function groups(
-  state = new Entries(), 
-  action,
-) {
+const State = recordMixin(Entries, Fetchable)
+
+export default function groups(state = new State(), action) {
   switch (action.type) {
     case REQUEST_GROUPS:
       return state.setIsFetching(true)

@@ -1,5 +1,5 @@
 .events-kanban {
-	height: calc(100vh - 138px - 16px);
+	max-height: calc(100vh - 138px - 16px);
 	margin: 16px 15px 0;
 }
 
@@ -14,8 +14,7 @@
   max-width: 300px;
   min-width: 200px;
 	padding: 0;
-	background: white;
-	color: black;
+	background: #fdfbfb;
 	height: 100%;
 	overflow: auto;
 }
@@ -27,7 +26,8 @@
 	font-weight: normal;
 	position: sticky;
 	top: 0px;
-	background-color: #fdfbfb;
+	background-color: #29323c;
+	color: #fdfbfb;
 	z-index: 1;
 	margin: 0;
 	display: flex;
@@ -43,11 +43,12 @@
 	cursor: pointer;
 	overflow: hidden;
 	margin: 0 16px 16px;
-	background-color: #fdfbfb;
+	background-color: white;
 }
 
 .card > img {
 	padding: 16px;
+	height: 268px;
 }
 
 .event-column .card:first-of-type {

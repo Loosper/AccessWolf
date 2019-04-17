@@ -1,20 +1,12 @@
-import { Map, Record } from 'immutable'
+import { Map } from 'immutable'
 
 const ENTRIES = '_entries'
-const FETCHING = 'isFetching'
 
-export default class Entries extends Record({
-  [FETCHING]: false,
-  [ENTRIES]: Map()
-}) {
-  get isFetching() {
-    return this.get(FETCHING)
+export default class Entries {
+  static defaultState = {
+    [ENTRIES]: Map()
   }
 
-  setIsFetching(value) {
-    return this.set(FETCHING, value)
-  }
-  
   get entries() {
     return this.get(ENTRIES)
   }

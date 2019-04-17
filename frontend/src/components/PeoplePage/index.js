@@ -4,6 +4,7 @@ import { fetchPeopleIfNeeded } from '../../actions/people'
 import { fetchGroupsIfNeeded } from '../../actions/groups'
 import { useFetch } from '../../util/hooks'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import './index.css'
 
@@ -37,14 +38,14 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups }) {
         ))}
       </Row>
       <h2>People</h2>
-      <Row>
+      <Col>
         {people.valueSeq().toArray().map(person => (
           <div key={person.id} className='person'>
             <img src={person.image} alt='group' />
             <h4>{person.name}</h4>
           </div>
         ))}
-      </Row>
+      </Col>
     </>
   )
 }

@@ -8,11 +8,7 @@ import { Map, List } from 'immutable'
 
 function mapStateToProps({ events }) {
   return { 
-    rooms: events.entries.reduce((rooms, event) => {
-      const events = rooms.get(event.room.id) || List()
-      
-      return rooms.set(event.room.id, events.push(event))
-    }, Map()).valueSeq().toArray()
+    events: events.entries,
   }
 }
 
@@ -20,8 +16,16 @@ const mapDispatchToProps = {
   fetchEvents: fetchEventsIfNeeded
 }
 
-function RoomsPage({ rooms, fetchEvents, history: { push } }) {
+function RoomsPage({ events, fetchEvents, history: { push } }) {
   useFetch(fetchEvents)
+
+  const rooms = events.reduce((rooms, event) => {
+    const events = rooms.get(event.room.id) || List()
+    
+    return rooms.set(event.room.id, events.push(event))
+  }, Map())
+    .valueSeq()
+    .toArray()
 
   return (
     <>

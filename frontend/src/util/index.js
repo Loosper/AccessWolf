@@ -1,4 +1,4 @@
-import { Map } from 'immutable'
+import { Map, Record } from 'immutable'
 
 export function list(...classNames) {
   return classNames.filter(Boolean).join(' ')
@@ -13,4 +13,25 @@ export function toIDMap(entries) {
     map[entry.id] = entry
     return map
   }, {}))
+}
+
+
+export function recordMixin(...classes) {
+  const state = {}
+  
+  for (const { defaultState } of classes) {
+    Object.assign(state, defaultState)
+  }
+
+  const record = class extends Record(state) {}
+  
+  for (const { prototype } of classes) {
+    for (const key of Object.getOwnPropertyNames(prototype)) {
+      if (!record.prototype.hasOwnProperty(key)) {
+        Object.defineProperty(record.prototype, key, Object.getOwnPropertyDescriptor(prototype, key))
+      }
+    }
+  }
+  
+  return record
 }

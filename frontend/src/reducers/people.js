@@ -1,7 +1,11 @@
 import { REQUEST_PEOPLE, RECEIVE_PEOPLE } from '../actions/people'
-import Entries from '../util/entries'
+import Entries from '../records/entries'
+import { recordMixin } from '../util'
+import Fetchable from '../records/fetchable'
 
-export default function people(state = new Entries(), action) {
+const State = recordMixin(Entries, Fetchable)
+
+export default function people(state = new State(), action) {
   switch (action.type) {
     case REQUEST_PEOPLE:
       return state.setIsFetching(true)
