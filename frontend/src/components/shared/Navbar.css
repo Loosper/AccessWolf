@@ -4,7 +4,7 @@ nav {
 	position: fixed;
 	display: flex;
 	transition: transform ease .4s;
-	/* will-change: transform; */
+	will-change: transform;
 	transform: translateX(-320px);
 	cursor: pointer;
 	/* filter: brightness(0.8); */
@@ -17,7 +17,7 @@ nav > .menu {
 	flex-flow: column;
 	mix-blend-mode: multiply;
 	transition: opacity .4s ease;
-	/* will-change: opacity; */
+	will-change: opacity;
 	opacity: 0.6;
 }
 
@@ -47,6 +47,7 @@ nav.open + .view-container {
 	transition: color .3s ease, background-color ease .3s;
 	cursor: pointer;
 	color: #29323c;
+	user-select: none;
 }
 
 .navbar-button:not(:last-of-type) {
@@ -74,10 +75,10 @@ nav.open + .view-container {
 	height: 100vh;
 	opacity: 0;
 	transition: opacity 1s ease;
-	/* will-change: opacity; */
+	will-change: opacity;
 	z-index: -1;
-	animation: AnimationName 16s ease infinite;
-	background-size: 200% 200%;
+	/* animation: AnimationName 16s ease infinite; */
+	/* background-size: 200% 200%; */
 }
 
 .bg.visible {

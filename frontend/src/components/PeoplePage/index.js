@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function PeoplePage({ groups, people, fetchPeople, fetchGroups }) {
+function PeoplePage({ groups, people, fetchPeople, fetchGroups, history: { push } }) {
   useFetch(fetchGroups, fetchPeople)
 
   return (
@@ -31,7 +31,7 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups }) {
       <h2>Groups</h2>
       <Row>
         {groups.valueSeq().toArray().map(group => (
-          <div key={group.id} className='group'>
+          <div key={group.id} className='group' onClick={() => push(`/group/${group.id}`)}>
             <img src={group.image} alt='group' />
             <h4>{group.name}</h4>
           </div>

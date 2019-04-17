@@ -4,11 +4,11 @@ import EventColumn from './EventColumn'
 import { connect } from 'react-redux'
 import { fetchEventsIfNeeded } from '../../actions/events'
 import { useFetch } from '../../util/hooks'
-import { Map, List } from 'immutable'
+import roomsSelector from '../../selectors/rooms';
 
-function mapStateToProps({ events }) {
+function mapStateToProps(state) {
   return { 
-    events: events.entries,
+    rooms: roomsSelector(state),
   }
 }
 
@@ -16,17 +16,9 @@ const mapDispatchToProps = {
   fetchEvents: fetchEventsIfNeeded
 }
 
-function RoomsPage({ events, fetchEvents, history: { push } }) {
+function RoomsPage({ rooms, fetchEvents, history: { push } }) {
   useFetch(fetchEvents)
-
-  const rooms = events.reduce((rooms, event) => {
-    const events = rooms.get(event.room.id) || List()
-    
-    return rooms.set(event.room.id, events.push(event))
-  }, Map())
-    .valueSeq()
-    .toArray()
-
+  console.log(rooms)
   return (
     <>
       <h1>Rooms</h1>

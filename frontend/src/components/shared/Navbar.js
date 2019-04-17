@@ -4,6 +4,12 @@ import { withRouter } from "react-router"
 import { list } from '../../util'
 import './Navbar.css'
 
+const backgrounds = [
+  ['events', 'events'],
+  ['rooms', 'rooms'],
+  ['people', 'people'],
+  ['group', 'people']
+]
 const pages = [
   ['/events', 'Events'],
   ['/rooms', 'Rooms'],
@@ -11,16 +17,16 @@ const pages = [
 ]
 
 function Navbar({ location: { pathname }, isOpen, toggle }) {
-  const [visibleBG] = pathname.substring(1).split('/')
+  const [, visibleBG] = pathname.split('/')
 
   return (
     <nav className={list(isOpen && 'open')} onClick={toggle}>
-      {pages.map(([pageName]) => (
+      {backgrounds.map(([pageName, bg]) => (
         <div 
           key={pageName} 
           className={list(
-            `bg ${pageName.substring(1)}-bg`, 
-            visibleBG === pageName.substring(1) && 'visible'
+            `bg ${bg}-bg`, 
+            visibleBG === pageName && 'visible'
           )} 
         />
       ))}

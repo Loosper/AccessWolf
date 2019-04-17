@@ -24,6 +24,7 @@
 	transition: opacity .4s ease, width .4s ease, transform .4s ease, box-shadow .4s ease;
 	opacity: 1;
 	box-shadow: none;
+	will-change: width;
 }
 
 .menu-icon:hover > .menu-bar {
