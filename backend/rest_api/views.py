@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.db.models import Q
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -76,6 +77,44 @@ class EventViewSet(viewsets.ModelViewSet):
     def recurring(self, request):
         return Response()
 
+    @action(detail=True, methods=['get'])
+    def attendance(self, request, pk):
+        try:
+            event = Event.objects.get(id=pk)
+        except Event.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        final_data = {'event_id': pk, 'people': []}
+
+        condition = (
+            # if they overlap at all http://baodad.blogspot.com/2014/06/date-range-overlap.html
+            (~ (Q(check_out__lte=event.start) | Q(check_in__gte=event.end))) & ~Q(check_out=None)
+        ) | (
+            # and if the person is still there
+            Q(check_out=None) & Q(check_in__lt=event.end)
+        )
+
+        involved = Attendance.objects.filter(condition, room=event.room)
+        people_involved = {at.person for at in involved}
+
+        for person in people_involved:
+            data = ser.ShortPersonSerializer(person).data
+            att = involved.filter(person=person).latest('check_in')
+
+            if att.check_out is None:
+                data['there'] = True
+            else:
+                data['there'] = False
+
+            if att.check_in > event.start:
+                data['late'] = True
+            else:
+                data['late'] = False
+
+            final_data['people'].append(data)
+
+        return Response(final_data)
+
 
 class LocationView(viewsets.ViewSet):
     @action(detail=True, methods=['post'])
@@ -93,6 +132,7 @@ class LocationView(viewsets.ViewSet):
             return Response(status=status.HTTP_201_CREATED)
         else:
             attendance = Attendance(
+                check_in=timezone.now(),
                 person=person,
                 room=room
             )

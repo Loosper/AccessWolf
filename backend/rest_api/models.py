@@ -43,11 +43,11 @@ class Event(models.Model):
 
 
 class Attendance(models.Model):
-    check_in = DateTimeField(auto_now=True)
+    check_in = DateTimeField()
     check_out = DateTimeField(null=True)
     person = ForeignKey(Person, on_delete=models.CASCADE)
     room = ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Attendance {self.name}'
+        return f'{self.person} attendance for {self.room}'
 

@@ -28,4 +28,5 @@ GET  - `/<id\>/` - inspect
 ####  `rooms/`  
 returns an additional field pople, with a list of all people in the room  
 ####  `events/`  
+`events/<id>/attendance` - returns people who are/were at the event, as well as whether they are late  
 NOTE: list only returns number of people invited  
