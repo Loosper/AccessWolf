@@ -3,24 +3,14 @@ import { connect } from 'react-redux'
 import { fetchPeopleIfNeeded } from '../../actions/people'
 import { fetchGroupsIfNeeded } from '../../actions/groups'
 import { useFetch } from '../../util/hooks'
-import { toIDMap } from '../../util'
+import Row from 'react-bootstrap/Row'
+
+import './index.css'
 
 function mapStateToProps({ groups, people }) {
-  let grouped = null
-
-  if (groups.entries.size && people.entries.size) {
-    grouped = toIDMap([...groups.entries.values()])
-    
-    for (const person of people.entries.values()) {
-      for (const group of person.groups) {
-        grouped.get(group).people.push(person)
-      }
-    }
-  }
-
   return { 
-    groups: grouped ? [...grouped.values()] : [], 
-    people: [...people.entries.values()],
+    groups: groups.entries,
+    people: people.entries,
   }
 }
 
@@ -38,17 +28,23 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups }) {
     <>
       <h1>People & Groups</h1>
       <h2>Groups</h2>
-      {groups.map(group => (
-        <div key={group.id}>
-          {JSON.stringify(group)}
-        </div>
-      ))}
+      <Row>
+        {groups.valueSeq().toArray().map(group => (
+          <div key={group.id} className='group'>
+            <img src={group.image} alt='group' />
+            <h4>{group.name}</h4>
+          </div>
+        ))}
+      </Row>
       <h2>People</h2>
-      {people.map(person => (
-        <div key={person.id}>
-          {JSON.stringify(groups)}
-        </div>
-      ))}
+      <Row>
+        {people.valueSeq().toArray().map(person => (
+          <div key={person.id} className='person'>
+            <img src={person.image} alt='group' />
+            <h4>{person.name}</h4>
+          </div>
+        ))}
+      </Row>
     </>
   )
 }

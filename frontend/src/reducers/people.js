@@ -7,7 +7,7 @@ export default function people(state = new Entries(), action) {
       return state.setIsFetching(true)
 
     case RECEIVE_PEOPLE:
-      return state.setEntries(action.events)
+      return state.setEntries(action.people)
         .setIsFetching(false)
 
     default:

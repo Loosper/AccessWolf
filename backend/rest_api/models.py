@@ -6,6 +6,7 @@ from django.db.models import DateTimeField
 
 class Group(models.Model):
     name = CharField(max_length=100)
+    image = CharField(max_length=500, blank=True)
     # people = models.ManyToManyField(Group)
 
     def __str__(self):
@@ -16,6 +17,7 @@ class Person(models.Model):
     name = CharField(max_length=100)
     card_id = CharField(max_length=10, unique=True)
     groups = ManyToManyField(Group, blank=True)
+    image = CharField(max_length=500, blank=True)
 
     def __str__(self):
         return f'Person {self.name}'
@@ -31,6 +33,7 @@ class Room(models.Model):
 class Event(models.Model):
     title = CharField(max_length=100)
     description = CharField(max_length=250, blank=True)
+    image = CharField(max_length=500, blank=True)
     start = DateTimeField()
     end = DateTimeField()
     room = ForeignKey(Room, on_delete=models.CASCADE)

@@ -1,124 +1,134 @@
 [
-{
-    "model": "rest_api.group",
-    "pk": 1,
-    "fields": {
-        "name": "Winner"
+    {
+        "model": "rest_api.group",
+        "pk": 1,
+        "fields": {
+            "name": "12a",
+            "image": "https://image.flaticon.com/icons/svg/201/201559.svg"
+        }
+    },
+    {
+        "model": "rest_api.group",
+        "pk": 2,
+        "fields": {
+            "name": "12b",
+            "image": "https://image.flaticon.com/icons/svg/201/201577.svg"
+        }
+    },
+    {
+        "model": "rest_api.group",
+        "pk": 3,
+        "fields": {
+            "name": "Football",
+            "image": "https://image.flaticon.com/icons/svg/201/201583.svg"
+        }
+    },
+    {
+        "model": "rest_api.group",
+        "pk": 4,
+        "fields": {
+            "name": "Teachers",
+            "image": "https://image.flaticon.com/icons/svg/201/201567.svg"
+        }
+    },
+    {
+        "model": "rest_api.person",
+        "pk": 2,
+        "fields": {
+            "name": "Mike",
+            "card_id": "111",
+            "image": "https://api.adorable.io/avatars/785/",
+            "groups": [
+                1,
+                3
+            ]
+        }
+    },
+    {
+        "model": "rest_api.person",
+        "pk": 3,
+        "fields": {
+            "name": "Katya",
+            "card_id": "66",
+            "image": "https://api.adorable.io/avatars/655/",
+            "groups": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "rest_api.person",
+        "pk": 4,
+        "fields": {
+            "name": "Steve",
+            "card_id": "222",
+            "image": "https://api.adorable.io/avatars/382/",
+            "groups": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "rest_api.room",
+        "pk": 2,
+        "fields": {
+            "name": "Saturn"
+        }
+    },
+    {
+        "model": "rest_api.room",
+        "pk": 3,
+        "fields": {
+            "name": "Stadium Ultra"
+        }
+    },
+    {
+        "model": "rest_api.room",
+        "pk": 4,
+        "fields": {
+            "name": "Submarine"
+        }
+    },
+    {
+        "model": "rest_api.event",
+        "pk": 3,
+        "fields": {
+            "title": "Math",
+            "description": "It's simple - calculus or no zavurshfaculus 💅",
+            "start": "2019-04-20T14:00:00Z",
+            "end": "2019-04-20T16:00:00Z",
+            "image": "https://image.flaticon.com/icons/svg/1605/1605765.svg",
+            "room": 2,
+            "organisers": [
+                3
+            ],
+            "groups": [
+                1
+            ],
+            "people": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "rest_api.event",
+        "pk": 4,
+        "fields": {
+            "title": "Grande finale",
+            "description": "Buckle up and start your engines, 'cuz it's about to get real y'all 👏👏👏",
+            "start": "2019-04-30T12:00:00Z",
+            "end": "2019-04-30T18:00:00Z",
+            "image": "https://image.flaticon.com/icons/svg/861/861506.svg",
+            "room": 3,
+            "organisers": [
+                3
+            ],
+            "groups": [
+                3
+            ],
+            "people": [
+                2
+            ]
+        }
     }
-},
-{
-    "model": "rest_api.group",
-    "pk": 2,
-    "fields": {
-        "name": "Loser"
-    }
-},
-{
-    "model": "rest_api.group",
-    "pk": 3,
-    "fields": {
-        "name": "Football"
-    }
-},
-{
-    "model": "rest_api.group",
-    "pk": 4,
-    "fields": {
-        "name": "The empire"
-    }
-},
-{
-    "model": "rest_api.person",
-    "pk": 2,
-    "fields": {
-        "name": "The dude",
-        "card_id": "111",
-        "groups": [
-            1
-        ]
-    }
-},
-{
-    "model": "rest_api.person",
-    "pk": 3,
-    "fields": {
-        "name": "The emperror",
-        "card_id": "66",
-        "groups": [
-            1,
-            4
-        ]
-    }
-},
-{
-    "model": "rest_api.person",
-    "pk": 4,
-    "fields": {
-        "name": "Steve",
-        "card_id": "222",
-        "groups": [
-            1,
-            3
-        ]
-    }
-},
-{
-    "model": "rest_api.room",
-    "pk": 2,
-    "fields": {
-        "name": "Saturn"
-    }
-},
-{
-    "model": "rest_api.room",
-    "pk": 3,
-    "fields": {
-        "name": "The bar"
-    }
-},
-{
-    "model": "rest_api.room",
-    "pk": 4,
-    "fields": {
-        "name": "Submarine"
-    }
-},
-{
-    "model": "rest_api.event",
-    "pk": 3,
-    "fields": {
-        "title": "Order 66",
-        "description": "Execute",
-        "start": "2019-04-20T14:00:00Z",
-        "end": "2019-04-20T16:00:00Z",
-        "room": 2,
-        "organisers": [
-            3
-        ],
-        "groups": [
-            3
-        ],
-        "people": [
-            2
-        ]
-    }
-},
-{
-    "model": "rest_api.event",
-    "pk": 4,
-    "fields": {
-        "title": "The future",
-        "description": "mandatory",
-        "start": "2019-04-30T12:00:00Z",
-        "end": "2019-04-30T18:00:00Z",
-        "room": 3,
-        "organisers": [
-            2
-        ],
-        "groups": [],
-        "people": [
-            4
-        ]
-    }
-}
 ]

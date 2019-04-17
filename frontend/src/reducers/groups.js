@@ -10,7 +10,7 @@ export default function groups(
       return state.setIsFetching(true)
 
     case RECEIVE_GROUPS:
-      return state.setEntries(action.events)
+      return state.setEntries(action.groups)
         .setIsFetching(false)
 
     default:

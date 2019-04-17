@@ -46,6 +46,10 @@
 	background-color: #fdfbfb;
 }
 
+.card > img {
+	padding: 16px;
+}
+
 .event-column .card:first-of-type {
 	margin-top: 16px;
 }
