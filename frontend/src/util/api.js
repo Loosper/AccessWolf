@@ -31,8 +31,12 @@ export async function getRooms() {
   return toIDMap(await get('/rooms'))
 }
 
-export async function getAttendances(eventId) {
-  return await get(`/events/${eventId}/attendance`)
+export function getAttendances(eventId) {
+  return get(`/events/${eventId}/attendance`)
+}
+
+export async function getPersonLocation(personId) {
+  return get(`/where/${personId}`)
 }
 
 async function get(url) {

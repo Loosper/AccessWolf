@@ -28,7 +28,9 @@ function EventsPage({ events, fetchEvents, isFetching }) {
 
   return (
     <>
-      <h1>Events</h1>
+      <header>
+        <h1>Events</h1>
+      </header>
       <BigCalendar
         localizer={localizer}
         events={events.valueSeq().toArray()}

@@ -6,6 +6,7 @@ import { useFetch } from '../../util/hooks'
 import { fetchEvent } from '../../actions/events'
 
 import './index.css'
+import Person from '../PeoplePage/Person';
 
 function mapStateToProps({ events, isFetching }, { match: { params: { id } } }) {
 	return { 
@@ -31,49 +32,28 @@ function EventPage({ event, isFetching, match: { params: { id } }, dispatch }) {
 	}
 
   return (
-		<Container className="event-background">
+		<>
+			<header>
+				<img src={event.image} alt='event' />
+				<h1>{event.title}</h1>
+			</header>
+			<p>{event.description}</p>
 			<Row>
-				<Col xs={4}>
-					<img alt='event' className="card-img-top" src={event.image} />
-				</Col>
-				<Col>
-					<div><h1 className="event-name">{event.name}</h1></div>
-					{/* REVIEW: this is a list */}
-					{/* <div><h2 className="event-organizer">{event.organisers}</h2></div> */}
-				</Col>
-			</Row>
-			<hr className="hr-event"/>
-			<Row>
-				<Col><h3 className="event-desc">{event.description}</h3></Col>
-			</Row>
-			<hr className="hr-event"/>
-			<Row>
-				<Col><h4 className="event-date">{event.start.ToString}</h4></Col>
-				<Col><h4 className="event-date">{event.end.ToString}</h4></Col>
-			</Row>
-			<hr className="hr-event"/>
-			<Row>
-				<Col><h5 className="event-count">{event.groups.length}</h5></Col>
-				<Col><h5 className="event-count">{event.people.length}</h5></Col>
-			</Row>
-			<Row>
-				<Col>
-				{event.groups.map(group => (
-					<h6 className="event-participant" key={group.name}>
-						{group.name}
-					</h6>
+				<h4>Organisers</h4>
+				{event.organisers.map(person => (
+					<Person key={person.id} person={person} />
 				))}
-				</Col>
-				<Col>
-					{event.people.map(individual => (
-						<h6 className="event-participant" key={individual.name}>
-							{individual.name}
-						</h6>
-					))}
-				</Col>
 			</Row>
-		</Container>
+			<Row>
+				<h4>Invited</h4>
+				{event.people.map(person => (
+					<Person key={person.id} person={person} />
+				))}
+			</Row>
+		</>
   )
 }
-
+/* 
+{"id":4,"people":[{"id":2,"name":"Mike"}],"groups":[{"id":3,"name":"Football","image":"https://image.flaticon.com/icons/svg/201/201583.svg"}],"room":{"id":3,"name":"Stadium Ultra"},"organisers":[{"id":3,"name":"Katya"}],"title":"Grande finale","description":"Buckle up and start your engines, 'cuz it's about to get real y'all 👏👏👏","image":"https://image.flaticon.com/icons/svg/861/861506.svg","start":"2019-04-30T12:00:00Z","end":"2019-04-30T18:00:00Z"}
+*/
 export default connect(mapStateToProps)(EventPage)

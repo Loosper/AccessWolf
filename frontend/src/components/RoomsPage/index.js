@@ -18,10 +18,12 @@ const mapDispatchToProps = {
 
 function RoomsPage({ rooms, fetchEvents, history: { push } }) {
   useFetch(fetchEvents)
-  console.log(rooms)
+
   return (
     <>
-      <h1>Rooms</h1>
+      <header>
+        <h1>Rooms</h1>
+      </header>
       <div className="events-kanban">
         <Row>
           {rooms.map((events) => (

@@ -1,4 +1,4 @@
-import { getPeople } from '../util/api'
+import { getPeople, getPersonLocation } from '../util/api'
 
 export const REQUEST_PEOPLE = 'REQUEST_PEOPLE'
 function requestPeople() {
@@ -33,5 +33,30 @@ export function fetchPeopleIfNeeded() {
     } else {
       return Promise.resolve()
     }
+  }
+}
+
+export const REQUEST_LOCATION = 'REQUEST_LOCATION'
+function requestLocation(userId) {
+  return {
+    type: REQUEST_LOCATION,
+    userId,
+  }
+}
+
+export const RECEIVE_LOCATION = 'RECEIVE_LOCATION'
+function receiveLocation(userId, location) {
+  return {
+    type: RECEIVE_LOCATION,
+    userId,
+    location,
+  }
+}
+
+export function fetchLocation(userId) {
+  return async dispatch => {
+    dispatch(requestLocation(userId))
+    const location = await getPersonLocation(userId)
+    return dispatch(receiveLocation(userId, location))
   }
 }

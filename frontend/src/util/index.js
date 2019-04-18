@@ -15,7 +15,6 @@ export function toIDMap(entries) {
   }, {}))
 }
 
-
 export function recordMixin(...classes) {
   const state = {}
   
@@ -32,6 +31,6 @@ export function recordMixin(...classes) {
       }
     }
   }
-  
+
   return record
 }

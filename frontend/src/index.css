@@ -32,10 +32,28 @@ input:focus {
 	outline: none;
 }
 
-.view-container > h1 {
-  font-size: 3rem;
+.view-container > header {
   border-bottom: 1px solid #00000012;
+  display: flex;
+  align-items: baseline;
+}
+
+.view-container > header > h1 {
+  font-size: 3rem;
   margin: 0;
+  align-items: center;
+  line-height: 36px;
+  margin-bottom: 16px;
+  height: 36px;
+}
+
+.view-container > header > img {
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  margin-top: -16px;
+  position: relative;
+  top: 4px;
 }
 
 @media screen and (max-width: 420px) {

@@ -5,7 +5,7 @@ import { fetchGroupsIfNeeded } from '../../actions/groups';
 import { fetchPeopleIfNeeded } from '../../actions/people';
 import groupedPeopleSelector from '../../selectors/groups';
 
-import '../PeoplePage/index.css'
+import Person from '../PeoplePage/Person'
 
 function mapStateToProps(state, { match: { params: { id } } }) {
   const { groups, people } = state
@@ -30,13 +30,12 @@ function GroupPage({ fetchGroups, fetchPeople, group, isFetching }) {
 
   return (
     <>
-      <h1>{group.name}</h1>
-      {/* <img src={group.image} alt='group' /> */}
+      <header>
+        <img src={group.image} alt='group' />
+        <h1>{group.name}</h1>
+      </header>
       {group.people.map(person => (
-        <div key={person.id} className='person'>
-          <img src={person.image} alt='person' />
-          <h4>{person.name}</h4>
-        </div>
+        <Person key={person.id} person={person} />
       ))}
     </>
   )

@@ -8,28 +8,12 @@
   flex-direction: column;
   width: 192px;
   height: 192px;
-  background: white;
+  background: #fdfbfb;
   box-shadow: none;
-  transition: .3s ease box-shadow;
+  transition: .4s ease box-shadow, .4s ease transform;
   cursor: pointer;
   margin-top: 16px;
   margin-left: 16px;
-}
-
-.person {
-  cursor: pointer;
-  padding: 16px;
-  transition: .3s background ease;
-  display: flex;
-  align-items: center;
-}
-
-.person:hover {
-  background-color: white;
-}
-
-.person:not(:last-child) {
-  border-bottom: 1px solid #00000012;
 }
 
 .group > h4, .person > h4 {
@@ -38,6 +22,7 @@
 
 .group:hover {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  transform: scale(1.02);
 }
 
 .group > img {
@@ -45,6 +30,23 @@
   width: 80px;
   height: 80px;
   margin-bottom: 16px;
+}
+
+.person {
+  cursor: pointer;
+  padding: 16px;
+  padding-left: 0;
+  transition: .3s background ease;
+  display: flex;
+  align-items: center;
+}
+
+.person:hover {
+  background-color: #fdfbfb78;
+}
+
+.person:not(:last-child) {
+  border-bottom: 1px solid #00000012;
 }
 
 .person > img {
@@ -55,7 +57,8 @@
 }
 
 .view-container > h2 {
-  margin: 16px 0;
+  margin: 0;
+  margin-top: 16px;
 }
 
 .view-container > h2 + .col {

@@ -17,17 +17,14 @@ const pages = [
 ]
 
 function Navbar({ location: { pathname }, isOpen, toggle }) {
-  const [, visibleBG] = pathname.split('/')
+  const [, visible] = pathname.split('/')
 
   return (
     <nav className={list(isOpen && 'open')} onClick={toggle}>
       {backgrounds.map(([pageName, bg]) => (
         <div 
           key={pageName} 
-          className={list(
-            `bg ${bg}-bg`, 
-            visibleBG === pageName && 'visible'
-          )} 
+          className={list(`bg ${bg}-bg`, visible === pageName && 'visible')} 
         />
       ))}
       <div className='menu'>
