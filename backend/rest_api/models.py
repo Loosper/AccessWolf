@@ -47,7 +47,7 @@ class Event(models.Model):
 
 class Attendance(models.Model):
     check_in = DateTimeField()
-    check_out = DateTimeField(null=True)
+    check_out = DateTimeField(null=True, blank=True)
     person = ForeignKey(Person, on_delete=models.CASCADE)
     room = ForeignKey(Room, on_delete=models.CASCADE)
 

@@ -130,5 +130,25 @@
                 2
             ]
         }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 13,
+        "fields": {
+            "check_in": "2019-04-30T12:39:49Z",
+            "check_out": "2019-04-30T14:40:01Z",
+            "person": 2,
+            "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 14,
+        "fields": {
+            "check_in": "2019-04-30T06:00:00Z",
+            "check_out": null,
+            "person": 3,
+            "room": 3
+        }
     }
 ]

@@ -12,6 +12,7 @@ all are prefixed with `/api/`
 #### `check_in/<card_id>/room/<room_id>/`  
 POST - checks a user into a room by _card id_  
 data - none  
+you can manually sign in a person with `curl http://127.0.0.1:8000/api/check_in/<card_id>/room/<room_id>/ -X POST`  
 #### `where/<user_id>/`  
 *GET* - returns which room is the user in  
 data:  
@@ -26,7 +27,7 @@ GET  - `/<id\>/` - inspect
 ####  `groups/`  
 ####  `people/`  
 ####  `rooms/`  
-returns an additional field pople, with a list of all people in the room  
+`rooms/<id>/` returns an additional field `people`, with a list of all people in the room  
 ####  `events/`  
 `events/<id>/attendance` - returns people who are/were at the event, as well as whether they are late  
-NOTE: list only returns number of people invited  
+`events/` only returns number of people invited instead of a list of them
