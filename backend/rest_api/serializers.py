@@ -7,7 +7,7 @@ from .models import Group, Person, Room, Event, Attendance
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ('id', 'name')
+        fields = '__all__'
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -37,6 +37,12 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+
+class ShortEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id', 'title')
 
 
 class WriteEventSerializer(serializers.ModelSerializer):

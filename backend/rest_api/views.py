@@ -9,6 +9,21 @@ from .models import Person, Group, Event, Room, Attendance
 from . import serializers as ser
 
 
+def att_condition(event):
+        condition = (
+            # if person was there at all http://baodad.blogspot.com/2014/06/date-range-overlap.html
+            (~ (Q(check_out__lte=event.start) | Q(check_in__gte=event.end))) & ~Q(check_out=None)
+        ) | (
+            # and if the person is still there
+            Q(check_out=None) & Q(check_in__lt=event.end)
+        )
+        return condition
+
+
+def is_late(attendance, event):
+    return attendance.check_in > event.start
+
+
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = ser.GroupSerializer
@@ -17,6 +32,44 @@ class GroupViewSet(viewsets.ModelViewSet):
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = ser.FullPersonSerializer
+
+    # TODO: pagination
+    @action(detail=True, methods=['get'])
+    def events(self, request, pk):
+        try:
+            person = Person.objects.get(id=pk)
+        except Person.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serialise = lambda events: ser.ShortEventSerializer(events).data
+        ret_data = {
+            'person_id': pk,
+            'events': []
+        }
+
+        # TODO: account for uninvited guests. Possible solutions:
+        # table to map attendances with events. Populate at checkin/checkout
+        # drawback: unattended events are not accounted for
+        events = Event.objects.filter(people__in=[person])
+        events |= Event.objects.filter(groups__in=person.groups.all())
+        events |= Event.objects.filter(organisers__in=[person])
+
+        for event in events:
+            data = serialise(event)
+            entries = Attendance.objects.filter(
+                att_condition(event), person=person
+            )
+            # if person was there, he will have at least one attendance
+            data['attended'] = len(entries) >= 1
+            if data['attended']:
+                data['late'] = is_late(entries.order_by('check_in').first(), event)
+            else:
+                # can't be late if you never showed up
+                data['late'] = False
+
+            ret_data['events'].append(data)
+
+        return Response(ret_data)
 
 
 class RoomViewSet(viewsets.ModelViewSet):
@@ -85,32 +138,16 @@ class EventViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         final_data = {'event_id': pk, 'people': []}
-
-        condition = (
-            # if they overlap at all http://baodad.blogspot.com/2014/06/date-range-overlap.html
-            (~ (Q(check_out__lte=event.start) | Q(check_in__gte=event.end))) & ~Q(check_out=None)
-        ) | (
-            # and if the person is still there
-            Q(check_out=None) & Q(check_in__lt=event.end)
-        )
-
-        involved = Attendance.objects.filter(condition, room=event.room)
+        involved = Attendance.objects.filter(att_condition(event), room=event.room)
         people_involved = {at.person for at in involved}
 
         for person in people_involved:
             data = ser.ShortPersonSerializer(person).data
             att = involved.filter(person=person).latest('check_in')
 
-            if att.check_out is None:
-                data['there'] = True
-            else:
-                data['there'] = False
-
-            if att.check_in > event.start:
-                data['late'] = True
-            else:
-                data['late'] = False
-
+            # if person hasn't checked out, he's still there
+            data['there'] = att.check_out is None
+            data['late'] = is_late(att, event)
             final_data['people'].append(data)
 
         return Response(final_data)

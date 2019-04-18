@@ -25,7 +25,8 @@ GET  - `/` - list
 POST - `/` - create  
 GET  - `/<id\>/` - inspect  
 ####  `groups/`  
-####  `people/`  
+####  `people/`
+`people/<id>/events/` returns a list of all events the user is invited to as well whether he was there and if he was late.  
 ####  `rooms/`  
 `rooms/<id>/` returns an additional field `people`, with a list of all people in the room  
 ####  `events/`  
