@@ -21,7 +21,7 @@ const mapDispatchToProps = {
   fetchGroups: fetchGroupsIfNeeded
 }
 
-function GroupPage({ fetchGroups, fetchPeople, group, isFetching }) {
+function GroupPage({ fetchGroups, fetchPeople, group, isFetching, history: { push } }) {
   useFetch(fetchGroups, fetchPeople)
 
   if (isFetching) {
@@ -35,7 +35,7 @@ function GroupPage({ fetchGroups, fetchPeople, group, isFetching }) {
         <h1>{group.name}</h1>
       </header>
       {group.people.map(person => (
-        <Person key={person.id} person={person} />
+        <Person key={person.id} person={person} onClick={() => push(`/people/${person.id}`)} />
       ))}
     </>
   )

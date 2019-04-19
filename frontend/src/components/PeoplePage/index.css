@@ -1,6 +1,7 @@
 .group {
   border-radius: 8px;
   border: 1px solid #00000012;
+  background: #fdfbfb;
   padding: 32px;
   display: flex;
   justify-content: center;
@@ -8,7 +9,6 @@
   flex-direction: column;
   width: 192px;
   height: 192px;
-  background: #fdfbfb;
   box-shadow: none;
   transition: .4s ease box-shadow, .4s ease transform;
   cursor: pointer;

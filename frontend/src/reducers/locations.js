@@ -1,8 +1,15 @@
-import { REQUEST_LOCATION } from '../actions/people';
+import { RECEIVE_LOCATION } from '../actions/people'
+import { recordMixin } from '../util'
+import Entries from '../records/entries'
 
-export default function locations(state = {}, action) {
+const State = recordMixin(Entries)
+
+export default function locations(state = new State(), action) {
   switch (action.type) {
-    case REQUEST_LOCATION: 
+    case RECEIVE_LOCATION: 
+      return state.setEntry(action.location)
 
+    default:
+      return state
   }
 }

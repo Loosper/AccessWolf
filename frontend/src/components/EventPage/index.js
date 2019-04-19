@@ -92,7 +92,7 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 					<label>Organisers</label>
 					<Row>
 						{event.organisers.map((person) => (
-							<HumanEntry key={person.id} {...person} />
+							<HumanEntry key={person.id} {...person} onClick={() => push(`/people/${person.id}`)} />
 						))}
 					</Row>
 				</Col>
@@ -100,7 +100,7 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 					<label>Invited</label>
 					<Row>
 						{event.people.map(entry => (
-							<HumanEntry key={entry.id} {...entry} />
+							<HumanEntry key={entry.id} {...entry} onClick={() => push(`/people/${entry.id}`)} />
 						))}
 						{event.groups.map(group => (
 							<HumanEntry key={group.id} {...group} onClick={() => push(`/group/${group.id}`)} />
@@ -113,7 +113,7 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 					<label>At the event</label>
 					<Row>
 						{event.attendances.map(person => (
-							<HumanEntry key={person.id} {...person} />
+							<HumanEntry key={person.id} {...person} onClick={() => push(`/people/${person.id}`)} />
 						))}
 					</Row>
 				</Col>
@@ -121,7 +121,7 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 					<label>Not at the event</label>
 					<Row>
 						{missingPeople.map(person => (
-							<HumanEntry key={person.id} {...person} />
+							<HumanEntry key={person.id} {...person} onClick={() => push(`/people/${person.id}`)} />
 						))}
 					</Row>
 				</Col>

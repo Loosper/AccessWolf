@@ -6,6 +6,7 @@ import Navbar from './shared/Navbar'
 import EventsPage from './EventsPage'
 import PeoplePage from './PeoplePage'
 import GroupPage from './GroupPage'
+import PersonPage from './PersonPage'
 
 import MenuIcon from './shared/MenuIcon'
 
@@ -20,6 +21,7 @@ const Routes = React.memo(() => (
     <Route exact path='/rooms' component={RoomsPage} />
     <Route exact path='/events/:id' component={EventPage} />
     <Route exact path='/group/:id' component={GroupPage} />
+    <Route exact path='/people/:id' component={PersonPage} />
     <Route render={NotFound} />
   </Switch>
 ))

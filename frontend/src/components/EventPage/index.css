@@ -2,15 +2,27 @@
 	display: flex;
 	padding: 16px;
 	flex-flow: column;
-	justify-content: center;
+	justify-content: baseline;
 	align-items: center;
+	transition: transform .4s ease;
+	cursor: pointer;
+	height: 137px;
+}
+
+.human-entry:hover {
+	transform: scale(1.02);
+}
+
+.human-entry:hover > img {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
 .human-entry > img {
 	width: 64px;
 	height: 64px;
 	border-radius: 50%;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
+	transition: box-shadow .4s ease;
 }
 
 .human-entry > .row {
@@ -20,6 +32,7 @@
 
 .human-entry h6 {
 	margin: 0;
+	margin-bottom: 8px;
 }
 
 .label {
@@ -27,11 +40,11 @@
 	border-radius: 4px;
 	padding: 0 4px;
 	text-transform: uppercase;
-	margin-left: 4px;
 	font-size: 1rem;
 	font-weight: bold;
 }
 
 .label + .label {
+	margin-left: 4px;
 	background-color: #FFE29F;
 }

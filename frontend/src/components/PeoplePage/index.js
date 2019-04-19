@@ -43,7 +43,7 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups, history: { push 
       <label>People</label>
       <Col>
         {people.valueSeq().toArray().map(person => (
-          <Person key={person.id} person={person} />
+          <Person key={person.id} person={person} onClick={() => push(`/people/${person.id}`)} />
         ))}
       </Col>
     </>

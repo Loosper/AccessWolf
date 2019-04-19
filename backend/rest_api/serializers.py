@@ -42,7 +42,7 @@ class EventSerializer(serializers.ModelSerializer):
 class ShortEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'start')
 
 
 class WriteEventSerializer(serializers.ModelSerializer):

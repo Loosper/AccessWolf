@@ -44,7 +44,7 @@ nav.open + .view-container {
 	display: flex;
 	align-items: center;
 	/* margin-right: -32px; */
-	transition: color .3s ease, background-color ease .3s;
+	transition: color .4s ease, background-color ease .4s;
 	cursor: pointer;
 	color: #29323c;
 	user-select: none;
@@ -114,7 +114,6 @@ nav.open + .view-container {
 		margin-right: 48px;
 	}
 }
-
 
 @keyframes AnimationName { 
   0% {

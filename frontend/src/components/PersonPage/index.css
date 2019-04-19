@@ -1,0 +1,18 @@
+.attendance {
+  padding: 16px;
+  align-items: center;
+}
+
+.attendance > h4, .attendance > h5 {
+  margin: 0;
+  margin-right: 16px;
+}
+
+.attendance > h5 {
+  color: #7b7b7b;
+  font-weight: normal;
+}
+
+.grow {
+  flex-grow: 1
+}

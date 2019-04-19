@@ -35,7 +35,18 @@ export function getAttendances(eventId) {
 }
 
 export async function getPersonLocation(personId) {
-  return get(`/where/${personId}`)
+  const location = await get(`/where/${personId}`)
+
+  location.last_seen = new Date(location.last_seen)
+  return location
+}
+
+export async function getPersonAttendances(id) {
+  const attendance = await get(`/people/${id}/events`)
+  attendance.events = attendance.events.map(dateifyEvent)
+  attendance.id = id
+
+  return attendance
 }
 
 async function get(url) {
