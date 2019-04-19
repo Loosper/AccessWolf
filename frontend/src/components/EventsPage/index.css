@@ -69,15 +69,36 @@
   border-bottom: 1px solid #00000012;
 }
 
+.rbc-time-view * {
+  border-color: #00000012 !important;
+}
+
 .rbc-row > .rbc-date-cell {
   padding: 4px 5px;
 }
 
-.rbc-row .rbc-event {
-  padding: 1px 4px;
-  font-size: 10pt;
-  background-color: #FFA99F;
-  color: #29323c;
+.rbc-event {
+  padding: 1px 4px !important;
+  font-size: 10pt !important;
+  background-color: #FFA99F !important;
+  color: #29323c !important;
+  border: none !important;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: none !important;
+}
+
+.rbc-time-content > * + * > *, .rbc-time-header-content {
+  border-left: 1px solid #00000012 !important;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid #00000012 !important;
+}
+
+.rbc-time-content {
+  border-top: 1px solid #00000012 !important;
 }
 
 .rbc-date-cell > a {
@@ -89,6 +110,6 @@
   align-items: center;
 }
 
-.rbc-day-bg.rbc-today {
-  background-color: #FFA99F64;
+.rbc-today {
+  background-color: #FFA99F64 !important;
 }

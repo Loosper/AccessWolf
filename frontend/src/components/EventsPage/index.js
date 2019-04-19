@@ -7,7 +7,9 @@ import { useFetch } from '../../util/hooks'
 
 import './index.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import { ModalContext } from '../shared/EventModal';
 
+// moment.tz.setDefault('Europe/London')
 const localizer = BigCalendar.momentLocalizer(moment)
 
 function mapStateToProps({ events, isFetching }) {
@@ -23,7 +25,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function EventsPage({ events, fetchEvents, isFetching }) {
+function EventsPage({ events, fetchEvents, history: { push } }) {
   useFetch(fetchEvents)
 
   return (
@@ -31,12 +33,21 @@ function EventsPage({ events, fetchEvents, isFetching }) {
       <header>
         <h1>Events</h1>
       </header>
-      <BigCalendar
-        localizer={localizer}
-        events={events.valueSeq().toArray()}
-        startAccessor="start"
-        endAccessor="end"
-      />
+      <ModalContext.Consumer>
+        {({ open, close }) => (
+          <BigCalendar
+            selectable
+            // culture='en-GB'
+            // components={{ event: (props) => <div>{console.log(props)}</div> }}
+            onSelecting={open}
+            onSelectEvent={({ id }) => push(`/events/${id}`)}
+            localizer={localizer}
+            events={events.valueSeq().toArray()}
+            startAccessor="start"
+            endAccessor="end"
+          />
+        )}
+      </ModalContext.Consumer>
     </>
   )
 }
