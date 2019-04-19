@@ -198,6 +198,8 @@ class LocationView(viewsets.ViewSet):
             last_seen = getattr(last, 'check_out', None)
 
         data = ser.RoomSerializer(location).data
+        data['room_id'] = data['id']
+        data.pop('id')
         data['active'] = active
         data['last_seen'] = last_seen
         return Response(data)
