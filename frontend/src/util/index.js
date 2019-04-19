@@ -34,3 +34,35 @@ export function recordMixin(...classes) {
 
   return record
 }
+
+export function formatDate(date) {
+	const options = {
+		year: date.getFullYear() === new Date().getFullYear() ? void 0 : 'numeric',
+		month: 'short',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+	}
+
+	return date.toLocaleDateString('en-US', options)
+}
+
+export function dateifyEvent(event) {
+  const start = new Date(event.start)
+  const end = new Date(event.end) 
+  const duration = new Date(+end - +start)
+
+  return { 
+    ...event, 
+    start, 
+    end,
+    duration,
+  }
+}
+
+export function hourFormat(date) {
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  
+  return [hours ? hours + ' hours' : '', minutes ? minutes + ' hours' : ''].join(' ')
+}

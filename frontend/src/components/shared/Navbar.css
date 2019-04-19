@@ -86,7 +86,7 @@ nav.open + .view-container {
 }
 
 .events-bg {
-	background-image: linear-gradient(16deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+	background-image: linear-gradient(16deg, #FFE29F 0%, #FFA99F 100%);
 }
 
 .people-bg {

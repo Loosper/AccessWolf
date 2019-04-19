@@ -56,11 +56,11 @@
   margin-right: 16px;
 }
 
-.view-container > h2 {
+.view-container label {
   margin: 0;
   margin-top: 16px;
 }
 
-.view-container > h2 + .col {
+.view-container > label + .col {
   padding: 0;
 }

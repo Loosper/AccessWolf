@@ -31,7 +31,7 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups, history: { push 
       <header>
         <h1>People & Groups</h1>
       </header>
-      <h2>Groups</h2>
+      <label>Groups</label>
       <Row>
         {groups.valueSeq().toArray().map(group => (
           <div key={group.id} className='group' onClick={() => push(`/group/${group.id}`)}>
@@ -40,7 +40,7 @@ function PeoplePage({ groups, people, fetchPeople, fetchGroups, history: { push 
           </div>
         ))}
       </Row>
-      <h2>People</h2>
+      <label>People</label>
       <Col>
         {people.valueSeq().toArray().map(person => (
           <Person key={person.id} person={person} />

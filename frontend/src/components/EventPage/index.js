@@ -1,27 +1,48 @@
 import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { useFetch } from '../../util/hooks'
 import { fetchEvent } from '../../actions/events'
+import { fetchPeopleIfNeeded } from '../../actions/people'
+
+import Person from '../PeoplePage/Person'
+import { formatDate, toIDMap, hourFormat } from '../../util';
+import HumanEntry from './HumanEntry';
+import groupedPeopleSelector from '../../selectors/groups';
 
 import './index.css'
-import Person from '../PeoplePage/Person';
+import '../PeoplePage/index.css'
 
-function mapStateToProps({ events, isFetching }, { match: { params: { id } } }) {
+import { fetchGroupsIfNeeded } from '../../actions/groups';
+
+function mapStateToProps(state, { match: { params: { id } } }) {
+	const { events, isFetching } = state
+
 	return { 
 		event: events.getEntry(id),
+		grouped: groupedPeopleSelector(state),
 		isFetching,
 	}
 }
 
-function EventPage({ event, isFetching, match: { params: { id } }, dispatch }) {
+const mapDispatchToProps = {
+	fetchPeople: fetchPeopleIfNeeded,
+	fetchGroups: fetchGroupsIfNeeded,
+	fetchEvent: id => fetchEvent(id)
+}
+
+function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, grouped, match: { params: { id } }, history: { push } }) {
 	const [hasFetched, setHasFetched] = React.useState(false)
 
-	useFetch(async () => {
-		await dispatch(fetchEvent(id))
-		setHasFetched(true)
-	})
+	useFetch(
+		async () => {
+			await fetchEvent(id)
+			setHasFetched(true)
+		},
+		fetchPeople,
+		fetchGroups,
+	)
 
 	if (isFetching || !hasFetched) {
 		return null
@@ -31,29 +52,82 @@ function EventPage({ event, isFetching, match: { params: { id } }, dispatch }) {
 		return <Redirect to='/events' />
 	}
 
+	const allInvitedPeople = toIDMap([
+		...event.people,
+		...event.groups.flatMap(group => grouped.get(String(group.id)).people || [])
+	])
+
+	const attendingMap = toIDMap(event.attendances)
+
+	const missingPeople = allInvitedPeople.filterNot(person => attendingMap.has(String(person.id)))
+		.valueSeq()
+		.toArray()
+	
   return (
 		<>
 			<header>
 				<img src={event.image} alt='event' />
 				<h1>{event.title}</h1>
 			</header>
+			<label>Room</label>
+			<h5>{event.room.name}</h5>
+			<label>Description</label>
 			<p>{event.description}</p>
 			<Row>
-				<h4>Organisers</h4>
-				{event.organisers.map(person => (
-					<Person key={person.id} person={person} />
-				))}
+				<Col lg={2}>
+					<label>From</label>
+					<p>{formatDate(event.start)}</p>
+				</Col>
+				<Col lg={2}>
+					<label>To</label>
+					<p>{formatDate(event.end)}</p>
+				</Col>
+				<Col>
+					<label>Duration</label>
+					<p>{hourFormat(event.duration)}</p>
+				</Col>
 			</Row>
 			<Row>
-				<h4>Invited</h4>
-				{event.people.map(person => (
-					<Person key={person.id} person={person} />
-				))}
+				<Col>
+					<label>Organisers</label>
+					<Row>
+						{event.organisers.map((person) => (
+							<HumanEntry key={person.id} {...person} />
+						))}
+					</Row>
+				</Col>
+				<Col>
+					<label>Invited</label>
+					<Row>
+						{event.people.map(entry => (
+							<HumanEntry key={entry.id} {...entry} />
+						))}
+						{event.groups.map(group => (
+							<HumanEntry key={group.id} {...group} onClick={() => push(`/group/${group.id}`)} />
+						))}
+					</Row>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<label>At the event</label>
+					<Row>
+						{event.attendances.map(person => (
+							<HumanEntry key={person.id} {...person} />
+						))}
+					</Row>
+				</Col>
+				<Col>
+					<label>Not at the event</label>
+					<Row>
+						{missingPeople.map(person => (
+							<HumanEntry key={person.id} {...person} />
+						))}
+					</Row>
+				</Col>
 			</Row>
 		</>
   )
 }
-/* 
-{"id":4,"people":[{"id":2,"name":"Mike"}],"groups":[{"id":3,"name":"Football","image":"https://image.flaticon.com/icons/svg/201/201583.svg"}],"room":{"id":3,"name":"Stadium Ultra"},"organisers":[{"id":3,"name":"Katya"}],"title":"Grande finale","description":"Buckle up and start your engines, 'cuz it's about to get real y'all 👏👏👏","image":"https://image.flaticon.com/icons/svg/861/861506.svg","start":"2019-04-30T12:00:00Z","end":"2019-04-30T18:00:00Z"}
-*/
-export default connect(mapStateToProps)(EventPage)
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventPage)

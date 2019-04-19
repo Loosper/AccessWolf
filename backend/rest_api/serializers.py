@@ -19,7 +19,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class ShortPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'image')
 
 
 class FullPersonSerializer(serializers.ModelSerializer):

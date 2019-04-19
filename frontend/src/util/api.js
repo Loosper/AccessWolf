@@ -1,20 +1,19 @@
 import axios from 'axios'
-import { toIDMap } from '.'
+import { toIDMap, dateifyEvent } from '.'
 
 const BASE_URL = 'http://127.0.0.1:8000/api'
 
 export async function getEvents() {
   const events = await get('/events')
 
-  return toIDMap(events.map(({ start, end, ...event }) => ({ 
-    ...event, 
-    start: new Date(start),
-    end: new Date(end),
-  })))
+  return toIDMap(events.map(dateifyEvent))
 }
 
-export function getEvent(id) {
-  return get(`/events/${id}`)
+export async function getEvent(id) {
+  const [event, { people }] = await Promise.all([get(`/events/${id}`), getAttendances(id)])
+  event.attendances = people
+  
+  return dateifyEvent(event)
 }
 
 export async function getGroups() {
