@@ -28,6 +28,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = ser.GroupSerializer
 
+    @action(detail=False, methods=['get'])
+    def search(self, request, beginning):
+        groups = Group.objects.filter(name__istartswith=beginning).all()
+        data = ser.GroupSerializer(groups, many=True).data
+        return Response(data)
+
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
@@ -70,6 +76,12 @@ class PersonViewSet(viewsets.ModelViewSet):
             ret_data['events'].append(data)
 
         return Response(ret_data)
+
+    @action(detail=False, methods=['get'])
+    def search(self, request, beginning):
+        ppl = Person.objects.filter(name__istartswith=beginning).all()
+        data = ser.ShortPersonSerializer(ppl, many=True).data
+        return Response(data)
 
 
 class RoomViewSet(viewsets.ModelViewSet):
@@ -151,6 +163,12 @@ class EventViewSet(viewsets.ModelViewSet):
             final_data['people'].append(data)
 
         return Response(final_data)
+
+    @action(detail=False, methods=['get'])
+    def search(self, request, beginning):
+        events = Event.objects.filter(title__istartswith=beginning).all()
+        data = ser.ShortEventSerializer(events, many=True).data
+        return Response(data)
 
 
 class LocationView(viewsets.ViewSet):

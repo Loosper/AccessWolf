@@ -16,6 +16,11 @@ urlpatterns = [
         views.LocationView.as_view({'post': 'check_in'})
     ), path(
         'where/<str:user_id>/', views.LocationView.as_view({'get': 'locate'}),
-    ),
-    # path('events/recurring/', views.EventViewSet.as_view({'post': 'recurring'}))
+    ), path(
+        'people/search/<beginning>/', views.PersonViewSet.as_view({'get': 'search'})
+    ), path(
+        'events/search/<beginning>/', views.EventViewSet.as_view({'get': 'search'})
+    ), path(
+        'groups/search/<beginning>/', views.GroupViewSet.as_view({'get': 'search'})
+    )
 ]
