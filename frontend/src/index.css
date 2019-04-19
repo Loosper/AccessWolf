@@ -58,7 +58,7 @@ input:focus {
 }
 
 label {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: normal;
   text-transform: uppercase;
   color: #7b7b7b;
@@ -67,6 +67,10 @@ label {
 p, h5 {
   margin: 0;
   margin-bottom: 16px;
+}
+
+p, h5 {
+  font-size: 1.3rem;
 }
 
 @media screen and (max-width: 420px) {

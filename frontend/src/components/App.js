@@ -7,8 +7,8 @@ import EventsPage from './EventsPage'
 import PeoplePage from './PeoplePage'
 import GroupPage from './GroupPage'
 import PersonPage from './PersonPage'
-
 import MenuIcon from './shared/MenuIcon'
+import EventModal, { ModalContext } from './shared/EventModal';
 
 function NotFound() {
   return <Redirect to='/events' />
@@ -26,8 +26,21 @@ const Routes = React.memo(() => (
   </Switch>
 ))
 
+
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  // const [newEvent, setNewEvent]
+
+  const modalContext = {
+    open() {
+      !isModalOpen && setIsModalOpen(true)
+    },
+    close() {
+      isModalOpen && setIsModalOpen(false)
+    }
+  }
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen)
@@ -38,7 +51,10 @@ function App() {
       <Navbar isOpen={isMenuOpen} toggle={toggleMenu} />
       <div className='view-container'>
         <MenuIcon onClick={toggleMenu} toggle={isMenuOpen} />
-        <Routes />
+        <ModalContext.Provider value={modalContext}>
+          <Routes />
+        </ModalContext.Provider>
+        <EventModal show={isModalOpen} />
       </div>
     </>
   )

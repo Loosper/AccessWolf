@@ -38,6 +38,8 @@ export async function getPersonLocation(personId) {
   const location = await get(`/where/${personId}`)
 
   location.last_seen = new Date(location.last_seen)
+  location.id = personId
+  
   return location
 }
 
