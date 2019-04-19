@@ -1,15 +1,12 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
 import { useFetch } from '../../util/hooks'
 import { fetchLocation, fetchAttendances, fetchPeopleIfNeeded } from '../../actions/people'
-
-// import { formatDate, toIDMap, hourFormat } from '../../util';
+import { format } from 'timeago.js'
 import HumanEntry from '../EventPage/HumanEntry';
-// import groupedPeopleSelector from '../../selectors/groups';
 
-// import './index.css'
+import './index.css'
 import '../PeoplePage/index.css'
 
 import { fetchGroupsIfNeeded } from '../../actions/groups';
@@ -54,73 +51,27 @@ function PersonPage({ person, attendances, location, groups, fetchAttendance, fe
 			<label>Groups</label>
 			<Row>
 				{person.groups.map(group => groups.get(String(group))).map(group => group && (
-					<HumanEntry key={group.id} {...group} />
+					<HumanEntry key={group.id} {...group} onClick={() => push(`/group/${group.id}`)} />
 				))}
 			</Row>
-			<label>Location</label>
-			<Col>
-			</Col>
+			{location && (
+				<>
+					<label>Location</label>
+					<Row className='attendance'>
+						<h4>Last seen</h4>
+						<h5>{format(location.last_seen)}</h5>
+					</Row>
+					<Row className='attendance'>
+						<h4>Room</h4>
+						<h5>{location.name}</h5>
+						{!location.active && <div className='label'>Left</div>}
+					</Row>
+				</>
+			)}
 			<label>Attendances</label>
 			{attendances && attendances.events.map(x => (
 				<Attendance key={x.id} {...x} />
 			))}
-			{/* <label>Room</label>
-			<h5>{person.room.name}</h5>
-			<label>Description</label>
-			<p>{person.description}</p>
-			<Row>
-				<Col lg={2}>
-					<label>From</label>
-					<p>{formatDate(person.start)}</p>
-				</Col>
-				<Col lg={2}>
-					<label>To</label>
-					<p>{formatDate(person.end)}</p>
-				</Col>
-				<Col>
-					<label>Duration</label>
-					<p>{hourFormat(person.duration)}</p>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<label>Organisers</label>
-					<Row>
-						{person.organisers.map((person) => (
-							<HumanEntry key={person.id} {...person} />
-						))}
-					</Row>
-				</Col>
-				<Col>
-					<label>Invited</label>
-					<Row>
-						{person.people.map(entry => (
-							<HumanEntry key={entry.id} {...entry} />
-						))}
-						{person.groups.map(group => (
-							<HumanEntry key={group.id} {...group} onClick={() => push(`/group/${group.id}`)} />
-						))}
-					</Row>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<label>At the event</label>
-					<Row>
-						{person.attendances.map(person => (
-							<HumanEntry key={person.id} {...person} />
-						))}
-					</Row>
-				</Col>
-				<Col>
-					<label>Not at the event</label>
-					<Row>
-						{missingPeople.map(person => (
-							<HumanEntry key={person.id} {...person} />
-						))}
-					</Row>
-				</Col>
-			</Row> */}
 		</>
   )
 }

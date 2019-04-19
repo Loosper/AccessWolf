@@ -1,12 +1,12 @@
 .human-entry {
 	display: flex;
-	padding: 16px;
+	padding: 16px 16px 0px;
 	flex-flow: column;
 	justify-content: baseline;
 	align-items: center;
 	transition: transform .4s ease;
 	cursor: pointer;
-	height: 137px;
+	height: 121px;
 }
 
 .human-entry:hover {
