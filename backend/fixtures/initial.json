@@ -1,4 +1,4 @@
-[
+
     {
         "model": "rest_api.group",
         "pk": 1,
@@ -65,6 +65,81 @@
             "image": "https://api.adorable.io/avatars/382/",
             "groups": [
                 4
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 5,
+        "fields": {
+            "name": "Gosho",
+            "card_id": "666",
+            "image": "https://api.adorable.io/avatars/1312/",
+            "groups": [
+                2,
+				3
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 6,
+        "fields": {
+            "name": "Ivan",
+            "card_id": "382",
+            "image": "https://api.adorable.io/avatars/517/",
+            "groups": [
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 7,
+        "fields": {
+            "name": "Stanimir",
+            "card_id": "295",
+            "image": "https://api.adorable.io/avatars/110/",
+            "groups": [
+				1
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 8,
+        "fields": {
+            "name": "Juan",
+            "card_id": "518",
+            "image": "https://api.adorable.io/avatars/987/",
+            "groups": [
+				1,
+				2,
+				3
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 9,
+        "fields": {
+            "name": "Penka",
+            "card_id": "436",
+            "image": "https://api.adorable.io/avatars/2/",
+            "groups": [
+				2
+            ]
+        }
+    },
+	{
+        "model": "rest_api.person",
+        "pk": 10,
+        "fields": {
+            "name": "Ganka",
+            "card_id": "900",
+            "image": "https://api.adorable.io/avatars/914/",
+            "groups": [
+				1,
+				3
             ]
         }
     },
@@ -149,6 +224,86 @@
             "check_out": null,
             "person": 3,
             "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 15,
+        "fields": {
+            "check_in": "2019-04-30T06:00:00Z",
+            "check_out": "2019-04-30T07:30:00Z",
+            "person": 3,
+            "room": 2
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T16:00:00Z",
+            "check_out": "2019-04-30T16:21:00Z",
+            "person": 2,
+            "room": 4
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 17,
+        "fields": {
+            "check_in": "2019-04-30T12:00:00Z",
+            "check_out": "2019-04-30T12:30:00Z",
+            "person": 4,
+            "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T21:24:00Z",
+            "check_out": "2019-04-30T22:21:00Z",
+            "person": 5,
+            "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T16:01:00Z",
+            "check_out": "2019-04-30T16:09:00Z",
+            "person": 6,
+            "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T16:09:00Z",
+            "check_out": null,
+            "person": 6,
+            "room": 3
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T23:34:00Z",
+            "check_out": "2019-04-31T00:28:00Z",
+            "person": 8,
+            "room": 2
+        }
+    },
+    {
+        "model": "rest_api.attendance",
+        "pk": 16,
+        "fields": {
+            "check_in": "2019-04-30T12:29:00Z",
+            "check_out": null,
+            "person": 9,
+            "room": 2
         }
     }
 ]
