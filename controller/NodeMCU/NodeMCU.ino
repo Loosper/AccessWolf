@@ -35,7 +35,7 @@ void loop() {
 
     int responceCode = SendPostTo(UrlBuilder(server_ip, room_name, &card_uid));
 
-    if(responceCode == 200){
+    if(responceCode == 200 || responceCode == 201){
       ActivateBuzzer(1);//good
     }else {
       ActivateBuzzer(0);//bad
