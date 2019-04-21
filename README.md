@@ -1,4 +1,4 @@
-# Accesswolf
+# AccessWolf
 Accesswolf is a helper for managing room schedules.     It tracks people's whereabouts as well as any room's status.  
 
 # Awards and recognition
