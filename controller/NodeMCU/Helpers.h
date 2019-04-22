@@ -242,6 +242,7 @@ String UrlBuilder(char* server_ip, char* room_name, String* card_uid){
   URL += *card_uid;
   URL.concat(String("/room/"));
   URL.concat(String(room_name));
+  URL.concat(String("/"));
   Serial.println("URL IS:");
   Serial.println(URL);
   return URL;
