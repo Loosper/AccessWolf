@@ -3,11 +3,11 @@ import { Row } from 'react-bootstrap'
 import { ReactComponent as SearchIcon } from '../../img/search.svg'
 import './Search.css'
 
-export default function Search({ value, onChange }) {
-  
+export default function Search(props) {
+
   return (
     <Row className='search'>
-		  <input value={value} onChange={onChange} />
+		  <input {...props} />
 		  <SearchIcon />
     </Row>
   )

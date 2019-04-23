@@ -115,6 +115,14 @@ nav.open + .view-container {
 	}
 }
 
+.logo {
+	position: absolute;
+  bottom: 32px;
+  width: 208px;
+  height: 208px;
+  left: 16px;
+}
+
 @keyframes AnimationName { 
   0% {
 		background-position: 0%;

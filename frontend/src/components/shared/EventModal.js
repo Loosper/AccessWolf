@@ -12,6 +12,7 @@ import icons from './icons'
 import moment from 'moment'
 import './EventModal.css'
 import PeopleChooser from './PeopleChooser';
+import { fetchGroupsIfNeeded } from '../../actions/groups';
 
 export const ModalContext = React.createContext({ open: void 0, close: void 0 })
 
@@ -25,7 +26,7 @@ function mapStateToProps({ groups, people }) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchPeople: () => dispatch(fetchPeopleIfNeeded()),
-    fetchGroups: () => dispatch(fetchPeopleIfNeeded()),
+    fetchGroups: () => dispatch(fetchGroupsIfNeeded()),
   }
 }
 
@@ -54,7 +55,7 @@ function EventModal({ show, fetchPeople, fetchGroups, groups, people }) {
                 <Form.Label>Title</Form.Label>
                 <Form.Control placeholder="Popping champaign..." />
                 <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows="5" />
+                <Form.Control as="textarea" rows="8" />
               </Col>
               <Col>
                 <DateTimeRangeContainer 
@@ -70,7 +71,9 @@ function EventModal({ show, fetchPeople, fetchGroups, groups, people }) {
                     placeholder="Enter text"
                   /> 
                 </DateTimeRangeContainer>
-                <PeopleChooser people={people.valueSeq().toArray()} />
+                <PeopleChooser people={people} title='organisers' />
+                <PeopleChooser people={people} title='invited people' />
+                <PeopleChooser people={groups} title='invited groups' />
               </Col>
               {/* {icons.map(src => <img src={src} alt='icon' />)} */}
             </Form.Row>

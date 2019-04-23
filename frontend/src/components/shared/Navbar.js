@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from "react-router"
 import { list } from '../../util'
+import { ReactComponent as Logo } from '../../img/logo.svg'
 import './Navbar.css'
 
 const backgrounds = [
@@ -38,6 +39,7 @@ function Navbar({ location: { pathname }, isOpen, toggle }) {
           </Link> 
         ))}
       </div>
+      <Logo className='logo' />
     </nav>
   )
 }

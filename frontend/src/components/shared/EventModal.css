@@ -42,3 +42,17 @@ select {
   border-radius: 40px;
   padding: 8px 32px;
 }
+
+.chosen {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  background-color: #00000012;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chosen:not(:first-child) {
+  margin-left: -16px;
+}

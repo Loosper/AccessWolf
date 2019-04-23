@@ -73,6 +73,10 @@ p, h5 {
   font-size: 1.3rem;
 }
 
+textarea {
+  resize: none;
+}
+
 @media screen and (max-width: 420px) {
   .view-container {
     /* margin-left: 0px; */
