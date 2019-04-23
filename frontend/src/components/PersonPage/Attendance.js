@@ -1,6 +1,6 @@
 import React from 'react'
 import Row from 'react-bootstrap/Row'
-import { formatDate } from '../../util';
+import { formatDate } from '../../util'
 
 import '../EventsPage/index.css'
 import './index.css'

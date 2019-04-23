@@ -8,6 +8,7 @@
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-advanced-datetimerange-picker": "^0.1.10",
     "react-big-calendar": "^0.20.4",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.6",
@@ -22,7 +23,7 @@
     "timeago.js": "^4.0.0-beta.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm i && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -113,3 +113,11 @@
 .rbc-today {
   background-color: #FFA99F64 !important;
 }
+
+div.rbc-row-bg > div:nth-child(6), div.rbc-row-bg > div:nth-child(7) {
+  background: #eaeaea;
+}
+
+.rbc-off-range-bg {
+  background: #dadada !important;
+}

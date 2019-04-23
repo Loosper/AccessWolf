@@ -6,15 +6,14 @@ import { useFetch } from '../../util/hooks'
 import { fetchEvent } from '../../actions/events'
 import { fetchPeopleIfNeeded } from '../../actions/people'
 
-import Person from '../PeoplePage/Person'
-import { formatDate, toIDMap, hourFormat } from '../../util';
-import HumanEntry from './HumanEntry';
-import groupedPeopleSelector from '../../selectors/groups';
+import { formatDate, toIDMap, hourFormat } from '../../util'
+import HumanEntry from './HumanEntry'
+import groupedPeopleSelector from '../../selectors/groups'
 
 import './index.css'
 import '../PeoplePage/index.css'
 
-import { fetchGroupsIfNeeded } from '../../actions/groups';
+import { fetchGroupsIfNeeded } from '../../actions/groups'
 
 function mapStateToProps(state, { match: { params: { id } } }) {
 	const { events, isFetching } = state

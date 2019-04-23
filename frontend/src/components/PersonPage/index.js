@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { useFetch } from '../../util/hooks'
 import { fetchLocation, fetchAttendances, fetchPeopleIfNeeded } from '../../actions/people'
 import { format } from 'timeago.js'
-import HumanEntry from '../EventPage/HumanEntry';
+import HumanEntry from '../EventPage/HumanEntry'
 
 import './index.css'
 import '../PeoplePage/index.css'
 
-import { fetchGroupsIfNeeded } from '../../actions/groups';
-import Attendance from './Attendance';
+import { fetchGroupsIfNeeded } from '../../actions/groups'
+import Attendance from './Attendance'
 
 function mapStateToProps({ people, attendances, locations, groups }, { match: { params: { id } } }) {
 	return { 

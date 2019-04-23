@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import './index.css'
-import Person from './Person';
+import Person from './Person'
 
 function mapStateToProps({ groups, people }) {
   return { 

@@ -4,7 +4,7 @@ import EventColumn from './EventColumn'
 import { connect } from 'react-redux'
 import { fetchEventsIfNeeded } from '../../actions/events'
 import { useFetch } from '../../util/hooks'
-import roomsSelector from '../../selectors/rooms';
+import roomsSelector from '../../selectors/rooms'
 
 function mapStateToProps(state) {
   return { 

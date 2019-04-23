@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useFetch } from '../../util/hooks';
-import { fetchGroupsIfNeeded } from '../../actions/groups';
-import { fetchPeopleIfNeeded } from '../../actions/people';
-import groupedPeopleSelector from '../../selectors/groups';
+import { useFetch } from '../../util/hooks'
+import { fetchGroupsIfNeeded } from '../../actions/groups'
+import { fetchPeopleIfNeeded } from '../../actions/people'
+import groupedPeopleSelector from '../../selectors/groups'
 
 import Person from '../PeoplePage/Person'
 

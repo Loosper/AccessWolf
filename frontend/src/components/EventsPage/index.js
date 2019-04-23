@@ -7,9 +7,14 @@ import { useFetch } from '../../util/hooks'
 
 import './index.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { ModalContext } from '../shared/EventModal';
+import { ModalContext } from '../shared/EventModal'
 
-// moment.tz.setDefault('Europe/London')
+moment.updateLocale('en', {
+  week: {
+    dow: 1
+  }
+});
+
 const localizer = BigCalendar.momentLocalizer(moment)
 
 function mapStateToProps({ events, isFetching }) {

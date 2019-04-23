@@ -1,0 +1,44 @@
+.rangecontainer {
+  display: none;
+}
+
+#daterangepicker {
+  border-radius: 8px;
+}
+
+.inputDate {
+  border: none;
+  text-align: center;
+}
+
+.fromDateHourContainer {
+  padding: 4px;
+}
+
+select {
+  border: none;
+}
+
+.buttonSeperator {
+  margin-left: 8px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  padding: 8px 32px;
+}
+
+#buttonContainer {
+  margin: 16px;
+}
+
+.activeNotifier {
+  padding-bottom: 60px;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.btn {
+  border-radius: 40px;
+  padding: 8px 32px;
+}
