@@ -44,7 +44,7 @@ function EventsPage({ events, fetchEvents, history: { push } }) {
             selectable
             // culture='en-GB'
             // components={{ event: (props) => <div>{console.log(props)}</div> }}
-            onSelecting={open}
+            onSelectSlot={open}
             onSelectEvent={({ id }) => push(`/events/${id}`)}
             localizer={localizer}
             events={events.valueSeq().toArray()}

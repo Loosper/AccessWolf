@@ -73,11 +73,11 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 			<label>Description</label>
 			<p>{event.description}</p>
 			<Row>
-				<Col lg={2}>
+				<Col lg={4}>
 					<label>From</label>
 					<p>{formatDate(event.start)}</p>
 				</Col>
-				<Col lg={2}>
+				<Col lg={4}>
 					<label>To</label>
 					<p>{formatDate(event.end)}</p>
 				</Col>

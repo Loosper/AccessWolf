@@ -59,7 +59,7 @@ function PersonPage({ person, attendances, location, groups, fetchAttendance, fe
 					<label>Location</label>
 					<Row className='attendance'>
 						<h4>Last seen</h4>
-						<h5>{format(location.last_seen)}</h5>
+						<h5>{format(location.lastSeen)}</h5>
 					</Row>
 					<Row className='attendance'>
 						<h4>Room</h4>

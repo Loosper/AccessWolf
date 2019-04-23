@@ -1,58 +1,64 @@
 import axios from 'axios'
 import { toIDMap, dateifyEvent } from '.'
+import moment from 'moment'
 
-const BASE_URL = 'http://127.0.0.1:8000/api'
+const api = axios.create({
+  baseURL: 'http://0.0.0.0:8000/api/',
+  timeout: 6000,
+})
 
 export async function getEvents() {
-  const events = await get('/events')
+  const events = await api.get('events/')
 
-  return toIDMap(events.map(dateifyEvent))
+  return toIDMap(events.data.map(dateifyEvent))
 }
 
 export async function getEvent(id) {
-  const [event, { people }] = await Promise.all([get(`/events/${id}`), getAttendances(id)])
-  event.attendances = people
+  const [event, { people }] = await Promise.all([api.get(`events/${id}/`), getAttendances(id)])
+  event.data.attendances = people
   
-  return dateifyEvent(event)
+  return dateifyEvent(event.data)
 }
 
 export async function getGroups() {
-  const groups = await get('/groups')
+  const groups = await api.get('groups/')
 
-  return toIDMap(groups)
+  return toIDMap(groups.data)
 }
 
 export async function getPeople() {
-  return toIDMap(await get('/people'))
+  const people = await api.get('people/')
+
+  return toIDMap(people.data)
 }
 
 export async function getRooms() {
-  return toIDMap(await get('/rooms'))
+  const rooms = await api.get('rooms/')
+  return toIDMap(rooms.data)
 }
 
-export function getAttendances(eventId) {
-  return get(`/events/${eventId}/attendance`)
+export async function getAttendances(eventId) {
+  const attendances = await api.get(`events/${eventId}/attendance/`)
+  return attendances.data
 }
 
 export async function getPersonLocation(personId) {
-  const location = await get(`/where/${personId}`)
+  const location = await api.get(`/where/${personId}/`)
 
-  location.last_seen = new Date(location.last_seen)
-  location.id = personId
+  location.data.lastSeen = moment(location.last_seen)
+  location.data.id = personId
   
-  return location
+  return location.data
 }
 
 export async function getPersonAttendances(id) {
-  const attendance = await get(`/people/${id}/events`)
-  attendance.events = attendance.events.map(dateifyEvent)
-  attendance.id = id
+  const attendance = await api.get(`/people/${id}/events/`)
+  attendance.data.events = attendance.events.map(dateifyEvent)
+  attendance.data.id = id
 
-  return attendance
+  return attendance.data
 }
 
-async function get(url) {
-  const { data } = await axios.get(`${BASE_URL}${url}/`)
-
-  return data
+export async function createEvent(event) {
+  return api.post('events/', event)
 }

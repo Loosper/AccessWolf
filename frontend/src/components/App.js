@@ -9,6 +9,7 @@ import GroupPage from './GroupPage'
 import PersonPage from './PersonPage'
 import MenuIcon from './shared/MenuIcon'
 import EventModal, { ModalContext } from './shared/EventModal'
+import moment from 'moment'
 
 function NotFound() {
   return <Redirect to='/events' />
@@ -29,15 +30,27 @@ const Routes = React.memo(() => (
 function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  // const [newEvent, setNewEvent]
+  const [start, setStart] = React.useState(moment())
+  const [end, setEnd] = React.useState(moment(start).add(1, "hours"))
+  const [modalKey, setModalKey] = React.useState(0)
 
   const modalContext = {
-    open: () => {
-      !isModalOpen && setIsModalOpen(true)
+    open: event => {
+      if (!isModalOpen) {
+        event.start && setStart(moment(event.start))
+        event.end && setEnd(moment(event.end))
+        setIsModalOpen(true)
+      }
     },
     close: () => {
+      isModalOpen && setTimeout(() => setModalKey(modalKey + 1), 1000)
       isModalOpen && setIsModalOpen(false)
-    }
+    },
+    show: isModalOpen,
+    start,
+    end,
+    setStart,
+    setEnd
   }
 
   function toggleMenu() {
@@ -51,7 +64,7 @@ function App() {
         <MenuIcon onClick={toggleMenu} toggle={isMenuOpen} />
         <ModalContext.Provider value={modalContext}>
           <Routes />
-          <EventModal show={isModalOpen} />
+          <EventModal key={modalKey} />
         </ModalContext.Provider>
       </div>
     </>

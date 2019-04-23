@@ -1,4 +1,5 @@
 import { Map, Record } from 'immutable'
+import moment from 'moment'
 
 export function list(...classNames) {
   return classNames.filter(Boolean).join(' ')
@@ -36,21 +37,13 @@ export function recordMixin(...classes) {
 }
 
 export function formatDate(date) {
-	const options = {
-		year: date.getFullYear() === new Date().getFullYear() ? void 0 : 'numeric',
-		month: 'short',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: 'numeric',
-	}
-
-	return date.toLocaleDateString('en-US', options)
+	return date.calendar()
 }
 
 export function dateifyEvent(event) {
-  const start = new Date(event.start)
-  const end = new Date(event.end) 
-  const duration = new Date(+end - +start)
+  const start = moment(event.start)
+  const end = moment(event.end) 
+  const duration = moment(+end - +start)
 
   return { 
     ...event, 
@@ -60,9 +53,11 @@ export function dateifyEvent(event) {
   }
 }
 
-export function hourFormat(date) {
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
+export function hourFormat(ms) {
+  const duration = moment.duration(ms)
+  console.log(ms, duration)
+  const hours = duration.hours() + (duration.days() * 24)
+  const minutes = duration.minutes()
   
   return [hours ? hours + ' hours' : '', minutes ? minutes + ' hours' : ''].join(' ')
 }

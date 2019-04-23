@@ -3,9 +3,8 @@ import { Col, Popover, OverlayTrigger } from 'react-bootstrap'
 import Person from '../PeoplePage/Person';
 import Search from './Search'
 
-export default function PeopleChooser({ people, select, title }) {
+export default function PeopleChooser({ people, selected, setSelected, title }) {
   const [search, setSearch] = React.useState('')
-  const [selected, setSelected] = React.useState(new Set())
 
   const popover = (
     <Popover id="popover-basic" title={`Select ${title}`}>
@@ -34,7 +33,7 @@ export default function PeopleChooser({ people, select, title }) {
     <OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
       <div>
         <label>{title}</label>
-        <div>
+        <div className='chosen-row'>
           {people.reduce((rendered, person) => {
             if (selected.has(person.id)) {
               rendered.push(person)
@@ -42,7 +41,7 @@ export default function PeopleChooser({ people, select, title }) {
 
             return rendered
           }, []).map(person => (
-            <img src={person.image} alt='person' className='chosen' />
+            <img key={person.id} src={person.image} alt='person' className='chosen' />
           ))}
           <div className='chosen'>+</div>
         </div>

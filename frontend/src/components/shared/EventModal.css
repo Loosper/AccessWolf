@@ -47,12 +47,112 @@ select {
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  background-color: #00000012;
-  display: inline-flex;
+  background-color: #00000008;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  display: flex;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+  font-size: 1.5rem;
+}
+
+.chosen-row {
+  display: flex;
+  margin-bottom: 16px;
 }
 
 .chosen:not(:first-child) {
   margin-left: -16px;
+}
+
+.popover {
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+}
+
+.avatars {
+  margin: 0;
+  justify-content: center;
+}
+
+.popover .avatars > img {
+  width: 48px;
+  height: 48px;
+  margin: 8px;
+}
+
+.popover-body {
+  max-height: 40vh;
+  overflow: scroll;
+  padding: 0;
+}
+
+.popover-body > .col {
+  min-width: 400px;
+  padding: 0 16px;
+}
+
+.popover-body > .col > .row {
+  margin: 0;
+}
+
+.popover-body .person {
+  padding: 8px;
+  padding-left: 0;
+}
+
+.popover-body .person > h4 {
+  font-size: 1.2rem;
+}
+
+.popover-body .person > img {
+  width: 48px;
+  height: 48px;
+}
+
+.modal p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.form-row > div:first-child {
+  padding-right: 21px;
+}
+
+.modal h5, .popover h5 {
+  cursor: pointer;
+}
+
+.range {
+  /* border: 1px solid rgba(0,0,0,0.08); */
+  border-radius: 8px;
+  background-color: #00000008;
+  cursor: pointer;
+  padding: 8px 23px;
+  margin-left: -8px;
+  margin-bottom: 16px;
+  /* margin: -8px; */
+}
+
+.range > .row:last-child > label {
+  margin-bottom: 0; 
+}
+
+input, textarea {
+  background-color: #00000008 !important;
+  font-size: 1rem !important;
+  border: none !important;
+  margin-bottom: 16px;
+  border-radius: 8px !important;
+}
+
+textarea {
+  height: 230px !important;
+}
+input {
+  font-size: 1.2rem !important;
 }
