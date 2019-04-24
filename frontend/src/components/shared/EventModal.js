@@ -17,6 +17,7 @@ import { formatDate, hourFormat } from '../../util';
 import { createEvent } from '../../util/api';
 import { fetchRoomsIfNeeded } from '../../actions/rooms';
 import RoomChooser from './RoomChooser';
+import { fetchEventsIfNeeded } from '../../actions/events';
 
 export const ModalContext = React.createContext({ open: void 0, close: void 0 })
 
@@ -32,7 +33,8 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchPeople: () => dispatch(fetchPeopleIfNeeded()),
     fetchGroups: () => dispatch(fetchGroupsIfNeeded()),
-    fetchRooms: () => dispatch(fetchRoomsIfNeeded())
+    fetchRooms: () => dispatch(fetchRoomsIfNeeded()),
+    fetchEvents: () => dispatch(fetchEventsIfNeeded())
   }
 }
 
@@ -43,7 +45,7 @@ const local = {
 
 const shit = {}
 
-function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, rooms }) {
+function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, rooms, fetchEvents }) {
   const { close, start, end, setStart, setEnd, show } = React.useContext(ModalContext)
 
   const [image, setImage] = React.useState(icons[0])
@@ -58,21 +60,26 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
 
   useFetch(fetchPeople, fetchGroups, fetchRooms)
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
 
     const { title, description } = event.target.elements
 
-    createEvent({
+    const newEvent = {
       title: title.value,
       description: description.value,
       image,
-      end: end.toDate().toString(),
-      start: start.toDate().toString(),
+      room: room.id,
+      end: end.toDate().toISOString(),
+      start: start.toDate().toISOString(),
       organisers: [...organisers.values()],
       individuals: [...individuals.values()],
       invitedGroups: [...invitedGroups.values()]
-    })
+    }
+
+    await createEvent(newEvent)
+    fetchEvents()
+    close()
   }
 
   const popover = (
@@ -158,8 +165,8 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
           </Form.Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={close}>Dismiss</Button>
-          <Button variant="primary" type='submit'>Create</Button>
+          <Button variant="outline-secondary" onClick={close}>Dismiss</Button>
+          <Button variant="success" type='submit'>Create</Button>
         </Modal.Footer>
       </Form>
     </Modal>

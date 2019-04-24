@@ -120,6 +120,7 @@ nav.open + .view-container {
   top: 64px;
 	right: 32px;
 	/* color: #7b7b7b; */
+	color: black;
 	display: flex;
 	opacity: 0.2;
 	font-weight: 400;

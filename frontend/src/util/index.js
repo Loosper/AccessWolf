@@ -43,20 +43,21 @@ export function formatDate(date) {
 export function dateifyEvent(event) {
   const start = moment(event.start)
   const end = moment(event.end) 
-  const duration = moment(+end - +start)
+  const duration = end.diff(start)
 
   return { 
     ...event, 
     start, 
     end,
     duration,
+    _start: start.toDate(),
+    _end: end.toDate()
   }
 }
 
 export function hourFormat(ms) {
   const duration = moment.duration(ms)
-  console.log(ms, duration)
-  const hours = duration.hours() + (duration.days() * 24)
+  const hours = duration.hours() + (duration.days() * 24) 
   const minutes = duration.minutes()
   
   return [hours ? hours + ' hours' : '', minutes ? minutes + ' hours' : ''].join(' ')

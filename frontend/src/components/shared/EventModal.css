@@ -38,6 +38,14 @@ select {
   border-radius: 8px;
 }
 
+.modal-body {
+  padding-left: 28px;
+}
+
+.modal-body > .form-row {
+  margin-left: 0;
+}
+  
 .btn {
   border-radius: 40px;
   padding: 8px 32px;
@@ -123,6 +131,10 @@ select {
   padding-right: 21px;
 }
 
+.modal h5 {
+  font-size: 2rem;
+}
+
 .modal h5, .popover h5 {
   cursor: pointer;
 }
@@ -148,11 +160,29 @@ input, textarea {
   border: none !important;
   margin-bottom: 16px;
   border-radius: 8px !important;
+  margin-left: -16px;
+  padding-left: 16px !important; 
 }
 
 textarea {
   height: 230px !important;
 }
+
 input {
   font-size: 1.2rem !important;
+}
+
+.btn {
+  color: #29323c;
+}
+
+.modal .btn-success, .applyButton {
+  color: #29323c;
+  background-color: #84fab0 !important;
+  border-color: #84fab0 !important;
+}
+
+.btn-success:hover, .applyButton:hover {
+  background-color: #73de9a !important;
+  border-color: #73de9a !important;
 }

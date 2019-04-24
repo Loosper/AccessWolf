@@ -41,10 +41,10 @@ function App() {
         event.start && setStart(moment(event.start))
         event.end && setEnd(moment(event.end))
         setIsModalOpen(true)
+        setModalKey(modalKey + 1)
       }
     },
     close: () => {
-      isModalOpen && setTimeout(() => setModalKey(modalKey + 1), 1000)
       isModalOpen && setIsModalOpen(false)
     },
     show: isModalOpen,

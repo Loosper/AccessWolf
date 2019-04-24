@@ -48,8 +48,8 @@ function EventsPage({ events, fetchEvents, history: { push } }) {
             onSelectEvent={({ id }) => push(`/events/${id}`)}
             localizer={localizer}
             events={events.valueSeq().toArray()}
-            startAccessor="start"
-            endAccessor="end"
+            startAccessor="_start"
+            endAccessor="_end"
           />
         )}
       </ModalContext.Consumer>
