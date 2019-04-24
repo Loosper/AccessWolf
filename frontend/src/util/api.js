@@ -3,7 +3,7 @@ import { toIDMap, dateifyEvent } from '.'
 import moment from 'moment'
 
 const api = axios.create({
-  baseURL: 'http://0.0.0.0:8000/api/',
+  baseURL: 'http://192.168.43.176:8000/api/',
   timeout: 6000,
 })
 
@@ -53,7 +53,7 @@ export async function getPersonLocation(personId) {
 
 export async function getPersonAttendances(id) {
   const attendance = await api.get(`/people/${id}/events/`)
-  attendance.data.events = attendance.events.map(dateifyEvent)
+  attendance.data.events = attendance.data.events.map(dateifyEvent)
   attendance.data.id = id
 
   return attendance.data
