@@ -79,6 +79,10 @@ textarea {
   resize: none;
 }
 
+* {
+  user-select: none;
+}
+
 @media screen and (max-width: 420px) {
   .view-container {
     /* margin-left: 0px; */
