@@ -53,7 +53,7 @@ function EventPage({ event, isFetching, fetchPeople, fetchEvent, fetchGroups, gr
 
 	const allInvitedPeople = toIDMap([
 		...event.people,
-		...event.groups.flatMap(group => grouped.get(String(group.id)).people || [])
+		...event.groups.flatMap(group => (grouped.get(String(group.id)) && grouped.get(String(group.id)).people) || [])
 	])
 
 	const attendingMap = toIDMap(event.attendances)
