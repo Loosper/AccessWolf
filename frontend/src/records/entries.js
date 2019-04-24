@@ -16,7 +16,7 @@ export default class Entries {
   }
 
   setEntry(entry) {
-    return this.setIn([ENTRIES, String(entry.id)], entry)
+    return entry.id ? this.setIn([ENTRIES, String(entry.id)], entry) : this
   }
 
   setEntries(entries) {
