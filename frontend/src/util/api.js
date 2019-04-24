@@ -43,9 +43,9 @@ export async function getAttendances(eventId) {
 }
 
 export async function getPersonLocation(personId) {
-  const location = await api.get(`/where/${personId}/`)
+  const location = await api.get(`where/${personId}/`)
 
-  location.data.lastSeen = moment(location.last_seen)
+  location.data.lastSeen = moment(location.data.last_seen)
   location.data.id = personId
   
   return location.data
