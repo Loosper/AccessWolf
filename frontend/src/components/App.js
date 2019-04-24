@@ -10,6 +10,7 @@ import PersonPage from './PersonPage'
 import MenuIcon from './shared/MenuIcon'
 import EventModal, { ModalContext } from './shared/EventModal'
 import moment from 'moment'
+import { ReactComponent as Logo } from '../img/logo.svg'
 
 function NotFound() {
   return <Redirect to='/events' />
@@ -66,6 +67,10 @@ function App() {
           <Routes />
           <EventModal key={modalKey} />
         </ModalContext.Provider>
+        <div className='logo'>
+          <h1>Access Wolf</h1>
+          <Logo />
+        </div>
       </div>
     </>
   )

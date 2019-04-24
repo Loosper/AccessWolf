@@ -117,11 +117,21 @@ nav.open + .view-container {
 
 .logo {
 	position: absolute;
-  bottom: 32px;
-  width: 208px;
-  height: 208px;
-  left: 16px;
+  top: 64px;
+	right: 32px;
+	/* color: #7b7b7b; */
+	display: flex;
+	opacity: 0.2;
+	font-weight: 400;
 }
+
+.logo > svg {
+	width: 56px;
+	height: 56px;
+	position: relative;
+	top: -16px;
+}
+
 
 @keyframes AnimationName { 
   0% {
