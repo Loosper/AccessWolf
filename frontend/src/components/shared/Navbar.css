@@ -117,12 +117,15 @@ nav.open + .view-container {
 
 .logo {
 	position: absolute;
-  top: 64px;
+  top: 59px;
 	right: 32px;
 	/* color: #7b7b7b; */
 	color: black;
 	display: flex;
-	opacity: 0.2;
+	opacity: 0.4;
+}
+
+.logo > h1 {
 	font-weight: 400;
 }
 
