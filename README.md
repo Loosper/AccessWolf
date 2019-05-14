@@ -3,6 +3,7 @@ Accesswolf is a helper for managing room schedules.     It tracks people's where
 
 # Awards and recognition
 ### Company choice award from <b>Experian</b> at <b>TUES Fest 2019</b> 
+### Regional finalist at JA Student Company Bulgaria
 
 # Components
 ## Frontend
