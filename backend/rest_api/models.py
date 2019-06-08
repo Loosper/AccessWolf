@@ -18,6 +18,7 @@ class Person(models.Model):
     card_id = CharField(max_length=15, unique=True)
     groups = ManyToManyField(Group, blank=True)
     image = CharField(max_length=500, blank=True)
+    email = CharField(max_length=500, blank=False)
 
     def __str__(self):
         return f'Person {self.name}'

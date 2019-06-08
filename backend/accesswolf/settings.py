@@ -28,7 +28,21 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL  = 'noreply.accesswolf@gmail.com'
+EMAIL_HOST_USER = 'noreply.accesswolf'
+EMAIL_HOST_PASSWORD = 'accesswolfinfo'
 
+NOTIFICATION_EMAIL = (
+    'Hello {recipient}!\n\n'
+    'You have been invited to the event "{title}" at {start} in {room}.\n'
+    'You can view the event here: http://{domain}/events/{event_id}\n\n'
+    'This is an automatic message, please do not reply to this email.\n'
+    'Regards,\nAccessWolf team\n'
+)
 # Application definition
 
 INSTALLED_APPS = [

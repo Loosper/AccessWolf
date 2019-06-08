@@ -54,6 +54,7 @@
     "pk": 2,
     "fields": {
         "name": "Mike",
+        "email": "test@localhost",
         "card_id": "111",
         "image": "https://api.adorable.io/avatars/785/",
         "groups": [
@@ -67,6 +68,7 @@
     "pk": 3,
     "fields": {
         "name": "Katya",
+        "email": "test@localhost",
         "card_id": "66",
         "image": "https://api.adorable.io/avatars/655/",
         "groups": [
@@ -79,6 +81,7 @@
     "pk": 4,
     "fields": {
         "name": "Steve",
+        "email": "test@localhost",
         "card_id": "222",
         "image": "https://api.adorable.io/avatars/382/",
         "groups": [
@@ -91,6 +94,7 @@
     "pk": 5,
     "fields": {
         "name": "Gosho",
+        "email": "test@localhost",
         "card_id": "666",
         "image": "https://api.adorable.io/avatars/1312/",
         "groups": [
@@ -104,6 +108,7 @@
     "pk": 6,
     "fields": {
         "name": "Ivan",
+        "email": "test@localhost",
         "card_id": "2A-DE-68-CE",
         "image": "https://api.adorable.io/avatars/517/",
         "groups": []
@@ -114,6 +119,7 @@
     "pk": 7,
     "fields": {
         "name": "Stanimir",
+        "email": "test@localhost",
         "card_id": "AA-6B-5B-CE",
         "image": "https://api.adorable.io/avatars/110/",
         "groups": [
@@ -126,6 +132,7 @@
     "pk": 8,
     "fields": {
         "name": "Juan",
+        "email": "test@localhost",
         "card_id": "E4-10-6A-1F",
         "image": "https://api.adorable.io/avatars/987/",
         "groups": [
@@ -140,6 +147,7 @@
     "pk": 9,
     "fields": {
         "name": "Penka",
+        "email": "test@localhost",
         "card_id": "FC-61-BC-10",
         "image": "https://api.adorable.io/avatars/2/",
         "groups": [
@@ -152,6 +160,7 @@
     "pk": 10,
     "fields": {
         "name": "Ganka",
+        "email": "test@localhost",
         "card_id": "5C-B3-D6-10",
         "image": "https://api.adorable.io/avatars/914/",
         "groups": [

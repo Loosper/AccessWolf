@@ -3,7 +3,7 @@ import { toIDMap, dateifyEvent } from '.'
 import moment from 'moment'
 
 const api = axios.create({
-  baseURL: 'http://192.168.42.64:8000/api/',
+  baseURL: 'http://127.0.0.1:8000/api/',
   timeout: 6000,
 })
 

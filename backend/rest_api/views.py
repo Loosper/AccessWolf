@@ -1,5 +1,9 @@
+from multiprocessing import Pool
+
+from django.conf import settings
 from django.utils import timezone
 from django.db.models import Q
+from django.core.mail import send_mail
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -107,6 +111,16 @@ class WriteEventViewSet(viewsets.ModelViewSet):
     serializer_class = ser.WriteEventSerializer
 
 
+def format_date(date):
+    return date.strftime("%H:%M on %d-%m-%y")
+
+
+pool = Pool(4)
+
+
+from functools import partial
+
+
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ser.EventSerializer
@@ -129,11 +143,30 @@ class EventViewSet(viewsets.ModelViewSet):
         return Response(data)
 
     # this is necessary because the other sesrialiser can't create just by id
-    def create(slef, request):
+    def create(self, request):
         serializer = ser.WriteEventSerializer(data=request.data)
-
         if serializer.is_valid():
-            serializer.save()
+            event = serializer.save()
+            ppl = set(event.people.all())
+            ppl |= set(event.organisers.all())
+            ppl |= set(Person.objects.filter(groups__in=event.groups.all()))
+
+
+            for person in ppl:
+                msg = settings.NOTIFICATION_EMAIL.format(
+                    recipient=person.name,
+                    title=event.title,
+                    start=format_date(event.start),
+                    room=event.room.name,
+                    domain=request.META['HTTP_HOST'],
+                    event_id=event.id,
+                )
+                pool.apply_async(partial(send_mail,
+                    subject='You have been invited to an event!',
+                    message=msg,
+                    from_email=None,
+                    recipient_list=[person.email]
+                ))
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
