@@ -13,7 +13,7 @@ import { fetchGroupsIfNeeded } from '../../actions/groups'
 import Attendance from './Attendance'
 
 function mapStateToProps({ people, attendances, locations, groups }, { match: { params: { id } } }) {
-	return { 
+	return {
 		person: people.getEntry(id),
 		attendances: attendances.getEntry(id),
 		location: locations.getEntry(id),
@@ -59,7 +59,7 @@ function PersonPage({ person, attendances, location, groups, fetchAttendance, fe
 					<label>Location</label>
 					<Row className='attendance'>
 						<h4>Last seen</h4>
-						<h5>{format(location.lastSeen)}</h5>
+						<h5>{location.lastSeen && format(location.lastSeen)}</h5>
 					</Row>
 					<Row className='attendance'>
 						<h4>Room</h4>
@@ -73,7 +73,7 @@ function PersonPage({ person, attendances, location, groups, fetchAttendance, fe
 				<Attendance key={x.id} {...x} />
 			))}
 		</>
-  )
+	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonPage)
