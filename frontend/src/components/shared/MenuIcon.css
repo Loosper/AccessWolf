@@ -21,14 +21,9 @@
 	background: #29323c;
 	z-index: 2;
 	border-radius: 2px;
-	transition: opacity .4s ease, width .4s ease, transform .4s ease, box-shadow .4s ease;
+	transition: opacity .4s ease, width .4s ease, transform .4s ease;
 	opacity: 1;
-	box-shadow: none;
 	will-change: width;
-}
-
-.menu-icon:hover > .menu-bar {
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
 .menu-icon.toggled > .menu-bar:first-child {

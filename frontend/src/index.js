@@ -13,17 +13,6 @@ import rootReducer from './reducers'
 import 'array-flat-polyfill'
 import './index.css'
 
-if (!String.prototype.trim) {
-  (function () {
-    // Make sure we trim BOM and NBSP
-    var trim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-    // eslint-disable-next-line no-extend-native
-    String.prototype.trim = function () {
-      return this.replace(trim, '');
-    };
-  })();
-}
-
 const history = createBrowserHistory()
 const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
