@@ -10,6 +10,7 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import rootReducer from './reducers'
 
+import 'array-flat-polyfill'
 import './index.css'
 
 const history = createBrowserHistory()
@@ -17,10 +18,10 @@ const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
 render(
   <Provider store={store}>
-    <Router history={history}> 
+    <Router history={history}>
       <App />
     </Router>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root')
 )
 

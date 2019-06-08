@@ -80,9 +80,88 @@ textarea {
 }
 
 @media screen and (max-width: 420px) {
+  .view-container > header > h1 {
+    font-size: 2.2rem;
+  }
+
+  .logo > h1 {
+    display: none;
+  }
+
+  .logo > svg {
+    top: -54px;
+    right: -16px;
+  }
+
   .view-container {
-    /* margin-left: 0px; */
-    /* margin-top: 48px; */
+    min-height: calc(100vh - 48px);
+    margin-left: 0px;
+    margin-top: 48px;
+    padding: 16px;
+  }
+
+  .menu-icon {
+    left: 12px;
+    top: -40px;
+    transform: translateX(0);
+    transition: .3s ease transform;
+  }
+
+  nav {
+    margin-top: -48px;
+    transform: none;
+  }
+
+  nav.open + .view-container > .menu-icon {
+    transform: translateX(-58px);
+  }
+
+  nav.open + .view-container {
+    transform: translateX(calc(100vw));
+  }
+
+  .events-kanban {
+    margin: 0 -16px;
+    min-height: calc(100vh - 149px);
+    margin-bottom: 16px;
+  }
+  
+  .event-column {
+    scroll-snap-align: center;
+    min-width: calc(100vw - 32px);
+    box-shadow: none;
+  }
+
+  .event-column > h1 {
+    border-radius: 8px 8px 0 0;
+  } 
+  
+  .rbc-toolbar {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .rbc-header {
+    overflow: visible !important;
+  }
+  
+  .events-kanban > .row {
+    min-height: calc(100vh - 149px);
+    margin: 16px;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    /* scroll-padding: 32px; */
+  }
+
+  .group {
+    flex-basis: 44%;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    margin: -8px;
+    width: 100vw;
   }
 }
 
