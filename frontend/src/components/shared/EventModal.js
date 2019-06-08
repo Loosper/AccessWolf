@@ -21,8 +21,8 @@ import { fetchEventsIfNeeded } from '../../actions/events';
 
 export const ModalContext = React.createContext({ open: void 0, close: void 0 })
 
-function mapStateToProps({ groups, people, rooms}) {
-  return { 
+function mapStateToProps({ groups, people, rooms }) {
+  return {
     groups: groups.entries,
     people: people.entries,
     rooms: rooms.entries
@@ -73,8 +73,8 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
       end: end.toDate().toISOString(),
       start: start.toDate().toISOString(),
       organisers: [...organisers.values()],
-      individuals: [...individuals.values()],
-      invitedGroups: [...invitedGroups.values()]
+      people: [...individuals.values()],
+      groups: [...invitedGroups.values()]
     }
 
     await createEvent(newEvent)
@@ -85,11 +85,11 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
   const popover = (
     <Popover id="popover-basic" title={`Select event image`}>
       <Row className='avatars'>
-       {icons.map(src => <img key={src} src={src} alt='yes' onClick={() => setImage(src)} />)}
+        {icons.map(src => <img key={src} src={src} alt='yes' onClick={() => setImage(src)} />)}
       </Row>
     </Popover>
   )
-  
+
   return (
     <Modal centered show={show} size="lg" enforceFocus={false}>
       <Modal.Header>
@@ -117,7 +117,7 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
             </Col>
             <Col>
               <Form.Label>Timing</Form.Label>
-              <DateTimeRangeContainer 
+              <DateTimeRangeContainer
                 applyCallback={(start, end) => {
                   setStart(start)
                   setEnd(end)
@@ -130,35 +130,35 @@ function EventModal({ fetchPeople, fetchGroups, fetchRooms, groups, people, room
                 <Col className='range'>
                   <Row>
                     <label>From</label>
-		                <p>{formatDate(start)}</p>
+                    <p>{formatDate(start)}</p>
                   </Row>
                   <Row>
-		            	  <label>To</label>
-		            	  <p>{formatDate(end)}</p>
+                    <label>To</label>
+                    <p>{formatDate(end)}</p>
                   </Row>
                   <Row>
-		            	  <label>Duration</label>
-		            	  <p>{hourFormat(end.diff(start))}</p>
+                    <label>Duration</label>
+                    <p>{hourFormat(end.diff(start))}</p>
                   </Row>
                 </Col>
               </DateTimeRangeContainer>
-              <PeopleChooser 
-                people={people} 
-                selected={organisers} 
-                setSelected={setOrganisers} 
-                title='organisers' 
+              <PeopleChooser
+                people={people}
+                selected={organisers}
+                setSelected={setOrganisers}
+                title='organisers'
               />
-              <PeopleChooser 
-                people={people} 
-                selected={individuals} 
-                setSelected={setIndividuals} 
-                title='invited people' 
+              <PeopleChooser
+                people={people}
+                selected={individuals}
+                setSelected={setIndividuals}
+                title='invited people'
               />
-              <PeopleChooser 
-                people={groups} 
-                selected={invitedGroups} 
-                setSelected={setInvitedGroups} 
-                title='invited groups' 
+              <PeopleChooser
+                people={groups}
+                selected={invitedGroups}
+                setSelected={setInvitedGroups}
+                title='invited groups'
               />
             </Col>
             {/* {icons.map(src => <img src={src} alt='icon' />)} */}

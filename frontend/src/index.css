@@ -94,10 +94,12 @@ textarea {
   }
 
   .view-container {
-    min-height: calc(100vh - 48px);
     margin-left: 0px;
     margin-top: 48px;
     padding: 16px;
+    border-radius: 8px 8px 0 0;
+    min-height: calc(100vh - 48px);
+    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.41), 0 5px 15px 0 rgba(0,0,0,0.28);
   }
 
   .menu-icon {
@@ -141,6 +143,10 @@ textarea {
     flex-flow: column;
   }
 
+  .rbc-toolbar-label {
+    margin: 8px;
+  }
+
   .rbc-header {
     overflow: visible !important;
   }
@@ -155,7 +161,7 @@ textarea {
   }
 
   .group {
-    flex-basis: 44%;
+    width: calc((100vw - 3 * 16px) / 2);
   }
 
   .modal-content {
