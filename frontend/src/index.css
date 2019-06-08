@@ -147,7 +147,7 @@ textarea {
     margin: 8px;
   }
 
-  .rbc-header {
+  .rbc-month-view .rbc-header {
     overflow: visible !important;
   }
   
@@ -168,6 +168,18 @@ textarea {
     border-radius: 0;
     margin: -8px;
     width: 100vw;
+  }
+
+  .popover {
+    max-width: calc(100vw - 48px);
+  }
+
+  .form-control {
+    width: calc(100vw - 40px);
+  }
+
+  .search > input {
+    width: calc(100% - 64px);
   }
 }
 
